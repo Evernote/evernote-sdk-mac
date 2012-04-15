@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC5D349A13AF516A005C5996 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5D349913AF516A005C5996 /* UIKit.framework */; };
+		BC5D349C13AF516A005C5996 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5D349B13AF516A005C5996 /* Foundation.framework */; };
+		BC5D349E13AF516A005C5996 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5D349D13AF516A005C5996 /* CoreGraphics.framework */; };
+		BC5D34A413AF516A005C5996 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC5D34A213AF516A005C5996 /* InfoPlist.strings */; };
+		BC5D34A713AF516A005C5996 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34A613AF516A005C5996 /* main.m */; };
+		BC5D34AA13AF516A005C5996 /* clientAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34A913AF516A005C5996 /* clientAppDelegate.m */; };
+		BC5D34AD13AF516A005C5996 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5D34AB13AF516A005C5996 /* MainWindow.xib */; };
+		BC5D34B013AF516A005C5996 /* addNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34AF13AF516A005C5996 /* addNoteViewController.m */; };
+		BC5D34B313AF516A005C5996 /* NotesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34B213AF516A005C5996 /* NotesListViewController.m */; };
+		BC5D34B613AF516A005C5996 /* addNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5D34B413AF516A005C5996 /* addNoteView.xib */; };
+		BC5D34B913AF516A005C5996 /* NotesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5D34B713AF516A005C5996 /* NotesListView.xib */; };
+		BC5D34DB13AF518E005C5996 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34C313AF518E005C5996 /* TBinaryProtocol.m */; };
+		BC5D34DC13AF518E005C5996 /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34C613AF518E005C5996 /* TProtocolException.m */; };
+		BC5D34DD13AF518E005C5996 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34C913AF518E005C5996 /* TProtocolUtil.m */; };
+		BC5D34DE13AF518E005C5996 /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34CC13AF518E005C5996 /* TApplicationException.m */; };
+		BC5D34DF13AF518E005C5996 /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34CE13AF518E005C5996 /* TException.m */; };
+		BC5D34E013AF518E005C5996 /* THTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34D313AF518E005C5996 /* THTTPClient.m */; };
+		BC5D34E113AF518E005C5996 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34D513AF518E005C5996 /* TMemoryBuffer.m */; };
+		BC5D34E213AF518E005C5996 /* TTransportException.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34D813AF518E005C5996 /* TTransportException.m */; };
+		BC5D34E313AF518E005C5996 /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34DA13AF518E005C5996 /* TSharedProcessorFactory.m */; };
+		BC5D34EF13AF51A4005C5996 /* EDAMLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34E613AF51A4005C5996 /* EDAMLimits.m */; };
+		BC5D34F013AF51A4005C5996 /* EDAMErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34E813AF51A4005C5996 /* EDAMErrors.m */; };
+		BC5D34F113AF51A4005C5996 /* EDAMNoteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34EA13AF51A4005C5996 /* EDAMNoteStore.m */; };
+		BC5D34F213AF51A4005C5996 /* EDAMTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34EC13AF51A4005C5996 /* EDAMTypes.m */; };
+		BC5D34F313AF51A4005C5996 /* EDAMUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5D34EE13AF51A4005C5996 /* EDAMUserStore.m */; };
+		BCBFE94C13C30DB20027AC95 /* MD5.c in Sources */ = {isa = PBXBuildFile; fileRef = BCBFE94613C30DB20027AC95 /* MD5.c */; };
+		BCBFE94D13C30DB20027AC95 /* NSDataMD5Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFE94913C30DB20027AC95 /* NSDataMD5Additions.m */; };
+		BCBFE94E13C30DB20027AC95 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBFE94B13C30DB20027AC95 /* NSString+MD5.m */; };
+		BCD7736013AF7A730035A72E /* Evernote.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD7735F13AF7A730035A72E /* Evernote.m */; };
+		BCF4108A13B0896B0054222E /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF4108813B0896B0054222E /* NoteViewController.m */; };
+		BCF4108B13B0896B0054222E /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF4108913B0896B0054222E /* NoteViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BC5D349513AF516A005C5996 /* client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = client.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC5D349913AF516A005C5996 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BC5D349B13AF516A005C5996 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BC5D349D13AF516A005C5996 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BC5D34A113AF516A005C5996 /* client-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "client-Info.plist"; sourceTree = "<group>"; };
+		BC5D34A313AF516A005C5996 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BC5D34A513AF516A005C5996 /* client-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "client-Prefix.pch"; sourceTree = "<group>"; };
+		BC5D34A613AF516A005C5996 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BC5D34A813AF516A005C5996 /* clientAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clientAppDelegate.h; sourceTree = "<group>"; };
+		BC5D34A913AF516A005C5996 /* clientAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clientAppDelegate.m; sourceTree = "<group>"; };
+		BC5D34AC13AF516A005C5996 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		BC5D34AE13AF516A005C5996 /* addNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = addNoteViewController.h; sourceTree = "<group>"; };
+		BC5D34AF13AF516A005C5996 /* addNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = addNoteViewController.m; sourceTree = "<group>"; };
+		BC5D34B113AF516A005C5996 /* NotesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesListViewController.h; sourceTree = "<group>"; };
+		BC5D34B213AF516A005C5996 /* NotesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesListViewController.m; sourceTree = "<group>"; };
+		BC5D34B513AF516A005C5996 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/addNoteView.xib; sourceTree = "<group>"; };
+		BC5D34B813AF516A005C5996 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NotesListView.xib; sourceTree = "<group>"; };
+		BC5D34C213AF518E005C5996 /* TBinaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBinaryProtocol.h; sourceTree = "<group>"; };
+		BC5D34C313AF518E005C5996 /* TBinaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBinaryProtocol.m; sourceTree = "<group>"; };
+		BC5D34C413AF518E005C5996 /* TProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocol.h; sourceTree = "<group>"; };
+		BC5D34C513AF518E005C5996 /* TProtocolException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolException.h; sourceTree = "<group>"; };
+		BC5D34C613AF518E005C5996 /* TProtocolException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolException.m; sourceTree = "<group>"; };
+		BC5D34C713AF518E005C5996 /* TProtocolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolFactory.h; sourceTree = "<group>"; };
+		BC5D34C813AF518E005C5996 /* TProtocolUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolUtil.h; sourceTree = "<group>"; };
+		BC5D34C913AF518E005C5996 /* TProtocolUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolUtil.m; sourceTree = "<group>"; };
+		BC5D34CB13AF518E005C5996 /* TApplicationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TApplicationException.h; sourceTree = "<group>"; };
+		BC5D34CC13AF518E005C5996 /* TApplicationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TApplicationException.m; sourceTree = "<group>"; };
+		BC5D34CD13AF518E005C5996 /* TException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TException.h; sourceTree = "<group>"; };
+		BC5D34CE13AF518E005C5996 /* TException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TException.m; sourceTree = "<group>"; };
+		BC5D34CF13AF518E005C5996 /* TProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessor.h; sourceTree = "<group>"; };
+		BC5D34D013AF518E005C5996 /* TProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessorFactory.h; sourceTree = "<group>"; };
+		BC5D34D213AF518E005C5996 /* THTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTTPClient.h; sourceTree = "<group>"; };
+		BC5D34D313AF518E005C5996 /* THTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTTPClient.m; sourceTree = "<group>"; };
+		BC5D34D413AF518E005C5996 /* TMemoryBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemoryBuffer.h; sourceTree = "<group>"; };
+		BC5D34D513AF518E005C5996 /* TMemoryBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemoryBuffer.m; sourceTree = "<group>"; };
+		BC5D34D613AF518E005C5996 /* TTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransport.h; sourceTree = "<group>"; };
+		BC5D34D713AF518E005C5996 /* TTransportException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransportException.h; sourceTree = "<group>"; };
+		BC5D34D813AF518E005C5996 /* TTransportException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTransportException.m; sourceTree = "<group>"; };
+		BC5D34D913AF518E005C5996 /* TSharedProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSharedProcessorFactory.h; sourceTree = "<group>"; };
+		BC5D34DA13AF518E005C5996 /* TSharedProcessorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSharedProcessorFactory.m; sourceTree = "<group>"; };
+		BC5D34E513AF51A4005C5996 /* EDAMLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMLimits.h; sourceTree = "<group>"; };
+		BC5D34E613AF51A4005C5996 /* EDAMLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMLimits.m; sourceTree = "<group>"; };
+		BC5D34E713AF51A4005C5996 /* EDAMErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMErrors.h; sourceTree = "<group>"; };
+		BC5D34E813AF51A4005C5996 /* EDAMErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMErrors.m; sourceTree = "<group>"; };
+		BC5D34E913AF51A4005C5996 /* EDAMNoteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMNoteStore.h; sourceTree = "<group>"; };
+		BC5D34EA13AF51A4005C5996 /* EDAMNoteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMNoteStore.m; sourceTree = "<group>"; };
+		BC5D34EB13AF51A4005C5996 /* EDAMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMTypes.h; sourceTree = "<group>"; };
+		BC5D34EC13AF51A4005C5996 /* EDAMTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMTypes.m; sourceTree = "<group>"; };
+		BC5D34ED13AF51A4005C5996 /* EDAMUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMUserStore.h; sourceTree = "<group>"; };
+		BC5D34EE13AF51A4005C5996 /* EDAMUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMUserStore.m; sourceTree = "<group>"; };
+		BCBFE94613C30DB20027AC95 /* MD5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MD5.c; sourceTree = "<group>"; };
+		BCBFE94713C30DB20027AC95 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		BCBFE94813C30DB20027AC95 /* NSDataMD5Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataMD5Additions.h; sourceTree = "<group>"; };
+		BCBFE94913C30DB20027AC95 /* NSDataMD5Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataMD5Additions.m; sourceTree = "<group>"; };
+		BCBFE94A13C30DB20027AC95 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		BCBFE94B13C30DB20027AC95 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		BCD7735E13AF7A730035A72E /* Evernote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Evernote.h; path = ../Evernote.h; sourceTree = "<group>"; };
+		BCD7735F13AF7A730035A72E /* Evernote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Evernote.m; path = ../Evernote.m; sourceTree = "<group>"; };
+		BCF4108713B0896B0054222E /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
+		BCF4108813B0896B0054222E /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
+		BCF4108913B0896B0054222E /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC5D349213AF516A005C5996 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC5D349A13AF516A005C5996 /* UIKit.framework in Frameworks */,
+				BC5D349C13AF516A005C5996 /* Foundation.framework in Frameworks */,
+				BC5D349E13AF516A005C5996 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC5D348A13AF516A005C5996 = {
+			isa = PBXGroup;
+			children = (
+				BCE1320913C1F46800FFE5AC /* crypto */,
+				BC5D34BF13AF5170005C5996 /* api */,
+				BC5D349F13AF516A005C5996 /* client */,
+				BC5D349813AF516A005C5996 /* Frameworks */,
+				BC5D349613AF516A005C5996 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC5D349613AF516A005C5996 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D349513AF516A005C5996 /* client.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC5D349813AF516A005C5996 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D349913AF516A005C5996 /* UIKit.framework */,
+				BC5D349B13AF516A005C5996 /* Foundation.framework */,
+				BC5D349D13AF516A005C5996 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC5D349F13AF516A005C5996 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34AE13AF516A005C5996 /* addNoteViewController.h */,
+				BC5D34AF13AF516A005C5996 /* addNoteViewController.m */,
+				BC5D34B413AF516A005C5996 /* addNoteView.xib */,
+				BC5D34A813AF516A005C5996 /* clientAppDelegate.h */,
+				BC5D34A913AF516A005C5996 /* clientAppDelegate.m */,
+				BCD7735E13AF7A730035A72E /* Evernote.h */,
+				BCD7735F13AF7A730035A72E /* Evernote.m */,
+				BC5D34AB13AF516A005C5996 /* MainWindow.xib */,
+				BCF4108713B0896B0054222E /* NoteViewController.h */,
+				BCF4108813B0896B0054222E /* NoteViewController.m */,
+				BCF4108913B0896B0054222E /* NoteViewController.xib */,
+				BC5D34B113AF516A005C5996 /* NotesListViewController.h */,
+				BC5D34B213AF516A005C5996 /* NotesListViewController.m */,
+				BC5D34B713AF516A005C5996 /* NotesListView.xib */,
+				BC5D34A013AF516A005C5996 /* Supporting Files */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
+		BC5D34A013AF516A005C5996 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34A113AF516A005C5996 /* client-Info.plist */,
+				BC5D34A213AF516A005C5996 /* InfoPlist.strings */,
+				BC5D34A513AF516A005C5996 /* client-Prefix.pch */,
+				BC5D34A613AF516A005C5996 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC5D34BF13AF5170005C5996 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34E413AF51A4005C5996 /* edam */,
+				BC5D34C013AF518E005C5996 /* thrift */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
+		BC5D34C013AF518E005C5996 /* thrift */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34C113AF518E005C5996 /* protocol */,
+				BC5D34CA13AF518E005C5996 /* server */,
+				BC5D34CB13AF518E005C5996 /* TApplicationException.h */,
+				BC5D34CC13AF518E005C5996 /* TApplicationException.m */,
+				BC5D34CD13AF518E005C5996 /* TException.h */,
+				BC5D34CE13AF518E005C5996 /* TException.m */,
+				BC5D34CF13AF518E005C5996 /* TProcessor.h */,
+				BC5D34D013AF518E005C5996 /* TProcessorFactory.h */,
+				BC5D34D113AF518E005C5996 /* transport */,
+				BC5D34D913AF518E005C5996 /* TSharedProcessorFactory.h */,
+				BC5D34DA13AF518E005C5996 /* TSharedProcessorFactory.m */,
+			);
+			path = thrift;
+			sourceTree = "<group>";
+		};
+		BC5D34C113AF518E005C5996 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34C213AF518E005C5996 /* TBinaryProtocol.h */,
+				BC5D34C313AF518E005C5996 /* TBinaryProtocol.m */,
+				BC5D34C413AF518E005C5996 /* TProtocol.h */,
+				BC5D34C513AF518E005C5996 /* TProtocolException.h */,
+				BC5D34C613AF518E005C5996 /* TProtocolException.m */,
+				BC5D34C713AF518E005C5996 /* TProtocolFactory.h */,
+				BC5D34C813AF518E005C5996 /* TProtocolUtil.h */,
+				BC5D34C913AF518E005C5996 /* TProtocolUtil.m */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		BC5D34CA13AF518E005C5996 /* server */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = server;
+			sourceTree = "<group>";
+		};
+		BC5D34D113AF518E005C5996 /* transport */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34D213AF518E005C5996 /* THTTPClient.h */,
+				BC5D34D313AF518E005C5996 /* THTTPClient.m */,
+				BC5D34D413AF518E005C5996 /* TMemoryBuffer.h */,
+				BC5D34D513AF518E005C5996 /* TMemoryBuffer.m */,
+				BC5D34D613AF518E005C5996 /* TTransport.h */,
+				BC5D34D713AF518E005C5996 /* TTransportException.h */,
+				BC5D34D813AF518E005C5996 /* TTransportException.m */,
+			);
+			path = transport;
+			sourceTree = "<group>";
+		};
+		BC5D34E413AF51A4005C5996 /* edam */ = {
+			isa = PBXGroup;
+			children = (
+				BC5D34E513AF51A4005C5996 /* EDAMLimits.h */,
+				BC5D34E613AF51A4005C5996 /* EDAMLimits.m */,
+				BC5D34E713AF51A4005C5996 /* EDAMErrors.h */,
+				BC5D34E813AF51A4005C5996 /* EDAMErrors.m */,
+				BC5D34E913AF51A4005C5996 /* EDAMNoteStore.h */,
+				BC5D34EA13AF51A4005C5996 /* EDAMNoteStore.m */,
+				BC5D34EB13AF51A4005C5996 /* EDAMTypes.h */,
+				BC5D34EC13AF51A4005C5996 /* EDAMTypes.m */,
+				BC5D34ED13AF51A4005C5996 /* EDAMUserStore.h */,
+				BC5D34EE13AF51A4005C5996 /* EDAMUserStore.m */,
+			);
+			path = edam;
+			sourceTree = "<group>";
+		};
+		BCE1320913C1F46800FFE5AC /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				BCBFE94613C30DB20027AC95 /* MD5.c */,
+				BCBFE94713C30DB20027AC95 /* MD5.h */,
+				BCBFE94813C30DB20027AC95 /* NSDataMD5Additions.h */,
+				BCBFE94913C30DB20027AC95 /* NSDataMD5Additions.m */,
+				BCBFE94A13C30DB20027AC95 /* NSString+MD5.h */,
+				BCBFE94B13C30DB20027AC95 /* NSString+MD5.m */,
+			);
+			name = crypto;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC5D349413AF516A005C5996 /* client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC5D34BC13AF516A005C5996 /* Build configuration list for PBXNativeTarget "client" */;
+			buildPhases = (
+				BC5D349113AF516A005C5996 /* Sources */,
+				BC5D349213AF516A005C5996 /* Frameworks */,
+				BC5D349313AF516A005C5996 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = client;
+			productName = client;
+			productReference = BC5D349513AF516A005C5996 /* client.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC5D348C13AF516A005C5996 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = BC5D348F13AF516A005C5996 /* Build configuration list for PBXProject "client" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BC5D348A13AF516A005C5996;
+			productRefGroup = BC5D349613AF516A005C5996 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC5D349413AF516A005C5996 /* client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC5D349313AF516A005C5996 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC5D34A413AF516A005C5996 /* InfoPlist.strings in Resources */,
+				BC5D34AD13AF516A005C5996 /* MainWindow.xib in Resources */,
+				BC5D34B613AF516A005C5996 /* addNoteView.xib in Resources */,
+				BC5D34B913AF516A005C5996 /* NotesListView.xib in Resources */,
+				BCF4108B13B0896B0054222E /* NoteViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC5D349113AF516A005C5996 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC5D34A713AF516A005C5996 /* main.m in Sources */,
+				BC5D34AA13AF516A005C5996 /* clientAppDelegate.m in Sources */,
+				BC5D34B013AF516A005C5996 /* addNoteViewController.m in Sources */,
+				BC5D34B313AF516A005C5996 /* NotesListViewController.m in Sources */,
+				BC5D34DB13AF518E005C5996 /* TBinaryProtocol.m in Sources */,
+				BC5D34DC13AF518E005C5996 /* TProtocolException.m in Sources */,
+				BC5D34DD13AF518E005C5996 /* TProtocolUtil.m in Sources */,
+				BC5D34DE13AF518E005C5996 /* TApplicationException.m in Sources */,
+				BC5D34DF13AF518E005C5996 /* TException.m in Sources */,
+				BC5D34E013AF518E005C5996 /* THTTPClient.m in Sources */,
+				BC5D34E113AF518E005C5996 /* TMemoryBuffer.m in Sources */,
+				BC5D34E213AF518E005C5996 /* TTransportException.m in Sources */,
+				BC5D34E313AF518E005C5996 /* TSharedProcessorFactory.m in Sources */,
+				BC5D34EF13AF51A4005C5996 /* EDAMLimits.m in Sources */,
+				BC5D34F013AF51A4005C5996 /* EDAMErrors.m in Sources */,
+				BC5D34F113AF51A4005C5996 /* EDAMNoteStore.m in Sources */,
+				BC5D34F213AF51A4005C5996 /* EDAMTypes.m in Sources */,
+				BC5D34F313AF51A4005C5996 /* EDAMUserStore.m in Sources */,
+				BCD7736013AF7A730035A72E /* Evernote.m in Sources */,
+				BCF4108A13B0896B0054222E /* NoteViewController.m in Sources */,
+				BCBFE94C13C30DB20027AC95 /* MD5.c in Sources */,
+				BCBFE94D13C30DB20027AC95 /* NSDataMD5Additions.m in Sources */,
+				BCBFE94E13C30DB20027AC95 /* NSString+MD5.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BC5D34A213AF516A005C5996 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC5D34A313AF516A005C5996 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BC5D34AB13AF516A005C5996 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC5D34AC13AF516A005C5996 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		BC5D34B413AF516A005C5996 /* addNoteView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC5D34B513AF516A005C5996 /* en */,
+			);
+			name = addNoteView.xib;
+			sourceTree = "<group>";
+		};
+		BC5D34B713AF516A005C5996 /* NotesListView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC5D34B813AF516A005C5996 /* en */,
+			);
+			name = NotesListView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BC5D34BA13AF516A005C5996 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"./thrift/**",
+					"./edam/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BC5D34BB13AF516A005C5996 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		BC5D34BD13AF516A005C5996 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "client/client-Prefix.pch";
+				INFOPLIST_FILE = "client/client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BC5D34BE13AF516A005C5996 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "client/client-Prefix.pch";
+				INFOPLIST_FILE = "client/client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC5D348F13AF516A005C5996 /* Build configuration list for PBXProject "client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC5D34BA13AF516A005C5996 /* Debug */,
+				BC5D34BB13AF516A005C5996 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC5D34BC13AF516A005C5996 /* Build configuration list for PBXNativeTarget "client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC5D34BD13AF516A005C5996 /* Debug */,
+				BC5D34BE13AF516A005C5996 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BC5D348C13AF516A005C5996 /* Project object */;
+}
