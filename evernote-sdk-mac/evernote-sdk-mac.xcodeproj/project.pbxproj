@@ -235,15 +235,6 @@
 		85C0297B158DCBDC00911997 /* evernote-sdk-mac */ = {
 			isa = PBXGroup;
 			children = (
-				85C0297C158DCBDC00911997 /* Supporting Files */,
-			);
-			path = "evernote-sdk-mac";
-			sourceTree = "<group>";
-		};
-		85C0297C158DCBDC00911997 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				85C0297D158DCBDC00911997 /* evernote-sdk-mac-Prefix.pch */,
 				85C029A1158DCCBE00911997 /* 3rdParty */,
 				85C029D5158DCCBE00911997 /* EDAM */,
 				85C029E1158DCCBE00911997 /* EvernoteNoteStore.h */,
@@ -255,6 +246,15 @@
 				85C029E7158DCCBE00911997 /* EvernoteUserStore.h */,
 				85C029E8158DCCBE00911997 /* EvernoteUserStore.m */,
 				85C029E9158DCCBE00911997 /* internal */,
+				85C0297C158DCBDC00911997 /* Supporting Files */,
+			);
+			path = "evernote-sdk-mac";
+			sourceTree = "<group>";
+		};
+		85C0297C158DCBDC00911997 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				85C0297D158DCBDC00911997 /* evernote-sdk-mac-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
