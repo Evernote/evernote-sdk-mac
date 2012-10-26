@@ -1,5 +1,7 @@
-Evernote SDK for Mac OS X version 1.21
+Evernote SDK for Mac OS X
 ===========================================
+
+Evernote API version 1.22
 
 Overview
 --------
