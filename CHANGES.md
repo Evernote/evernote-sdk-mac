@@ -1,3 +1,6 @@
+= 1.2.0
+
+* Reminders API
 * Add more testing for correct developer setup
 * Cleanup the repository
 * License clarifications

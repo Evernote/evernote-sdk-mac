@@ -10,6 +10,7 @@
 #import "TApplicationException.h"
 #import "TProtocolUtil.h"
 #import "TProcessor.h"
+#import "TObjective-C.h"
 
 
 enum EDAMErrorCode {
@@ -29,7 +30,9 @@ enum EDAMErrorCode {
   EDAMErrorCode_LEN_TOO_LONG = 14,
   EDAMErrorCode_TOO_FEW = 15,
   EDAMErrorCode_TOO_MANY = 16,
-  EDAMErrorCode_UNSUPPORTED_OPERATION = 17
+  EDAMErrorCode_UNSUPPORTED_OPERATION = 17,
+  EDAMErrorCode_TAKEN_DOWN = 18,
+  EDAMErrorCode_RATE_LIMIT_REACHED = 19
 };
 
 @interface EDAMUserException : NSException <NSCoding> {
@@ -40,56 +43,71 @@ enum EDAMErrorCode {
   BOOL __parameter_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=errorCode, setter=setErrorCode:) int errorCode;
+@property (nonatomic, retain, getter=parameter, setter=setParameter:) NSString * parameter;
+#endif
+
+- (id) init;
 - (id) initWithErrorCode: (int) errorCode parameter: (NSString *) parameter;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, getter=errorCode, setter=setErrorCode:) int errorCode;
-@property (nonatomic, retain, getter=parameter, setter=setParameter:) NSString * parameter;
-#else
-
+#if !__has_feature(objc_arc)
 - (int) errorCode;
 - (void) setErrorCode: (int) errorCode;
+#endif
+- (BOOL) errorCodeIsSet;
 
+#if !__has_feature(objc_arc)
 - (NSString *) parameter;
 - (void) setParameter: (NSString *) parameter;
-
 #endif
-
-- (BOOL) errorCodeIsSet;
 - (BOOL) parameterIsSet;
+
 @end
 
 @interface EDAMSystemException : NSException <NSCoding> {
   int __errorCode;
   NSString * __message;
+  int32_t __rateLimitDuration;
 
   BOOL __errorCode_isset;
   BOOL __message_isset;
+  BOOL __rateLimitDuration_isset;
 }
-
-- (id) initWithErrorCode: (int) errorCode message: (NSString *) message;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
 
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, getter=errorCode, setter=setErrorCode:) int errorCode;
 @property (nonatomic, retain, getter=message, setter=setMessage:) NSString * message;
-#else
-
-- (int) errorCode;
-- (void) setErrorCode: (int) errorCode;
-
-- (NSString *) message;
-- (void) setMessage: (NSString *) message;
-
+@property (nonatomic, getter=rateLimitDuration, setter=setRateLimitDuration:) int32_t rateLimitDuration;
 #endif
 
+- (id) init;
+- (id) initWithErrorCode: (int) errorCode message: (NSString *) message rateLimitDuration: (int32_t) rateLimitDuration;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (int) errorCode;
+- (void) setErrorCode: (int) errorCode;
+#endif
 - (BOOL) errorCodeIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) message;
+- (void) setMessage: (NSString *) message;
+#endif
 - (BOOL) messageIsSet;
+
+#if !__has_feature(objc_arc)
+- (int32_t) rateLimitDuration;
+- (void) setRateLimitDuration: (int32_t) rateLimitDuration;
+#endif
+- (BOOL) rateLimitDurationIsSet;
+
 @end
 
 @interface EDAMNotFoundException : NSException <NSCoding> {
@@ -100,26 +118,29 @@ enum EDAMErrorCode {
   BOOL __key_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=identifier, setter=setIdentifier:) NSString * identifier;
+@property (nonatomic, retain, getter=key, setter=setKey:) NSString * key;
+#endif
+
+- (id) init;
 - (id) initWithIdentifier: (NSString *) identifier key: (NSString *) key;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=identifier, setter=setIdentifier:) NSString * identifier;
-@property (nonatomic, retain, getter=key, setter=setKey:) NSString * key;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) identifier;
 - (void) setIdentifier: (NSString *) identifier;
+#endif
+- (BOOL) identifierIsSet;
 
+#if !__has_feature(objc_arc)
 - (NSString *) key;
 - (void) setKey: (NSString *) key;
-
 #endif
-
-- (BOOL) identifierIsSet;
 - (BOOL) keyIsSet;
+
 @end
 
 @interface ErrorsConstants : NSObject {

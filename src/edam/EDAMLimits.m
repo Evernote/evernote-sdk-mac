@@ -10,6 +10,7 @@
 #import "TApplicationException.h"
 #import "TProtocolUtil.h"
 #import "TProcessor.h"
+#import "TObjective-C.h"
 
 
 #import "EDAMLimits.h"
@@ -27,7 +28,7 @@ static int32_t EDAMEDAM_EMAIL_LEN_MAX = 255;
 static NSString * EDAMEDAM_EMAIL_LOCAL_REGEX = @"^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*$";
 static NSString * EDAMEDAM_EMAIL_DOMAIN_REGEX = @"^[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.([A-Za-z]{2,})$";
 static NSString * EDAMEDAM_EMAIL_REGEX = @"^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.([A-Za-z]{2,})$";
-static NSString * EDAMEDAM_VAT_REGEX = @"[A-Za-z]{2}.+";
+static NSString * EDAMEDAM_VAT_REGEX = @"^((AT)?U[0-9]{8}|(BE)?0?[0-9]{9}|(BG)?[0-9]{9,10}|(CY)?[0-9]{8}L|(CZ)?[0-9]{8,10}|(DE)?[0-9]{9}|(DK)?[0-9]{8}|(EE)?[0-9]{9}|(EL|GR)?[0-9]{9}|(ES)?[0-9A-Z][0-9]{7}[0-9A-Z]|(FI)?[0-9]{8}|(FR)?[0-9A-Z]{2}[0-9]{9}|(GB)?([0-9]{9}([0-9]{3})?|[A-Z]{2}[0-9]{3})|(HU)?[0-9]{8}|(IE)?[0-9]S[0-9]{5}L|(IT)?[0-9]{11}|(LT)?([0-9]{9}|[0-9]{12})|(LU)?[0-9]{8}|(LV)?[0-9]{11}|(MT)?[0-9]{8}|(NL)?[0-9]{9}B[0-9]{2}|(PL)?[0-9]{10}|(PT)?[0-9]{9}|(RO)?[0-9]{2,10}|(SE)?[0-9]{12}|(SI)?[0-9]{8}|(SK)?[0-9]{10})|[0-9]{9}MVA|[0-9]{6}|CHE[0-9]{9}(TVA|MWST|IVA)$";
 static int32_t EDAMEDAM_TIMEZONE_LEN_MIN = 1;
 static int32_t EDAMEDAM_TIMEZONE_LEN_MAX = 32;
 static NSString * EDAMEDAM_TIMEZONE_REGEX = @"^([A-Za-z_-]+(/[A-Za-z_-]+)*)|(GMT(-|\\+)[0-9]{1,2}(:[0-9]{2})?)$";
@@ -46,7 +47,8 @@ static NSString * EDAMEDAM_MIME_TYPE_MP4_VIDEO = @"video/mp4";
 static NSString * EDAMEDAM_MIME_TYPE_INK = @"application/vnd.evernote.ink";
 static NSString * EDAMEDAM_MIME_TYPE_PDF = @"application/pdf";
 static NSString * EDAMEDAM_MIME_TYPE_DEFAULT = @"application/octet-stream";
-static NSSet * EDAMEDAM_MIME_TYPES;
+static NSMutableSet * EDAMEDAM_MIME_TYPES;
+static NSMutableSet * EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES;
 static int32_t EDAMEDAM_SEARCH_QUERY_LEN_MIN = 0;
 static int32_t EDAMEDAM_SEARCH_QUERY_LEN_MAX = 1024;
 static NSString * EDAMEDAM_SEARCH_QUERY_REGEX = @"^[^\\p{Cc}\\p{Zl}\\p{Zp}]{0,1024}$";
@@ -81,7 +83,7 @@ static NSString * EDAMEDAM_NOTEBOOK_STACK_REGEX = @"^[^\\p{Cc}\\p{Z}]([^\\p{Cc}\
 static int32_t EDAMEDAM_PUBLISHING_URI_LEN_MIN = 1;
 static int32_t EDAMEDAM_PUBLISHING_URI_LEN_MAX = 255;
 static NSString * EDAMEDAM_PUBLISHING_URI_REGEX = @"^[a-zA-Z0-9.~_+-]{1,255}$";
-static NSSet * EDAMEDAM_PUBLISHING_URI_PROHIBITED;
+static NSMutableSet * EDAMEDAM_PUBLISHING_URI_PROHIBITED;
 static int32_t EDAMEDAM_PUBLISHING_DESCRIPTION_LEN_MIN = 1;
 static int32_t EDAMEDAM_PUBLISHING_DESCRIPTION_LEN_MAX = 200;
 static NSString * EDAMEDAM_PUBLISHING_DESCRIPTION_REGEX = @"^[^\\p{Cc}\\p{Z}]([^\\p{Cc}\\p{Zl}\\p{Zp}]{0,198}[^\\p{Cc}\\p{Z}])?$";
@@ -106,23 +108,27 @@ static int32_t EDAMEDAM_USER_MAIL_LIMIT_DAILY_FREE = 50;
 static int32_t EDAMEDAM_USER_MAIL_LIMIT_DAILY_PREMIUM = 200;
 static int64_t EDAMEDAM_USER_UPLOAD_LIMIT_FREE = 62914560;
 static int64_t EDAMEDAM_USER_UPLOAD_LIMIT_PREMIUM = 1073741824;
-static int64_t EDAMEDAM_USER_UPLOAD_LIMIT_BUSINESS = 1073741824;
+static int64_t EDAMEDAM_USER_UPLOAD_LIMIT_BUSINESS = 2147483647;
 static int32_t EDAMEDAM_NOTE_SIZE_MAX_FREE = 26214400;
 static int32_t EDAMEDAM_NOTE_SIZE_MAX_PREMIUM = 104857600;
 static int32_t EDAMEDAM_RESOURCE_SIZE_MAX_FREE = 26214400;
 static int32_t EDAMEDAM_RESOURCE_SIZE_MAX_PREMIUM = 104857600;
 static int32_t EDAMEDAM_USER_LINKED_NOTEBOOK_MAX = 100;
+static int32_t EDAMEDAM_USER_LINKED_NOTEBOOK_MAX_PREMIUM = 250;
 static int32_t EDAMEDAM_NOTEBOOK_SHARED_NOTEBOOK_MAX = 250;
 static int32_t EDAMEDAM_NOTE_CONTENT_CLASS_LEN_MIN = 3;
 static int32_t EDAMEDAM_NOTE_CONTENT_CLASS_LEN_MAX = 32;
+static NSString * EDAMEDAM_NOTE_CONTENT_CLASS_REGEX = @"^[A-Za-z0-9_.-]{3,32}$";
 static NSString * EDAMEDAM_HELLO_APP_CONTENT_CLASS_PREFIX = @"evernote.hello.";
 static NSString * EDAMEDAM_FOOD_APP_CONTENT_CLASS_PREFIX = @"evernote.food.";
-static NSString * EDAMEDAM_NOTE_CONTENT_CLASS_REGEX = @"^[A-Za-z0-9_.-]{3,32}$";
 static NSString * EDAMEDAM_CONTENT_CLASS_HELLO_ENCOUNTER = @"evernote.hello.encounter";
 static NSString * EDAMEDAM_CONTENT_CLASS_HELLO_PROFILE = @"evernote.hello.profile";
 static NSString * EDAMEDAM_CONTENT_CLASS_FOOD_MEAL = @"evernote.food.meal";
+static NSString * EDAMEDAM_CONTENT_CLASS_SKITCH_PREFIX = @"evernote.skitch";
 static NSString * EDAMEDAM_CONTENT_CLASS_SKITCH = @"evernote.skitch";
-static NSString * EDAMEDAM_CONTENT_CLASS_PENULTIMATE = @"evernote.penultimate";
+static NSString * EDAMEDAM_CONTENT_CLASS_SKITCH_PDF = @"evernote.skitch.pdf";
+static NSString * EDAMEDAM_CONTENT_CLASS_PENULTIMATE_PREFIX = @"evernote.penultimate.";
+static NSString * EDAMEDAM_CONTENT_CLASS_PENULTIMATE_NOTEBOOK = @"evernote.penultimate.notebook";
 static int32_t EDAMEDAM_RELATED_PLAINTEXT_LEN_MIN = 1;
 static int32_t EDAMEDAM_RELATED_PLAINTEXT_LEN_MAX = 131072;
 static int32_t EDAMEDAM_RELATED_MAX_NOTES = 25;
@@ -131,23 +137,63 @@ static int32_t EDAMEDAM_RELATED_MAX_TAGS = 25;
 static int32_t EDAMEDAM_BUSINESS_NOTEBOOK_DESCRIPTION_LEN_MIN = 1;
 static int32_t EDAMEDAM_BUSINESS_NOTEBOOK_DESCRIPTION_LEN_MAX = 200;
 static NSString * EDAMEDAM_BUSINESS_NOTEBOOK_DESCRIPTION_REGEX = @"^[^\\p{Cc}\\p{Z}]([^\\p{Cc}\\p{Zl}\\p{Zp}]{0,198}[^\\p{Cc}\\p{Z}])?$";
+static int32_t EDAMEDAM_BUSINESS_PHONE_NUMBER_LEN_MAX = 20;
 static int32_t EDAMEDAM_PREFERENCE_NAME_LEN_MIN = 3;
 static int32_t EDAMEDAM_PREFERENCE_NAME_LEN_MAX = 32;
 static int32_t EDAMEDAM_PREFERENCE_VALUE_LEN_MIN = 1;
 static int32_t EDAMEDAM_PREFERENCE_VALUE_LEN_MAX = 1024;
 static int32_t EDAMEDAM_MAX_PREFERENCES = 100;
-static int32_t EDAMEDAM_MAX_VALUES_PER_PREFERENCE = 250;
+static int32_t EDAMEDAM_MAX_VALUES_PER_PREFERENCE = 256;
 static NSString * EDAMEDAM_PREFERENCE_NAME_REGEX = @"^[A-Za-z0-9_.-]{3,32}$";
 static NSString * EDAMEDAM_PREFERENCE_VALUE_REGEX = @"^[^\\p{Cc}]{1,1024}$";
+static NSString * EDAMEDAM_PREFERENCE_SHORTCUTS = @"evernote.shortcuts";
+static int32_t EDAMEDAM_PREFERENCE_SHORTCUTS_MAX_VALUES = 250;
 static int32_t EDAMEDAM_DEVICE_ID_LEN_MAX = 32;
 static NSString * EDAMEDAM_DEVICE_ID_REGEX = @"^[^\\p{Cc}]{1,32}$";
 static int32_t EDAMEDAM_DEVICE_DESCRIPTION_LEN_MAX = 64;
 static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
+static int32_t EDAMEDAM_SEARCH_SUGGESTIONS_MAX = 10;
+static int32_t EDAMEDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MAX = 1024;
+static int32_t EDAMEDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MIN = 2;
 
 @implementation EDAMLimitsConstants
 + (void) initialize {
-  EDAMEDAM_MIME_TYPES = [[NSSet alloc] initWithObjects: @"image/gif", @"image/jpeg", @"image/png", @"audio/wav", @"audio/mpeg", @"audio/amr", @"application/vnd.evernote.ink", @"application/pdf", @"video/mp4", @"audio/aac", @"audio/mp4", nil];
-  EDAMEDAM_PUBLISHING_URI_PROHIBITED = [[NSSet alloc] initWithObjects: @"..", nil];
+  EDAMEDAM_MIME_TYPES = [[NSMutableSet alloc] initWithCapacity:11];
+  [EDAMEDAM_MIME_TYPES addObject:@"image/gif"];
+  [EDAMEDAM_MIME_TYPES addObject:@"image/jpeg"];
+  [EDAMEDAM_MIME_TYPES addObject:@"image/png"];
+  [EDAMEDAM_MIME_TYPES addObject:@"audio/wav"];
+  [EDAMEDAM_MIME_TYPES addObject:@"audio/mpeg"];
+  [EDAMEDAM_MIME_TYPES addObject:@"audio/amr"];
+  [EDAMEDAM_MIME_TYPES addObject:@"application/vnd.evernote.ink"];
+  [EDAMEDAM_MIME_TYPES addObject:@"application/pdf"];
+  [EDAMEDAM_MIME_TYPES addObject:@"video/mp4"];
+  [EDAMEDAM_MIME_TYPES addObject:@"audio/aac"];
+  [EDAMEDAM_MIME_TYPES addObject:@"audio/mp4"];
+
+;
+  EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES = [[NSMutableSet alloc] initWithCapacity:15];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/msword"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/mspowerpoint"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/excel"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.ms-word"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.ms-powerpoint"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.ms-excel"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.apple.pages"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.apple.numbers"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/vnd.apple.keynote"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/x-iwork-pages-sffpages"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/x-iwork-numbers-sffnumbers"];
+  [EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES addObject:@"application/x-iwork-keynote-sffkey"];
+
+;
+  EDAMEDAM_PUBLISHING_URI_PROHIBITED = [[NSMutableSet alloc] initWithCapacity:1];
+  [EDAMEDAM_PUBLISHING_URI_PROHIBITED addObject:@".."];
+
+;
 }
 + (int32_t) EDAM_ATTRIBUTE_LEN_MIN{
   return EDAMEDAM_ATTRIBUTE_LEN_MIN;
@@ -245,8 +291,11 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (NSString *) EDAM_MIME_TYPE_DEFAULT{
   return EDAMEDAM_MIME_TYPE_DEFAULT;
 }
-+ (NSSet *) EDAM_MIME_TYPES{
++ (NSMutableSet *) EDAM_MIME_TYPES{
   return EDAMEDAM_MIME_TYPES;
+}
++ (NSMutableSet *) EDAM_INDEXABLE_RESOURCE_MIME_TYPES{
+  return EDAMEDAM_INDEXABLE_RESOURCE_MIME_TYPES;
 }
 + (int32_t) EDAM_SEARCH_QUERY_LEN_MIN{
   return EDAMEDAM_SEARCH_QUERY_LEN_MIN;
@@ -350,7 +399,7 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (NSString *) EDAM_PUBLISHING_URI_REGEX{
   return EDAMEDAM_PUBLISHING_URI_REGEX;
 }
-+ (NSSet *) EDAM_PUBLISHING_URI_PROHIBITED{
++ (NSMutableSet *) EDAM_PUBLISHING_URI_PROHIBITED{
   return EDAMEDAM_PUBLISHING_URI_PROHIBITED;
 }
 + (int32_t) EDAM_PUBLISHING_DESCRIPTION_LEN_MIN{
@@ -443,6 +492,9 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (int32_t) EDAM_USER_LINKED_NOTEBOOK_MAX{
   return EDAMEDAM_USER_LINKED_NOTEBOOK_MAX;
 }
++ (int32_t) EDAM_USER_LINKED_NOTEBOOK_MAX_PREMIUM{
+  return EDAMEDAM_USER_LINKED_NOTEBOOK_MAX_PREMIUM;
+}
 + (int32_t) EDAM_NOTEBOOK_SHARED_NOTEBOOK_MAX{
   return EDAMEDAM_NOTEBOOK_SHARED_NOTEBOOK_MAX;
 }
@@ -452,14 +504,14 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (int32_t) EDAM_NOTE_CONTENT_CLASS_LEN_MAX{
   return EDAMEDAM_NOTE_CONTENT_CLASS_LEN_MAX;
 }
++ (NSString *) EDAM_NOTE_CONTENT_CLASS_REGEX{
+  return EDAMEDAM_NOTE_CONTENT_CLASS_REGEX;
+}
 + (NSString *) EDAM_HELLO_APP_CONTENT_CLASS_PREFIX{
   return EDAMEDAM_HELLO_APP_CONTENT_CLASS_PREFIX;
 }
 + (NSString *) EDAM_FOOD_APP_CONTENT_CLASS_PREFIX{
   return EDAMEDAM_FOOD_APP_CONTENT_CLASS_PREFIX;
-}
-+ (NSString *) EDAM_NOTE_CONTENT_CLASS_REGEX{
-  return EDAMEDAM_NOTE_CONTENT_CLASS_REGEX;
 }
 + (NSString *) EDAM_CONTENT_CLASS_HELLO_ENCOUNTER{
   return EDAMEDAM_CONTENT_CLASS_HELLO_ENCOUNTER;
@@ -470,11 +522,20 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (NSString *) EDAM_CONTENT_CLASS_FOOD_MEAL{
   return EDAMEDAM_CONTENT_CLASS_FOOD_MEAL;
 }
++ (NSString *) EDAM_CONTENT_CLASS_SKITCH_PREFIX{
+  return EDAMEDAM_CONTENT_CLASS_SKITCH_PREFIX;
+}
 + (NSString *) EDAM_CONTENT_CLASS_SKITCH{
   return EDAMEDAM_CONTENT_CLASS_SKITCH;
 }
-+ (NSString *) EDAM_CONTENT_CLASS_PENULTIMATE{
-  return EDAMEDAM_CONTENT_CLASS_PENULTIMATE;
++ (NSString *) EDAM_CONTENT_CLASS_SKITCH_PDF{
+  return EDAMEDAM_CONTENT_CLASS_SKITCH_PDF;
+}
++ (NSString *) EDAM_CONTENT_CLASS_PENULTIMATE_PREFIX{
+  return EDAMEDAM_CONTENT_CLASS_PENULTIMATE_PREFIX;
+}
++ (NSString *) EDAM_CONTENT_CLASS_PENULTIMATE_NOTEBOOK{
+  return EDAMEDAM_CONTENT_CLASS_PENULTIMATE_NOTEBOOK;
 }
 + (int32_t) EDAM_RELATED_PLAINTEXT_LEN_MIN{
   return EDAMEDAM_RELATED_PLAINTEXT_LEN_MIN;
@@ -500,6 +561,9 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (NSString *) EDAM_BUSINESS_NOTEBOOK_DESCRIPTION_REGEX{
   return EDAMEDAM_BUSINESS_NOTEBOOK_DESCRIPTION_REGEX;
 }
++ (int32_t) EDAM_BUSINESS_PHONE_NUMBER_LEN_MAX{
+  return EDAMEDAM_BUSINESS_PHONE_NUMBER_LEN_MAX;
+}
 + (int32_t) EDAM_PREFERENCE_NAME_LEN_MIN{
   return EDAMEDAM_PREFERENCE_NAME_LEN_MIN;
 }
@@ -524,6 +588,12 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 + (NSString *) EDAM_PREFERENCE_VALUE_REGEX{
   return EDAMEDAM_PREFERENCE_VALUE_REGEX;
 }
++ (NSString *) EDAM_PREFERENCE_SHORTCUTS{
+  return EDAMEDAM_PREFERENCE_SHORTCUTS;
+}
++ (int32_t) EDAM_PREFERENCE_SHORTCUTS_MAX_VALUES{
+  return EDAMEDAM_PREFERENCE_SHORTCUTS_MAX_VALUES;
+}
 + (int32_t) EDAM_DEVICE_ID_LEN_MAX{
   return EDAMEDAM_DEVICE_ID_LEN_MAX;
 }
@@ -535,6 +605,15 @@ static NSString * EDAMEDAM_DEVICE_DESCRIPTION_REGEX = @"^[^\\p{Cc}]{1,64}$";
 }
 + (NSString *) EDAM_DEVICE_DESCRIPTION_REGEX{
   return EDAMEDAM_DEVICE_DESCRIPTION_REGEX;
+}
++ (int32_t) EDAM_SEARCH_SUGGESTIONS_MAX{
+  return EDAMEDAM_SEARCH_SUGGESTIONS_MAX;
+}
++ (int32_t) EDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MAX{
+  return EDAMEDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MAX;
+}
++ (int32_t) EDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MIN{
+  return EDAMEDAM_SEARCH_SUGGESTIONS_PREFIX_LEN_MIN;
 }
 @end
 

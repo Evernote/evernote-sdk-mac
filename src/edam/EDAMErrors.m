@@ -10,6 +10,7 @@
 #import "TApplicationException.h"
 #import "TProtocolUtil.h"
 #import "TProcessor.h"
+#import "TObjective-C.h"
 
 
 #import "EDAMErrors.h"
@@ -26,12 +27,13 @@
 {
   return [super initWithName: @"EDAMUserException" reason: @"unknown" userInfo: nil];
 }
+
 - (id) initWithErrorCode: (int) errorCode parameter: (NSString *) parameter
 {
   self = [self init];
   __errorCode = errorCode;
   __errorCode_isset = YES;
-  __parameter = [parameter retain];
+  __parameter = [parameter retain_stub];
   __parameter_isset = YES;
   return self;
 }
@@ -46,7 +48,7 @@
   }
   if ([decoder containsValueForKey: @"parameter"])
   {
-    __parameter = [[decoder decodeObjectForKey: @"parameter"] retain];
+    __parameter = [[decoder decodeObjectForKey: @"parameter"] retain_stub];
     __parameter_isset = YES;
   }
   return self;
@@ -67,8 +69,8 @@
 
 - (void) dealloc
 {
-  [__parameter release];
-  [super dealloc];
+  [__parameter release_stub];
+  [super dealloc_stub];
 }
 
 - (int) errorCode {
@@ -89,12 +91,12 @@
 }
 
 - (NSString *) parameter {
-  return [[__parameter retain] autorelease];
+  return [[__parameter retain_stub] autorelease_stub];
 }
 
 - (void) setParameter: (NSString *) parameter {
-  [parameter retain];
-  [__parameter release];
+  [parameter retain_stub];
+  [__parameter release_stub];
   __parameter = parameter;
   __parameter_isset = YES;
 }
@@ -104,7 +106,7 @@
 }
 
 - (void) unsetParameter {
-  [__parameter release];
+  [__parameter release_stub];
   __parameter = nil;
   __parameter_isset = NO;
 }
@@ -185,13 +187,16 @@
 {
   return [super initWithName: @"EDAMSystemException" reason: @"unknown" userInfo: nil];
 }
-- (id) initWithErrorCode: (int) errorCode message: (NSString *) message
+
+- (id) initWithErrorCode: (int) errorCode message: (NSString *) message rateLimitDuration: (int32_t) rateLimitDuration
 {
   self = [self init];
   __errorCode = errorCode;
   __errorCode_isset = YES;
-  __message = [message retain];
+  __message = [message retain_stub];
   __message_isset = YES;
+  __rateLimitDuration = rateLimitDuration;
+  __rateLimitDuration_isset = YES;
   return self;
 }
 
@@ -205,8 +210,13 @@
   }
   if ([decoder containsValueForKey: @"message"])
   {
-    __message = [[decoder decodeObjectForKey: @"message"] retain];
+    __message = [[decoder decodeObjectForKey: @"message"] retain_stub];
     __message_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"rateLimitDuration"])
+  {
+    __rateLimitDuration = [decoder decodeInt32ForKey: @"rateLimitDuration"];
+    __rateLimitDuration_isset = YES;
   }
   return self;
 }
@@ -222,12 +232,16 @@
   {
     [encoder encodeObject: __message forKey: @"message"];
   }
+  if (__rateLimitDuration_isset)
+  {
+    [encoder encodeInt32: __rateLimitDuration forKey: @"rateLimitDuration"];
+  }
 }
 
 - (void) dealloc
 {
-  [__message release];
-  [super dealloc];
+  [__message release_stub];
+  [super dealloc_stub];
 }
 
 - (int) errorCode {
@@ -248,12 +262,12 @@
 }
 
 - (NSString *) message {
-  return [[__message retain] autorelease];
+  return [[__message retain_stub] autorelease_stub];
 }
 
 - (void) setMessage: (NSString *) message {
-  [message retain];
-  [__message release];
+  [message retain_stub];
+  [__message release_stub];
   __message = message;
   __message_isset = YES;
 }
@@ -263,9 +277,26 @@
 }
 
 - (void) unsetMessage {
-  [__message release];
+  [__message release_stub];
   __message = nil;
   __message_isset = NO;
+}
+
+- (int32_t) rateLimitDuration {
+  return __rateLimitDuration;
+}
+
+- (void) setRateLimitDuration: (int32_t) rateLimitDuration {
+  __rateLimitDuration = rateLimitDuration;
+  __rateLimitDuration_isset = YES;
+}
+
+- (BOOL) rateLimitDurationIsSet {
+  return __rateLimitDuration_isset;
+}
+
+- (void) unsetRateLimitDuration {
+  __rateLimitDuration_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -299,6 +330,14 @@
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 3:
+        if (fieldType == TType_I32) {
+          int32_t fieldValue = [inProtocol readI32];
+          [self setRateLimitDuration: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -322,6 +361,11 @@
       [outProtocol writeFieldEnd];
     }
   }
+  if (__rateLimitDuration_isset) {
+    [outProtocol writeFieldBeginWithName: @"rateLimitDuration" type: TType_I32 fieldID: 3];
+    [outProtocol writeI32: __rateLimitDuration];
+    [outProtocol writeFieldEnd];
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -332,6 +376,8 @@
   [ms appendFormat: @"%i", __errorCode];
   [ms appendString: @",message:"];
   [ms appendFormat: @"\"%@\"", __message];
+  [ms appendString: @",rateLimitDuration:"];
+  [ms appendFormat: @"%i", __rateLimitDuration];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -344,12 +390,13 @@
 {
   return [super initWithName: @"EDAMNotFoundException" reason: @"unknown" userInfo: nil];
 }
+
 - (id) initWithIdentifier: (NSString *) identifier key: (NSString *) key
 {
   self = [self init];
-  __identifier = [identifier retain];
+  __identifier = [identifier retain_stub];
   __identifier_isset = YES;
-  __key = [key retain];
+  __key = [key retain_stub];
   __key_isset = YES;
   return self;
 }
@@ -359,12 +406,12 @@
   self = [super initWithCoder: decoder];
   if ([decoder containsValueForKey: @"identifier"])
   {
-    __identifier = [[decoder decodeObjectForKey: @"identifier"] retain];
+    __identifier = [[decoder decodeObjectForKey: @"identifier"] retain_stub];
     __identifier_isset = YES;
   }
   if ([decoder containsValueForKey: @"key"])
   {
-    __key = [[decoder decodeObjectForKey: @"key"] retain];
+    __key = [[decoder decodeObjectForKey: @"key"] retain_stub];
     __key_isset = YES;
   }
   return self;
@@ -385,18 +432,18 @@
 
 - (void) dealloc
 {
-  [__identifier release];
-  [__key release];
-  [super dealloc];
+  [__identifier release_stub];
+  [__key release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) identifier {
-  return [[__identifier retain] autorelease];
+  return [[__identifier retain_stub] autorelease_stub];
 }
 
 - (void) setIdentifier: (NSString *) identifier {
-  [identifier retain];
-  [__identifier release];
+  [identifier retain_stub];
+  [__identifier release_stub];
   __identifier = identifier;
   __identifier_isset = YES;
 }
@@ -406,18 +453,18 @@
 }
 
 - (void) unsetIdentifier {
-  [__identifier release];
+  [__identifier release_stub];
   __identifier = nil;
   __identifier_isset = NO;
 }
 
 - (NSString *) key {
-  return [[__key retain] autorelease];
+  return [[__key retain_stub] autorelease_stub];
 }
 
 - (void) setKey: (NSString *) key {
-  [key retain];
-  [__key release];
+  [key retain_stub];
+  [__key release_stub];
   __key = key;
   __key_isset = YES;
 }
@@ -427,7 +474,7 @@
 }
 
 - (void) unsetKey {
-  [__key release];
+  [__key release_stub];
   __key = nil;
   __key_isset = NO;
 }

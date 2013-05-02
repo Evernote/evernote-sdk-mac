@@ -10,6 +10,7 @@
 #import "TApplicationException.h"
 #import "TProtocolUtil.h"
 #import "TProcessor.h"
+#import "TObjective-C.h"
 
 #import "EDAMLimits.h"
 
@@ -47,14 +48,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMData
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithBodyHash: (NSData *) bodyHash size: (int32_t) size body: (NSData *) body
 {
   self = [super init];
-  __bodyHash = [bodyHash retain];
+  __bodyHash = [bodyHash retain_stub];
   __bodyHash_isset = YES;
   __size = size;
   __size_isset = YES;
-  __body = [body retain];
+  __body = [body retain_stub];
   __body_isset = YES;
   return self;
 }
@@ -64,7 +73,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"bodyHash"])
   {
-    __bodyHash = [[decoder decodeObjectForKey: @"bodyHash"] retain];
+    __bodyHash = [[decoder decodeObjectForKey: @"bodyHash"] retain_stub];
     __bodyHash_isset = YES;
   }
   if ([decoder containsValueForKey: @"size"])
@@ -74,7 +83,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"body"])
   {
-    __body = [[decoder decodeObjectForKey: @"body"] retain];
+    __body = [[decoder decodeObjectForKey: @"body"] retain_stub];
     __body_isset = YES;
   }
   return self;
@@ -98,18 +107,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__bodyHash release];
-  [__body release];
-  [super dealloc];
+  [__bodyHash release_stub];
+  [__body release_stub];
+  [super dealloc_stub];
 }
 
 - (NSData *) bodyHash {
-  return [[__bodyHash retain] autorelease];
+  return [[__bodyHash retain_stub] autorelease_stub];
 }
 
 - (void) setBodyHash: (NSData *) bodyHash {
-  [bodyHash retain];
-  [__bodyHash release];
+  [bodyHash retain_stub];
+  [__bodyHash release_stub];
   __bodyHash = bodyHash;
   __bodyHash_isset = YES;
 }
@@ -119,7 +128,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetBodyHash {
-  [__bodyHash release];
+  [__bodyHash release_stub];
   __bodyHash = nil;
   __bodyHash_isset = NO;
 }
@@ -142,12 +151,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSData *) body {
-  return [[__body retain] autorelease];
+  return [[__body retain_stub] autorelease_stub];
 }
 
 - (void) setBody: (NSData *) body {
-  [body retain];
-  [__body release];
+  [body retain_stub];
+  [__body release_stub];
   __body = body;
   __body_isset = YES;
 }
@@ -157,7 +166,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetBody {
-  [__body release];
+  [__body release_stub];
   __body = nil;
   __body_isset = NO;
 }
@@ -251,10 +260,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMUserAttributes
 
-- (id) initWithDefaultLocationName: (NSString *) defaultLocationName defaultLatitude: (double) defaultLatitude defaultLongitude: (double) defaultLongitude preactivation: (BOOL) preactivation viewedPromotions: (NSArray *) viewedPromotions incomingEmailAddress: (NSString *) incomingEmailAddress recentMailedAddresses: (NSArray *) recentMailedAddresses comments: (NSString *) comments dateAgreedToTermsOfService: (EDAMTimestamp) dateAgreedToTermsOfService maxReferrals: (int32_t) maxReferrals referralCount: (int32_t) referralCount refererCode: (NSString *) refererCode sentEmailDate: (EDAMTimestamp) sentEmailDate sentEmailCount: (int32_t) sentEmailCount dailyEmailLimit: (int32_t) dailyEmailLimit emailOptOutDate: (EDAMTimestamp) emailOptOutDate partnerEmailOptInDate: (EDAMTimestamp) partnerEmailOptInDate preferredLanguage: (NSString *) preferredLanguage preferredCountry: (NSString *) preferredCountry clipFullPage: (BOOL) clipFullPage twitterUserName: (NSString *) twitterUserName twitterId: (NSString *) twitterId groupName: (NSString *) groupName recognitionLanguage: (NSString *) recognitionLanguage customerProfileId: (int64_t) customerProfileId referralProof: (NSString *) referralProof educationalDiscount: (BOOL) educationalDiscount businessAddress: (NSString *) businessAddress hideSponsorBilling: (BOOL) hideSponsorBilling taxExempt: (BOOL) taxExempt
+- (id) init
 {
   self = [super init];
-  __defaultLocationName = [defaultLocationName retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithDefaultLocationName: (NSString *) defaultLocationName defaultLatitude: (double) defaultLatitude defaultLongitude: (double) defaultLongitude preactivation: (BOOL) preactivation viewedPromotions: (NSMutableArray *) viewedPromotions incomingEmailAddress: (NSString *) incomingEmailAddress recentMailedAddresses: (NSMutableArray *) recentMailedAddresses comments: (NSString *) comments dateAgreedToTermsOfService: (EDAMTimestamp) dateAgreedToTermsOfService maxReferrals: (int32_t) maxReferrals referralCount: (int32_t) referralCount refererCode: (NSString *) refererCode sentEmailDate: (EDAMTimestamp) sentEmailDate sentEmailCount: (int32_t) sentEmailCount dailyEmailLimit: (int32_t) dailyEmailLimit emailOptOutDate: (EDAMTimestamp) emailOptOutDate partnerEmailOptInDate: (EDAMTimestamp) partnerEmailOptInDate preferredLanguage: (NSString *) preferredLanguage preferredCountry: (NSString *) preferredCountry clipFullPage: (BOOL) clipFullPage twitterUserName: (NSString *) twitterUserName twitterId: (NSString *) twitterId groupName: (NSString *) groupName recognitionLanguage: (NSString *) recognitionLanguage referralProof: (NSString *) referralProof educationalDiscount: (BOOL) educationalDiscount businessAddress: (NSString *) businessAddress hideSponsorBilling: (BOOL) hideSponsorBilling taxExempt: (BOOL) taxExempt useEmailAutoFiling: (BOOL) useEmailAutoFiling reminderEmailConfig: (int) reminderEmailConfig
+{
+  self = [super init];
+  __defaultLocationName = [defaultLocationName retain_stub];
   __defaultLocationName_isset = YES;
   __defaultLatitude = defaultLatitude;
   __defaultLatitude_isset = YES;
@@ -262,13 +279,13 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __defaultLongitude_isset = YES;
   __preactivation = preactivation;
   __preactivation_isset = YES;
-  __viewedPromotions = [viewedPromotions retain];
+  __viewedPromotions = [viewedPromotions retain_stub];
   __viewedPromotions_isset = YES;
-  __incomingEmailAddress = [incomingEmailAddress retain];
+  __incomingEmailAddress = [incomingEmailAddress retain_stub];
   __incomingEmailAddress_isset = YES;
-  __recentMailedAddresses = [recentMailedAddresses retain];
+  __recentMailedAddresses = [recentMailedAddresses retain_stub];
   __recentMailedAddresses_isset = YES;
-  __comments = [comments retain];
+  __comments = [comments retain_stub];
   __comments_isset = YES;
   __dateAgreedToTermsOfService = dateAgreedToTermsOfService;
   __dateAgreedToTermsOfService_isset = YES;
@@ -276,7 +293,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __maxReferrals_isset = YES;
   __referralCount = referralCount;
   __referralCount_isset = YES;
-  __refererCode = [refererCode retain];
+  __refererCode = [refererCode retain_stub];
   __refererCode_isset = YES;
   __sentEmailDate = sentEmailDate;
   __sentEmailDate_isset = YES;
@@ -288,32 +305,34 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __emailOptOutDate_isset = YES;
   __partnerEmailOptInDate = partnerEmailOptInDate;
   __partnerEmailOptInDate_isset = YES;
-  __preferredLanguage = [preferredLanguage retain];
+  __preferredLanguage = [preferredLanguage retain_stub];
   __preferredLanguage_isset = YES;
-  __preferredCountry = [preferredCountry retain];
+  __preferredCountry = [preferredCountry retain_stub];
   __preferredCountry_isset = YES;
   __clipFullPage = clipFullPage;
   __clipFullPage_isset = YES;
-  __twitterUserName = [twitterUserName retain];
+  __twitterUserName = [twitterUserName retain_stub];
   __twitterUserName_isset = YES;
-  __twitterId = [twitterId retain];
+  __twitterId = [twitterId retain_stub];
   __twitterId_isset = YES;
-  __groupName = [groupName retain];
+  __groupName = [groupName retain_stub];
   __groupName_isset = YES;
-  __recognitionLanguage = [recognitionLanguage retain];
+  __recognitionLanguage = [recognitionLanguage retain_stub];
   __recognitionLanguage_isset = YES;
-  __customerProfileId = customerProfileId;
-  __customerProfileId_isset = YES;
-  __referralProof = [referralProof retain];
+  __referralProof = [referralProof retain_stub];
   __referralProof_isset = YES;
   __educationalDiscount = educationalDiscount;
   __educationalDiscount_isset = YES;
-  __businessAddress = [businessAddress retain];
+  __businessAddress = [businessAddress retain_stub];
   __businessAddress_isset = YES;
   __hideSponsorBilling = hideSponsorBilling;
   __hideSponsorBilling_isset = YES;
   __taxExempt = taxExempt;
   __taxExempt_isset = YES;
+  __useEmailAutoFiling = useEmailAutoFiling;
+  __useEmailAutoFiling_isset = YES;
+  __reminderEmailConfig = reminderEmailConfig;
+  __reminderEmailConfig_isset = YES;
   return self;
 }
 
@@ -322,7 +341,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"defaultLocationName"])
   {
-    __defaultLocationName = [[decoder decodeObjectForKey: @"defaultLocationName"] retain];
+    __defaultLocationName = [[decoder decodeObjectForKey: @"defaultLocationName"] retain_stub];
     __defaultLocationName_isset = YES;
   }
   if ([decoder containsValueForKey: @"defaultLatitude"])
@@ -342,22 +361,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"viewedPromotions"])
   {
-    __viewedPromotions = [[decoder decodeObjectForKey: @"viewedPromotions"] retain];
+    __viewedPromotions = [[decoder decodeObjectForKey: @"viewedPromotions"] retain_stub];
     __viewedPromotions_isset = YES;
   }
   if ([decoder containsValueForKey: @"incomingEmailAddress"])
   {
-    __incomingEmailAddress = [[decoder decodeObjectForKey: @"incomingEmailAddress"] retain];
+    __incomingEmailAddress = [[decoder decodeObjectForKey: @"incomingEmailAddress"] retain_stub];
     __incomingEmailAddress_isset = YES;
   }
   if ([decoder containsValueForKey: @"recentMailedAddresses"])
   {
-    __recentMailedAddresses = [[decoder decodeObjectForKey: @"recentMailedAddresses"] retain];
+    __recentMailedAddresses = [[decoder decodeObjectForKey: @"recentMailedAddresses"] retain_stub];
     __recentMailedAddresses_isset = YES;
   }
   if ([decoder containsValueForKey: @"comments"])
   {
-    __comments = [[decoder decodeObjectForKey: @"comments"] retain];
+    __comments = [[decoder decodeObjectForKey: @"comments"] retain_stub];
     __comments_isset = YES;
   }
   if ([decoder containsValueForKey: @"dateAgreedToTermsOfService"])
@@ -377,7 +396,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"refererCode"])
   {
-    __refererCode = [[decoder decodeObjectForKey: @"refererCode"] retain];
+    __refererCode = [[decoder decodeObjectForKey: @"refererCode"] retain_stub];
     __refererCode_isset = YES;
   }
   if ([decoder containsValueForKey: @"sentEmailDate"])
@@ -407,12 +426,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"preferredLanguage"])
   {
-    __preferredLanguage = [[decoder decodeObjectForKey: @"preferredLanguage"] retain];
+    __preferredLanguage = [[decoder decodeObjectForKey: @"preferredLanguage"] retain_stub];
     __preferredLanguage_isset = YES;
   }
   if ([decoder containsValueForKey: @"preferredCountry"])
   {
-    __preferredCountry = [[decoder decodeObjectForKey: @"preferredCountry"] retain];
+    __preferredCountry = [[decoder decodeObjectForKey: @"preferredCountry"] retain_stub];
     __preferredCountry_isset = YES;
   }
   if ([decoder containsValueForKey: @"clipFullPage"])
@@ -422,32 +441,27 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"twitterUserName"])
   {
-    __twitterUserName = [[decoder decodeObjectForKey: @"twitterUserName"] retain];
+    __twitterUserName = [[decoder decodeObjectForKey: @"twitterUserName"] retain_stub];
     __twitterUserName_isset = YES;
   }
   if ([decoder containsValueForKey: @"twitterId"])
   {
-    __twitterId = [[decoder decodeObjectForKey: @"twitterId"] retain];
+    __twitterId = [[decoder decodeObjectForKey: @"twitterId"] retain_stub];
     __twitterId_isset = YES;
   }
   if ([decoder containsValueForKey: @"groupName"])
   {
-    __groupName = [[decoder decodeObjectForKey: @"groupName"] retain];
+    __groupName = [[decoder decodeObjectForKey: @"groupName"] retain_stub];
     __groupName_isset = YES;
   }
   if ([decoder containsValueForKey: @"recognitionLanguage"])
   {
-    __recognitionLanguage = [[decoder decodeObjectForKey: @"recognitionLanguage"] retain];
+    __recognitionLanguage = [[decoder decodeObjectForKey: @"recognitionLanguage"] retain_stub];
     __recognitionLanguage_isset = YES;
-  }
-  if ([decoder containsValueForKey: @"customerProfileId"])
-  {
-    __customerProfileId = [decoder decodeInt64ForKey: @"customerProfileId"];
-    __customerProfileId_isset = YES;
   }
   if ([decoder containsValueForKey: @"referralProof"])
   {
-    __referralProof = [[decoder decodeObjectForKey: @"referralProof"] retain];
+    __referralProof = [[decoder decodeObjectForKey: @"referralProof"] retain_stub];
     __referralProof_isset = YES;
   }
   if ([decoder containsValueForKey: @"educationalDiscount"])
@@ -457,7 +471,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"businessAddress"])
   {
-    __businessAddress = [[decoder decodeObjectForKey: @"businessAddress"] retain];
+    __businessAddress = [[decoder decodeObjectForKey: @"businessAddress"] retain_stub];
     __businessAddress_isset = YES;
   }
   if ([decoder containsValueForKey: @"hideSponsorBilling"])
@@ -469,6 +483,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     __taxExempt = [decoder decodeBoolForKey: @"taxExempt"];
     __taxExempt_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"useEmailAutoFiling"])
+  {
+    __useEmailAutoFiling = [decoder decodeBoolForKey: @"useEmailAutoFiling"];
+    __useEmailAutoFiling_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"reminderEmailConfig"])
+  {
+    __reminderEmailConfig = [decoder decodeIntForKey: @"reminderEmailConfig"];
+    __reminderEmailConfig_isset = YES;
   }
   return self;
 }
@@ -571,10 +595,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeObject: __recognitionLanguage forKey: @"recognitionLanguage"];
   }
-  if (__customerProfileId_isset)
-  {
-    [encoder encodeInt64: __customerProfileId forKey: @"customerProfileId"];
-  }
   if (__referralProof_isset)
   {
     [encoder encodeObject: __referralProof forKey: @"referralProof"];
@@ -595,34 +615,42 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeBool: __taxExempt forKey: @"taxExempt"];
   }
+  if (__useEmailAutoFiling_isset)
+  {
+    [encoder encodeBool: __useEmailAutoFiling forKey: @"useEmailAutoFiling"];
+  }
+  if (__reminderEmailConfig_isset)
+  {
+    [encoder encodeInt: __reminderEmailConfig forKey: @"reminderEmailConfig"];
+  }
 }
 
 - (void) dealloc
 {
-  [__defaultLocationName release];
-  [__viewedPromotions release];
-  [__incomingEmailAddress release];
-  [__recentMailedAddresses release];
-  [__comments release];
-  [__refererCode release];
-  [__preferredLanguage release];
-  [__preferredCountry release];
-  [__twitterUserName release];
-  [__twitterId release];
-  [__groupName release];
-  [__recognitionLanguage release];
-  [__referralProof release];
-  [__businessAddress release];
-  [super dealloc];
+  [__defaultLocationName release_stub];
+  [__viewedPromotions release_stub];
+  [__incomingEmailAddress release_stub];
+  [__recentMailedAddresses release_stub];
+  [__comments release_stub];
+  [__refererCode release_stub];
+  [__preferredLanguage release_stub];
+  [__preferredCountry release_stub];
+  [__twitterUserName release_stub];
+  [__twitterId release_stub];
+  [__groupName release_stub];
+  [__recognitionLanguage release_stub];
+  [__referralProof release_stub];
+  [__businessAddress release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) defaultLocationName {
-  return [[__defaultLocationName retain] autorelease];
+  return [[__defaultLocationName retain_stub] autorelease_stub];
 }
 
 - (void) setDefaultLocationName: (NSString *) defaultLocationName {
-  [defaultLocationName retain];
-  [__defaultLocationName release];
+  [defaultLocationName retain_stub];
+  [__defaultLocationName release_stub];
   __defaultLocationName = defaultLocationName;
   __defaultLocationName_isset = YES;
 }
@@ -632,7 +660,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetDefaultLocationName {
-  [__defaultLocationName release];
+  [__defaultLocationName release_stub];
   __defaultLocationName = nil;
   __defaultLocationName_isset = NO;
 }
@@ -688,13 +716,13 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __preactivation_isset = NO;
 }
 
-- (NSArray *) viewedPromotions {
-  return [[__viewedPromotions retain] autorelease];
+- (NSMutableArray *) viewedPromotions {
+  return [[__viewedPromotions retain_stub] autorelease_stub];
 }
 
-- (void) setViewedPromotions: (NSArray *) viewedPromotions {
-  [viewedPromotions retain];
-  [__viewedPromotions release];
+- (void) setViewedPromotions: (NSMutableArray *) viewedPromotions {
+  [viewedPromotions retain_stub];
+  [__viewedPromotions release_stub];
   __viewedPromotions = viewedPromotions;
   __viewedPromotions_isset = YES;
 }
@@ -704,18 +732,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetViewedPromotions {
-  [__viewedPromotions release];
+  [__viewedPromotions release_stub];
   __viewedPromotions = nil;
   __viewedPromotions_isset = NO;
 }
 
 - (NSString *) incomingEmailAddress {
-  return [[__incomingEmailAddress retain] autorelease];
+  return [[__incomingEmailAddress retain_stub] autorelease_stub];
 }
 
 - (void) setIncomingEmailAddress: (NSString *) incomingEmailAddress {
-  [incomingEmailAddress retain];
-  [__incomingEmailAddress release];
+  [incomingEmailAddress retain_stub];
+  [__incomingEmailAddress release_stub];
   __incomingEmailAddress = incomingEmailAddress;
   __incomingEmailAddress_isset = YES;
 }
@@ -725,18 +753,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetIncomingEmailAddress {
-  [__incomingEmailAddress release];
+  [__incomingEmailAddress release_stub];
   __incomingEmailAddress = nil;
   __incomingEmailAddress_isset = NO;
 }
 
-- (NSArray *) recentMailedAddresses {
-  return [[__recentMailedAddresses retain] autorelease];
+- (NSMutableArray *) recentMailedAddresses {
+  return [[__recentMailedAddresses retain_stub] autorelease_stub];
 }
 
-- (void) setRecentMailedAddresses: (NSArray *) recentMailedAddresses {
-  [recentMailedAddresses retain];
-  [__recentMailedAddresses release];
+- (void) setRecentMailedAddresses: (NSMutableArray *) recentMailedAddresses {
+  [recentMailedAddresses retain_stub];
+  [__recentMailedAddresses release_stub];
   __recentMailedAddresses = recentMailedAddresses;
   __recentMailedAddresses_isset = YES;
 }
@@ -746,18 +774,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRecentMailedAddresses {
-  [__recentMailedAddresses release];
+  [__recentMailedAddresses release_stub];
   __recentMailedAddresses = nil;
   __recentMailedAddresses_isset = NO;
 }
 
 - (NSString *) comments {
-  return [[__comments retain] autorelease];
+  return [[__comments retain_stub] autorelease_stub];
 }
 
 - (void) setComments: (NSString *) comments {
-  [comments retain];
-  [__comments release];
+  [comments retain_stub];
+  [__comments release_stub];
   __comments = comments;
   __comments_isset = YES;
 }
@@ -767,7 +795,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetComments {
-  [__comments release];
+  [__comments release_stub];
   __comments = nil;
   __comments_isset = NO;
 }
@@ -824,12 +852,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) refererCode {
-  return [[__refererCode retain] autorelease];
+  return [[__refererCode retain_stub] autorelease_stub];
 }
 
 - (void) setRefererCode: (NSString *) refererCode {
-  [refererCode retain];
-  [__refererCode release];
+  [refererCode retain_stub];
+  [__refererCode release_stub];
   __refererCode = refererCode;
   __refererCode_isset = YES;
 }
@@ -839,7 +867,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRefererCode {
-  [__refererCode release];
+  [__refererCode release_stub];
   __refererCode = nil;
   __refererCode_isset = NO;
 }
@@ -930,12 +958,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) preferredLanguage {
-  return [[__preferredLanguage retain] autorelease];
+  return [[__preferredLanguage retain_stub] autorelease_stub];
 }
 
 - (void) setPreferredLanguage: (NSString *) preferredLanguage {
-  [preferredLanguage retain];
-  [__preferredLanguage release];
+  [preferredLanguage retain_stub];
+  [__preferredLanguage release_stub];
   __preferredLanguage = preferredLanguage;
   __preferredLanguage_isset = YES;
 }
@@ -945,18 +973,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPreferredLanguage {
-  [__preferredLanguage release];
+  [__preferredLanguage release_stub];
   __preferredLanguage = nil;
   __preferredLanguage_isset = NO;
 }
 
 - (NSString *) preferredCountry {
-  return [[__preferredCountry retain] autorelease];
+  return [[__preferredCountry retain_stub] autorelease_stub];
 }
 
 - (void) setPreferredCountry: (NSString *) preferredCountry {
-  [preferredCountry retain];
-  [__preferredCountry release];
+  [preferredCountry retain_stub];
+  [__preferredCountry release_stub];
   __preferredCountry = preferredCountry;
   __preferredCountry_isset = YES;
 }
@@ -966,7 +994,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPreferredCountry {
-  [__preferredCountry release];
+  [__preferredCountry release_stub];
   __preferredCountry = nil;
   __preferredCountry_isset = NO;
 }
@@ -989,12 +1017,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) twitterUserName {
-  return [[__twitterUserName retain] autorelease];
+  return [[__twitterUserName retain_stub] autorelease_stub];
 }
 
 - (void) setTwitterUserName: (NSString *) twitterUserName {
-  [twitterUserName retain];
-  [__twitterUserName release];
+  [twitterUserName retain_stub];
+  [__twitterUserName release_stub];
   __twitterUserName = twitterUserName;
   __twitterUserName_isset = YES;
 }
@@ -1004,18 +1032,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTwitterUserName {
-  [__twitterUserName release];
+  [__twitterUserName release_stub];
   __twitterUserName = nil;
   __twitterUserName_isset = NO;
 }
 
 - (NSString *) twitterId {
-  return [[__twitterId retain] autorelease];
+  return [[__twitterId retain_stub] autorelease_stub];
 }
 
 - (void) setTwitterId: (NSString *) twitterId {
-  [twitterId retain];
-  [__twitterId release];
+  [twitterId retain_stub];
+  [__twitterId release_stub];
   __twitterId = twitterId;
   __twitterId_isset = YES;
 }
@@ -1025,18 +1053,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTwitterId {
-  [__twitterId release];
+  [__twitterId release_stub];
   __twitterId = nil;
   __twitterId_isset = NO;
 }
 
 - (NSString *) groupName {
-  return [[__groupName retain] autorelease];
+  return [[__groupName retain_stub] autorelease_stub];
 }
 
 - (void) setGroupName: (NSString *) groupName {
-  [groupName retain];
-  [__groupName release];
+  [groupName retain_stub];
+  [__groupName release_stub];
   __groupName = groupName;
   __groupName_isset = YES;
 }
@@ -1046,18 +1074,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGroupName {
-  [__groupName release];
+  [__groupName release_stub];
   __groupName = nil;
   __groupName_isset = NO;
 }
 
 - (NSString *) recognitionLanguage {
-  return [[__recognitionLanguage retain] autorelease];
+  return [[__recognitionLanguage retain_stub] autorelease_stub];
 }
 
 - (void) setRecognitionLanguage: (NSString *) recognitionLanguage {
-  [recognitionLanguage retain];
-  [__recognitionLanguage release];
+  [recognitionLanguage retain_stub];
+  [__recognitionLanguage release_stub];
   __recognitionLanguage = recognitionLanguage;
   __recognitionLanguage_isset = YES;
 }
@@ -1067,35 +1095,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRecognitionLanguage {
-  [__recognitionLanguage release];
+  [__recognitionLanguage release_stub];
   __recognitionLanguage = nil;
   __recognitionLanguage_isset = NO;
 }
 
-- (int64_t) customerProfileId {
-  return __customerProfileId;
-}
-
-- (void) setCustomerProfileId: (int64_t) customerProfileId {
-  __customerProfileId = customerProfileId;
-  __customerProfileId_isset = YES;
-}
-
-- (BOOL) customerProfileIdIsSet {
-  return __customerProfileId_isset;
-}
-
-- (void) unsetCustomerProfileId {
-  __customerProfileId_isset = NO;
-}
-
 - (NSString *) referralProof {
-  return [[__referralProof retain] autorelease];
+  return [[__referralProof retain_stub] autorelease_stub];
 }
 
 - (void) setReferralProof: (NSString *) referralProof {
-  [referralProof retain];
-  [__referralProof release];
+  [referralProof retain_stub];
+  [__referralProof release_stub];
   __referralProof = referralProof;
   __referralProof_isset = YES;
 }
@@ -1105,7 +1116,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetReferralProof {
-  [__referralProof release];
+  [__referralProof release_stub];
   __referralProof = nil;
   __referralProof_isset = NO;
 }
@@ -1128,12 +1139,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) businessAddress {
-  return [[__businessAddress retain] autorelease];
+  return [[__businessAddress retain_stub] autorelease_stub];
 }
 
 - (void) setBusinessAddress: (NSString *) businessAddress {
-  [businessAddress retain];
-  [__businessAddress release];
+  [businessAddress retain_stub];
+  [__businessAddress release_stub];
   __businessAddress = businessAddress;
   __businessAddress_isset = YES;
 }
@@ -1143,7 +1154,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetBusinessAddress {
-  [__businessAddress release];
+  [__businessAddress release_stub];
   __businessAddress = nil;
   __businessAddress_isset = NO;
 }
@@ -1180,6 +1191,40 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) unsetTaxExempt {
   __taxExempt_isset = NO;
+}
+
+- (BOOL) useEmailAutoFiling {
+  return __useEmailAutoFiling;
+}
+
+- (void) setUseEmailAutoFiling: (BOOL) useEmailAutoFiling {
+  __useEmailAutoFiling = useEmailAutoFiling;
+  __useEmailAutoFiling_isset = YES;
+}
+
+- (BOOL) useEmailAutoFilingIsSet {
+  return __useEmailAutoFiling_isset;
+}
+
+- (void) unsetUseEmailAutoFiling {
+  __useEmailAutoFiling_isset = NO;
+}
+
+- (int) reminderEmailConfig {
+  return __reminderEmailConfig;
+}
+
+- (void) setReminderEmailConfig: (int) reminderEmailConfig {
+  __reminderEmailConfig = reminderEmailConfig;
+  __reminderEmailConfig_isset = YES;
+}
+
+- (BOOL) reminderEmailConfigIsSet {
+  return __reminderEmailConfig_isset;
+}
+
+- (void) unsetReminderEmailConfig {
+  __reminderEmailConfig_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -1242,7 +1287,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readListEnd];
           [self setViewedPromotions: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1268,7 +1313,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readListEnd];
           [self setRecentMailedAddresses: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1409,14 +1454,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
-      case 27:
-        if (fieldType == TType_I64) {
-          int64_t fieldValue = [inProtocol readI64];
-          [self setCustomerProfileId: fieldValue];
-        } else { 
-          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
-        }
-        break;
       case 28:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
@@ -1453,6 +1490,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
         if (fieldType == TType_BOOL) {
           BOOL fieldValue = [inProtocol readBool];
           [self setTaxExempt: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 33:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setUseEmailAutoFiling: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 34:
+        if (fieldType == TType_I32) {
+          int fieldValue = [inProtocol readI32];
+          [self setReminderEmailConfig: fieldValue];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1628,11 +1681,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
       [outProtocol writeFieldEnd];
     }
   }
-  if (__customerProfileId_isset) {
-    [outProtocol writeFieldBeginWithName: @"customerProfileId" type: TType_I64 fieldID: 27];
-    [outProtocol writeI64: __customerProfileId];
-    [outProtocol writeFieldEnd];
-  }
   if (__referralProof_isset) {
     if (__referralProof != nil) {
       [outProtocol writeFieldBeginWithName: @"referralProof" type: TType_STRING fieldID: 28];
@@ -1660,6 +1708,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   if (__taxExempt_isset) {
     [outProtocol writeFieldBeginWithName: @"taxExempt" type: TType_BOOL fieldID: 32];
     [outProtocol writeBool: __taxExempt];
+    [outProtocol writeFieldEnd];
+  }
+  if (__useEmailAutoFiling_isset) {
+    [outProtocol writeFieldBeginWithName: @"useEmailAutoFiling" type: TType_BOOL fieldID: 33];
+    [outProtocol writeBool: __useEmailAutoFiling];
+    [outProtocol writeFieldEnd];
+  }
+  if (__reminderEmailConfig_isset) {
+    [outProtocol writeFieldBeginWithName: @"reminderEmailConfig" type: TType_I32 fieldID: 34];
+    [outProtocol writeI32: __reminderEmailConfig];
     [outProtocol writeFieldEnd];
   }
   [outProtocol writeFieldStop];
@@ -1716,8 +1774,6 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"\"%@\"", __groupName];
   [ms appendString: @",recognitionLanguage:"];
   [ms appendFormat: @"\"%@\"", __recognitionLanguage];
-  [ms appendString: @",customerProfileId:"];
-  [ms appendFormat: @"%qi", __customerProfileId];
   [ms appendString: @",referralProof:"];
   [ms appendFormat: @"\"%@\"", __referralProof];
   [ms appendString: @",educationalDiscount:"];
@@ -1728,6 +1784,10 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"%i", __hideSponsorBilling];
   [ms appendString: @",taxExempt:"];
   [ms appendFormat: @"%i", __taxExempt];
+  [ms appendString: @",useEmailAutoFiling:"];
+  [ms appendFormat: @"%i", __useEmailAutoFiling];
+  [ms appendString: @",reminderEmailConfig:"];
+  [ms appendFormat: @"%i", __reminderEmailConfig];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -1736,7 +1796,15 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMAccounting
 
-- (id) initWithUploadLimit: (int64_t) uploadLimit uploadLimitEnd: (EDAMTimestamp) uploadLimitEnd uploadLimitNextMonth: (int64_t) uploadLimitNextMonth premiumServiceStatus: (int) premiumServiceStatus premiumOrderNumber: (NSString *) premiumOrderNumber premiumCommerceService: (NSString *) premiumCommerceService premiumServiceStart: (EDAMTimestamp) premiumServiceStart premiumServiceSKU: (NSString *) premiumServiceSKU lastSuccessfulCharge: (EDAMTimestamp) lastSuccessfulCharge lastFailedCharge: (EDAMTimestamp) lastFailedCharge lastFailedChargeReason: (NSString *) lastFailedChargeReason nextPaymentDue: (EDAMTimestamp) nextPaymentDue premiumLockUntil: (EDAMTimestamp) premiumLockUntil updated: (EDAMTimestamp) updated premiumSubscriptionNumber: (NSString *) premiumSubscriptionNumber lastRequestedCharge: (EDAMTimestamp) lastRequestedCharge currency: (NSString *) currency unitPrice: (int32_t) unitPrice businessId: (int32_t) businessId businessName: (NSString *) businessName businessRole: (int) businessRole
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithUploadLimit: (int64_t) uploadLimit uploadLimitEnd: (EDAMTimestamp) uploadLimitEnd uploadLimitNextMonth: (int64_t) uploadLimitNextMonth premiumServiceStatus: (int) premiumServiceStatus premiumOrderNumber: (NSString *) premiumOrderNumber premiumCommerceService: (NSString *) premiumCommerceService premiumServiceStart: (EDAMTimestamp) premiumServiceStart premiumServiceSKU: (NSString *) premiumServiceSKU lastSuccessfulCharge: (EDAMTimestamp) lastSuccessfulCharge lastFailedCharge: (EDAMTimestamp) lastFailedCharge lastFailedChargeReason: (NSString *) lastFailedChargeReason nextPaymentDue: (EDAMTimestamp) nextPaymentDue premiumLockUntil: (EDAMTimestamp) premiumLockUntil updated: (EDAMTimestamp) updated premiumSubscriptionNumber: (NSString *) premiumSubscriptionNumber lastRequestedCharge: (EDAMTimestamp) lastRequestedCharge currency: (NSString *) currency unitPrice: (int32_t) unitPrice businessId: (int32_t) businessId businessName: (NSString *) businessName businessRole: (int) businessRole unitDiscount: (int32_t) unitDiscount nextChargeDate: (EDAMTimestamp) nextChargeDate
 {
   self = [super init];
   __uploadLimit = uploadLimit;
@@ -1747,19 +1815,19 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __uploadLimitNextMonth_isset = YES;
   __premiumServiceStatus = premiumServiceStatus;
   __premiumServiceStatus_isset = YES;
-  __premiumOrderNumber = [premiumOrderNumber retain];
+  __premiumOrderNumber = [premiumOrderNumber retain_stub];
   __premiumOrderNumber_isset = YES;
-  __premiumCommerceService = [premiumCommerceService retain];
+  __premiumCommerceService = [premiumCommerceService retain_stub];
   __premiumCommerceService_isset = YES;
   __premiumServiceStart = premiumServiceStart;
   __premiumServiceStart_isset = YES;
-  __premiumServiceSKU = [premiumServiceSKU retain];
+  __premiumServiceSKU = [premiumServiceSKU retain_stub];
   __premiumServiceSKU_isset = YES;
   __lastSuccessfulCharge = lastSuccessfulCharge;
   __lastSuccessfulCharge_isset = YES;
   __lastFailedCharge = lastFailedCharge;
   __lastFailedCharge_isset = YES;
-  __lastFailedChargeReason = [lastFailedChargeReason retain];
+  __lastFailedChargeReason = [lastFailedChargeReason retain_stub];
   __lastFailedChargeReason_isset = YES;
   __nextPaymentDue = nextPaymentDue;
   __nextPaymentDue_isset = YES;
@@ -1767,20 +1835,24 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __premiumLockUntil_isset = YES;
   __updated = updated;
   __updated_isset = YES;
-  __premiumSubscriptionNumber = [premiumSubscriptionNumber retain];
+  __premiumSubscriptionNumber = [premiumSubscriptionNumber retain_stub];
   __premiumSubscriptionNumber_isset = YES;
   __lastRequestedCharge = lastRequestedCharge;
   __lastRequestedCharge_isset = YES;
-  __currency = [currency retain];
+  __currency = [currency retain_stub];
   __currency_isset = YES;
   __unitPrice = unitPrice;
   __unitPrice_isset = YES;
   __businessId = businessId;
   __businessId_isset = YES;
-  __businessName = [businessName retain];
+  __businessName = [businessName retain_stub];
   __businessName_isset = YES;
   __businessRole = businessRole;
   __businessRole_isset = YES;
+  __unitDiscount = unitDiscount;
+  __unitDiscount_isset = YES;
+  __nextChargeDate = nextChargeDate;
+  __nextChargeDate_isset = YES;
   return self;
 }
 
@@ -1809,12 +1881,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"premiumOrderNumber"])
   {
-    __premiumOrderNumber = [[decoder decodeObjectForKey: @"premiumOrderNumber"] retain];
+    __premiumOrderNumber = [[decoder decodeObjectForKey: @"premiumOrderNumber"] retain_stub];
     __premiumOrderNumber_isset = YES;
   }
   if ([decoder containsValueForKey: @"premiumCommerceService"])
   {
-    __premiumCommerceService = [[decoder decodeObjectForKey: @"premiumCommerceService"] retain];
+    __premiumCommerceService = [[decoder decodeObjectForKey: @"premiumCommerceService"] retain_stub];
     __premiumCommerceService_isset = YES;
   }
   if ([decoder containsValueForKey: @"premiumServiceStart"])
@@ -1824,7 +1896,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"premiumServiceSKU"])
   {
-    __premiumServiceSKU = [[decoder decodeObjectForKey: @"premiumServiceSKU"] retain];
+    __premiumServiceSKU = [[decoder decodeObjectForKey: @"premiumServiceSKU"] retain_stub];
     __premiumServiceSKU_isset = YES;
   }
   if ([decoder containsValueForKey: @"lastSuccessfulCharge"])
@@ -1839,7 +1911,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"lastFailedChargeReason"])
   {
-    __lastFailedChargeReason = [[decoder decodeObjectForKey: @"lastFailedChargeReason"] retain];
+    __lastFailedChargeReason = [[decoder decodeObjectForKey: @"lastFailedChargeReason"] retain_stub];
     __lastFailedChargeReason_isset = YES;
   }
   if ([decoder containsValueForKey: @"nextPaymentDue"])
@@ -1859,7 +1931,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"premiumSubscriptionNumber"])
   {
-    __premiumSubscriptionNumber = [[decoder decodeObjectForKey: @"premiumSubscriptionNumber"] retain];
+    __premiumSubscriptionNumber = [[decoder decodeObjectForKey: @"premiumSubscriptionNumber"] retain_stub];
     __premiumSubscriptionNumber_isset = YES;
   }
   if ([decoder containsValueForKey: @"lastRequestedCharge"])
@@ -1869,7 +1941,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"currency"])
   {
-    __currency = [[decoder decodeObjectForKey: @"currency"] retain];
+    __currency = [[decoder decodeObjectForKey: @"currency"] retain_stub];
     __currency_isset = YES;
   }
   if ([decoder containsValueForKey: @"unitPrice"])
@@ -1884,13 +1956,23 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"businessName"])
   {
-    __businessName = [[decoder decodeObjectForKey: @"businessName"] retain];
+    __businessName = [[decoder decodeObjectForKey: @"businessName"] retain_stub];
     __businessName_isset = YES;
   }
   if ([decoder containsValueForKey: @"businessRole"])
   {
     __businessRole = [decoder decodeIntForKey: @"businessRole"];
     __businessRole_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"unitDiscount"])
+  {
+    __unitDiscount = [decoder decodeInt32ForKey: @"unitDiscount"];
+    __unitDiscount_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"nextChargeDate"])
+  {
+    __nextChargeDate = [decoder decodeInt64ForKey: @"nextChargeDate"];
+    __nextChargeDate_isset = YES;
   }
   return self;
 }
@@ -1981,18 +2063,26 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeInt: __businessRole forKey: @"businessRole"];
   }
+  if (__unitDiscount_isset)
+  {
+    [encoder encodeInt32: __unitDiscount forKey: @"unitDiscount"];
+  }
+  if (__nextChargeDate_isset)
+  {
+    [encoder encodeInt64: __nextChargeDate forKey: @"nextChargeDate"];
+  }
 }
 
 - (void) dealloc
 {
-  [__premiumOrderNumber release];
-  [__premiumCommerceService release];
-  [__premiumServiceSKU release];
-  [__lastFailedChargeReason release];
-  [__premiumSubscriptionNumber release];
-  [__currency release];
-  [__businessName release];
-  [super dealloc];
+  [__premiumOrderNumber release_stub];
+  [__premiumCommerceService release_stub];
+  [__premiumServiceSKU release_stub];
+  [__lastFailedChargeReason release_stub];
+  [__premiumSubscriptionNumber release_stub];
+  [__currency release_stub];
+  [__businessName release_stub];
+  [super dealloc_stub];
 }
 
 - (int64_t) uploadLimit {
@@ -2064,12 +2154,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) premiumOrderNumber {
-  return [[__premiumOrderNumber retain] autorelease];
+  return [[__premiumOrderNumber retain_stub] autorelease_stub];
 }
 
 - (void) setPremiumOrderNumber: (NSString *) premiumOrderNumber {
-  [premiumOrderNumber retain];
-  [__premiumOrderNumber release];
+  [premiumOrderNumber retain_stub];
+  [__premiumOrderNumber release_stub];
   __premiumOrderNumber = premiumOrderNumber;
   __premiumOrderNumber_isset = YES;
 }
@@ -2079,18 +2169,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPremiumOrderNumber {
-  [__premiumOrderNumber release];
+  [__premiumOrderNumber release_stub];
   __premiumOrderNumber = nil;
   __premiumOrderNumber_isset = NO;
 }
 
 - (NSString *) premiumCommerceService {
-  return [[__premiumCommerceService retain] autorelease];
+  return [[__premiumCommerceService retain_stub] autorelease_stub];
 }
 
 - (void) setPremiumCommerceService: (NSString *) premiumCommerceService {
-  [premiumCommerceService retain];
-  [__premiumCommerceService release];
+  [premiumCommerceService retain_stub];
+  [__premiumCommerceService release_stub];
   __premiumCommerceService = premiumCommerceService;
   __premiumCommerceService_isset = YES;
 }
@@ -2100,7 +2190,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPremiumCommerceService {
-  [__premiumCommerceService release];
+  [__premiumCommerceService release_stub];
   __premiumCommerceService = nil;
   __premiumCommerceService_isset = NO;
 }
@@ -2123,12 +2213,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) premiumServiceSKU {
-  return [[__premiumServiceSKU retain] autorelease];
+  return [[__premiumServiceSKU retain_stub] autorelease_stub];
 }
 
 - (void) setPremiumServiceSKU: (NSString *) premiumServiceSKU {
-  [premiumServiceSKU retain];
-  [__premiumServiceSKU release];
+  [premiumServiceSKU retain_stub];
+  [__premiumServiceSKU release_stub];
   __premiumServiceSKU = premiumServiceSKU;
   __premiumServiceSKU_isset = YES;
 }
@@ -2138,7 +2228,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPremiumServiceSKU {
-  [__premiumServiceSKU release];
+  [__premiumServiceSKU release_stub];
   __premiumServiceSKU = nil;
   __premiumServiceSKU_isset = NO;
 }
@@ -2178,12 +2268,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) lastFailedChargeReason {
-  return [[__lastFailedChargeReason retain] autorelease];
+  return [[__lastFailedChargeReason retain_stub] autorelease_stub];
 }
 
 - (void) setLastFailedChargeReason: (NSString *) lastFailedChargeReason {
-  [lastFailedChargeReason retain];
-  [__lastFailedChargeReason release];
+  [lastFailedChargeReason retain_stub];
+  [__lastFailedChargeReason release_stub];
   __lastFailedChargeReason = lastFailedChargeReason;
   __lastFailedChargeReason_isset = YES;
 }
@@ -2193,7 +2283,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetLastFailedChargeReason {
-  [__lastFailedChargeReason release];
+  [__lastFailedChargeReason release_stub];
   __lastFailedChargeReason = nil;
   __lastFailedChargeReason_isset = NO;
 }
@@ -2250,12 +2340,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) premiumSubscriptionNumber {
-  return [[__premiumSubscriptionNumber retain] autorelease];
+  return [[__premiumSubscriptionNumber retain_stub] autorelease_stub];
 }
 
 - (void) setPremiumSubscriptionNumber: (NSString *) premiumSubscriptionNumber {
-  [premiumSubscriptionNumber retain];
-  [__premiumSubscriptionNumber release];
+  [premiumSubscriptionNumber retain_stub];
+  [__premiumSubscriptionNumber release_stub];
   __premiumSubscriptionNumber = premiumSubscriptionNumber;
   __premiumSubscriptionNumber_isset = YES;
 }
@@ -2265,7 +2355,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPremiumSubscriptionNumber {
-  [__premiumSubscriptionNumber release];
+  [__premiumSubscriptionNumber release_stub];
   __premiumSubscriptionNumber = nil;
   __premiumSubscriptionNumber_isset = NO;
 }
@@ -2288,12 +2378,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) currency {
-  return [[__currency retain] autorelease];
+  return [[__currency retain_stub] autorelease_stub];
 }
 
 - (void) setCurrency: (NSString *) currency {
-  [currency retain];
-  [__currency release];
+  [currency retain_stub];
+  [__currency release_stub];
   __currency = currency;
   __currency_isset = YES;
 }
@@ -2303,7 +2393,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetCurrency {
-  [__currency release];
+  [__currency release_stub];
   __currency = nil;
   __currency_isset = NO;
 }
@@ -2343,12 +2433,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) businessName {
-  return [[__businessName retain] autorelease];
+  return [[__businessName retain_stub] autorelease_stub];
 }
 
 - (void) setBusinessName: (NSString *) businessName {
-  [businessName retain];
-  [__businessName release];
+  [businessName retain_stub];
+  [__businessName release_stub];
   __businessName = businessName;
   __businessName_isset = YES;
 }
@@ -2358,7 +2448,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetBusinessName {
-  [__businessName release];
+  [__businessName release_stub];
   __businessName = nil;
   __businessName_isset = NO;
 }
@@ -2378,6 +2468,40 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) unsetBusinessRole {
   __businessRole_isset = NO;
+}
+
+- (int32_t) unitDiscount {
+  return __unitDiscount;
+}
+
+- (void) setUnitDiscount: (int32_t) unitDiscount {
+  __unitDiscount = unitDiscount;
+  __unitDiscount_isset = YES;
+}
+
+- (BOOL) unitDiscountIsSet {
+  return __unitDiscount_isset;
+}
+
+- (void) unsetUnitDiscount {
+  __unitDiscount_isset = NO;
+}
+
+- (int64_t) nextChargeDate {
+  return __nextChargeDate;
+}
+
+- (void) setNextChargeDate: (int64_t) nextChargeDate {
+  __nextChargeDate = nextChargeDate;
+  __nextChargeDate_isset = YES;
+}
+
+- (BOOL) nextChargeDateIsSet {
+  return __nextChargeDate_isset;
+}
+
+- (void) unsetNextChargeDate {
+  __nextChargeDate_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -2563,6 +2687,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 23:
+        if (fieldType == TType_I32) {
+          int32_t fieldValue = [inProtocol readI32];
+          [self setUnitDiscount: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 24:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setNextChargeDate: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -2693,6 +2833,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
     [outProtocol writeI32: __businessRole];
     [outProtocol writeFieldEnd];
   }
+  if (__unitDiscount_isset) {
+    [outProtocol writeFieldBeginWithName: @"unitDiscount" type: TType_I32 fieldID: 23];
+    [outProtocol writeI32: __unitDiscount];
+    [outProtocol writeFieldEnd];
+  }
+  if (__nextChargeDate_isset) {
+    [outProtocol writeFieldBeginWithName: @"nextChargeDate" type: TType_I64 fieldID: 24];
+    [outProtocol writeI64: __nextChargeDate];
+    [outProtocol writeFieldEnd];
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -2741,6 +2891,265 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"\"%@\"", __businessName];
   [ms appendString: @",businessRole:"];
   [ms appendFormat: @"%i", __businessRole];
+  [ms appendString: @",unitDiscount:"];
+  [ms appendFormat: @"%i", __unitDiscount];
+  [ms appendString: @",nextChargeDate:"];
+  [ms appendFormat: @"%qi", __nextChargeDate];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation EDAMBusinessUserInfo
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithBusinessId: (int32_t) businessId businessName: (NSString *) businessName role: (int) role email: (NSString *) email
+{
+  self = [super init];
+  __businessId = businessId;
+  __businessId_isset = YES;
+  __businessName = [businessName retain_stub];
+  __businessName_isset = YES;
+  __role = role;
+  __role_isset = YES;
+  __email = [email retain_stub];
+  __email_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"businessId"])
+  {
+    __businessId = [decoder decodeInt32ForKey: @"businessId"];
+    __businessId_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"businessName"])
+  {
+    __businessName = [[decoder decodeObjectForKey: @"businessName"] retain_stub];
+    __businessName_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"role"])
+  {
+    __role = [decoder decodeIntForKey: @"role"];
+    __role_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"email"])
+  {
+    __email = [[decoder decodeObjectForKey: @"email"] retain_stub];
+    __email_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__businessId_isset)
+  {
+    [encoder encodeInt32: __businessId forKey: @"businessId"];
+  }
+  if (__businessName_isset)
+  {
+    [encoder encodeObject: __businessName forKey: @"businessName"];
+  }
+  if (__role_isset)
+  {
+    [encoder encodeInt: __role forKey: @"role"];
+  }
+  if (__email_isset)
+  {
+    [encoder encodeObject: __email forKey: @"email"];
+  }
+}
+
+- (void) dealloc
+{
+  [__businessName release_stub];
+  [__email release_stub];
+  [super dealloc_stub];
+}
+
+- (int32_t) businessId {
+  return __businessId;
+}
+
+- (void) setBusinessId: (int32_t) businessId {
+  __businessId = businessId;
+  __businessId_isset = YES;
+}
+
+- (BOOL) businessIdIsSet {
+  return __businessId_isset;
+}
+
+- (void) unsetBusinessId {
+  __businessId_isset = NO;
+}
+
+- (NSString *) businessName {
+  return [[__businessName retain_stub] autorelease_stub];
+}
+
+- (void) setBusinessName: (NSString *) businessName {
+  [businessName retain_stub];
+  [__businessName release_stub];
+  __businessName = businessName;
+  __businessName_isset = YES;
+}
+
+- (BOOL) businessNameIsSet {
+  return __businessName_isset;
+}
+
+- (void) unsetBusinessName {
+  [__businessName release_stub];
+  __businessName = nil;
+  __businessName_isset = NO;
+}
+
+- (int) role {
+  return __role;
+}
+
+- (void) setRole: (int) role {
+  __role = role;
+  __role_isset = YES;
+}
+
+- (BOOL) roleIsSet {
+  return __role_isset;
+}
+
+- (void) unsetRole {
+  __role_isset = NO;
+}
+
+- (NSString *) email {
+  return [[__email retain_stub] autorelease_stub];
+}
+
+- (void) setEmail: (NSString *) email {
+  [email retain_stub];
+  [__email release_stub];
+  __email = email;
+  __email_isset = YES;
+}
+
+- (BOOL) emailIsSet {
+  return __email_isset;
+}
+
+- (void) unsetEmail {
+  [__email release_stub];
+  __email = nil;
+  __email_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_I32) {
+          int32_t fieldValue = [inProtocol readI32];
+          [self setBusinessId: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setBusinessName: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_I32) {
+          int fieldValue = [inProtocol readI32];
+          [self setRole: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 4:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setEmail: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"BusinessUserInfo"];
+  if (__businessId_isset) {
+    [outProtocol writeFieldBeginWithName: @"businessId" type: TType_I32 fieldID: 1];
+    [outProtocol writeI32: __businessId];
+    [outProtocol writeFieldEnd];
+  }
+  if (__businessName_isset) {
+    if (__businessName != nil) {
+      [outProtocol writeFieldBeginWithName: @"businessName" type: TType_STRING fieldID: 2];
+      [outProtocol writeString: __businessName];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  if (__role_isset) {
+    [outProtocol writeFieldBeginWithName: @"role" type: TType_I32 fieldID: 3];
+    [outProtocol writeI32: __role];
+    [outProtocol writeFieldEnd];
+  }
+  if (__email_isset) {
+    if (__email != nil) {
+      [outProtocol writeFieldBeginWithName: @"email" type: TType_STRING fieldID: 4];
+      [outProtocol writeString: __email];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"BusinessUserInfo("];
+  [ms appendString: @"businessId:"];
+  [ms appendFormat: @"%i", __businessId];
+  [ms appendString: @",businessName:"];
+  [ms appendFormat: @"\"%@\"", __businessName];
+  [ms appendString: @",role:"];
+  [ms appendFormat: @"%i", __role];
+  [ms appendString: @",email:"];
+  [ms appendFormat: @"\"%@\"", __email];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -2749,7 +3158,15 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMPremiumInfo
 
-- (id) initWithCurrentTime: (EDAMTimestamp) currentTime premium: (BOOL) premium premiumRecurring: (BOOL) premiumRecurring premiumExpirationDate: (EDAMTimestamp) premiumExpirationDate premiumExtendable: (BOOL) premiumExtendable premiumPending: (BOOL) premiumPending premiumCancellationPending: (BOOL) premiumCancellationPending canPurchaseUploadAllowance: (BOOL) canPurchaseUploadAllowance sponsoredGroupName: (NSString *) sponsoredGroupName sponsoredGroupRole: (int) sponsoredGroupRole
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithCurrentTime: (EDAMTimestamp) currentTime premium: (BOOL) premium premiumRecurring: (BOOL) premiumRecurring premiumExpirationDate: (EDAMTimestamp) premiumExpirationDate premiumExtendable: (BOOL) premiumExtendable premiumPending: (BOOL) premiumPending premiumCancellationPending: (BOOL) premiumCancellationPending canPurchaseUploadAllowance: (BOOL) canPurchaseUploadAllowance sponsoredGroupName: (NSString *) sponsoredGroupName sponsoredGroupRole: (int) sponsoredGroupRole premiumUpgradable: (BOOL) premiumUpgradable
 {
   self = [super init];
   __currentTime = currentTime;
@@ -2768,10 +3185,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __premiumCancellationPending_isset = YES;
   __canPurchaseUploadAllowance = canPurchaseUploadAllowance;
   __canPurchaseUploadAllowance_isset = YES;
-  __sponsoredGroupName = [sponsoredGroupName retain];
+  __sponsoredGroupName = [sponsoredGroupName retain_stub];
   __sponsoredGroupName_isset = YES;
   __sponsoredGroupRole = sponsoredGroupRole;
   __sponsoredGroupRole_isset = YES;
+  __premiumUpgradable = premiumUpgradable;
+  __premiumUpgradable_isset = YES;
   return self;
 }
 
@@ -2820,13 +3239,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"sponsoredGroupName"])
   {
-    __sponsoredGroupName = [[decoder decodeObjectForKey: @"sponsoredGroupName"] retain];
+    __sponsoredGroupName = [[decoder decodeObjectForKey: @"sponsoredGroupName"] retain_stub];
     __sponsoredGroupName_isset = YES;
   }
   if ([decoder containsValueForKey: @"sponsoredGroupRole"])
   {
     __sponsoredGroupRole = [decoder decodeIntForKey: @"sponsoredGroupRole"];
     __sponsoredGroupRole_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"premiumUpgradable"])
+  {
+    __premiumUpgradable = [decoder decodeBoolForKey: @"premiumUpgradable"];
+    __premiumUpgradable_isset = YES;
   }
   return self;
 }
@@ -2873,12 +3297,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeInt: __sponsoredGroupRole forKey: @"sponsoredGroupRole"];
   }
+  if (__premiumUpgradable_isset)
+  {
+    [encoder encodeBool: __premiumUpgradable forKey: @"premiumUpgradable"];
+  }
 }
 
 - (void) dealloc
 {
-  [__sponsoredGroupName release];
-  [super dealloc];
+  [__sponsoredGroupName release_stub];
+  [super dealloc_stub];
 }
 
 - (int64_t) currentTime {
@@ -3018,12 +3446,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) sponsoredGroupName {
-  return [[__sponsoredGroupName retain] autorelease];
+  return [[__sponsoredGroupName retain_stub] autorelease_stub];
 }
 
 - (void) setSponsoredGroupName: (NSString *) sponsoredGroupName {
-  [sponsoredGroupName retain];
-  [__sponsoredGroupName release];
+  [sponsoredGroupName retain_stub];
+  [__sponsoredGroupName release_stub];
   __sponsoredGroupName = sponsoredGroupName;
   __sponsoredGroupName_isset = YES;
 }
@@ -3033,7 +3461,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSponsoredGroupName {
-  [__sponsoredGroupName release];
+  [__sponsoredGroupName release_stub];
   __sponsoredGroupName = nil;
   __sponsoredGroupName_isset = NO;
 }
@@ -3053,6 +3481,23 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) unsetSponsoredGroupRole {
   __sponsoredGroupRole_isset = NO;
+}
+
+- (BOOL) premiumUpgradable {
+  return __premiumUpgradable;
+}
+
+- (void) setPremiumUpgradable: (BOOL) premiumUpgradable {
+  __premiumUpgradable = premiumUpgradable;
+  __premiumUpgradable_isset = YES;
+}
+
+- (BOOL) premiumUpgradableIsSet {
+  return __premiumUpgradable_isset;
+}
+
+- (void) unsetPremiumUpgradable {
+  __premiumUpgradable_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -3150,6 +3595,14 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 11:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setPremiumUpgradable: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -3213,6 +3666,11 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
     [outProtocol writeI32: __sponsoredGroupRole];
     [outProtocol writeFieldEnd];
   }
+  if (__premiumUpgradable_isset) {
+    [outProtocol writeFieldBeginWithName: @"premiumUpgradable" type: TType_BOOL fieldID: 11];
+    [outProtocol writeBool: __premiumUpgradable];
+    [outProtocol writeFieldEnd];
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -3239,6 +3697,8 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"\"%@\"", __sponsoredGroupName];
   [ms appendString: @",sponsoredGroupRole:"];
   [ms appendFormat: @"%i", __sponsoredGroupRole];
+  [ms appendString: @",premiumUpgradable:"];
+  [ms appendFormat: @"%i", __premiumUpgradable];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3247,18 +3707,26 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMUser
 
-- (id) initWithId: (EDAMUserID) id username: (NSString *) username email: (NSString *) email name: (NSString *) name timezone: (NSString *) timezone privilege: (int) privilege created: (EDAMTimestamp) created updated: (EDAMTimestamp) updated deleted: (EDAMTimestamp) deleted active: (BOOL) active shardId: (NSString *) shardId attributes: (EDAMUserAttributes *) attributes accounting: (EDAMAccounting *) accounting premiumInfo: (EDAMPremiumInfo *) premiumInfo
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithId: (EDAMUserID) id username: (NSString *) username email: (NSString *) email name: (NSString *) name timezone: (NSString *) timezone privilege: (int) privilege created: (EDAMTimestamp) created updated: (EDAMTimestamp) updated deleted: (EDAMTimestamp) deleted active: (BOOL) active shardId: (NSString *) shardId attributes: (EDAMUserAttributes *) attributes accounting: (EDAMAccounting *) accounting premiumInfo: (EDAMPremiumInfo *) premiumInfo businessUserInfo: (EDAMBusinessUserInfo *) businessUserInfo
 {
   self = [super init];
   __id = id;
   __id_isset = YES;
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
-  __email = [email retain];
+  __email = [email retain_stub];
   __email_isset = YES;
-  __name = [name retain];
+  __name = [name retain_stub];
   __name_isset = YES;
-  __timezone = [timezone retain];
+  __timezone = [timezone retain_stub];
   __timezone_isset = YES;
   __privilege = privilege;
   __privilege_isset = YES;
@@ -3270,14 +3738,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __deleted_isset = YES;
   __active = active;
   __active_isset = YES;
-  __shardId = [shardId retain];
+  __shardId = [shardId retain_stub];
   __shardId_isset = YES;
-  __attributes = [attributes retain];
+  __attributes = [attributes retain_stub];
   __attributes_isset = YES;
-  __accounting = [accounting retain];
+  __accounting = [accounting retain_stub];
   __accounting_isset = YES;
-  __premiumInfo = [premiumInfo retain];
+  __premiumInfo = [premiumInfo retain_stub];
   __premiumInfo_isset = YES;
+  __businessUserInfo = [businessUserInfo retain_stub];
+  __businessUserInfo_isset = YES;
   return self;
 }
 
@@ -3291,22 +3761,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"email"])
   {
-    __email = [[decoder decodeObjectForKey: @"email"] retain];
+    __email = [[decoder decodeObjectForKey: @"email"] retain_stub];
     __email_isset = YES;
   }
   if ([decoder containsValueForKey: @"name"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
     __name_isset = YES;
   }
   if ([decoder containsValueForKey: @"timezone"])
   {
-    __timezone = [[decoder decodeObjectForKey: @"timezone"] retain];
+    __timezone = [[decoder decodeObjectForKey: @"timezone"] retain_stub];
     __timezone_isset = YES;
   }
   if ([decoder containsValueForKey: @"privilege"])
@@ -3336,23 +3806,28 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"shardId"])
   {
-    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain];
+    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain_stub];
     __shardId_isset = YES;
   }
   if ([decoder containsValueForKey: @"attributes"])
   {
-    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain];
+    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain_stub];
     __attributes_isset = YES;
   }
   if ([decoder containsValueForKey: @"accounting"])
   {
-    __accounting = [[decoder decodeObjectForKey: @"accounting"] retain];
+    __accounting = [[decoder decodeObjectForKey: @"accounting"] retain_stub];
     __accounting_isset = YES;
   }
   if ([decoder containsValueForKey: @"premiumInfo"])
   {
-    __premiumInfo = [[decoder decodeObjectForKey: @"premiumInfo"] retain];
+    __premiumInfo = [[decoder decodeObjectForKey: @"premiumInfo"] retain_stub];
     __premiumInfo_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"businessUserInfo"])
+  {
+    __businessUserInfo = [[decoder decodeObjectForKey: @"businessUserInfo"] retain_stub];
+    __businessUserInfo_isset = YES;
   }
   return self;
 }
@@ -3415,19 +3890,24 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeObject: __premiumInfo forKey: @"premiumInfo"];
   }
+  if (__businessUserInfo_isset)
+  {
+    [encoder encodeObject: __businessUserInfo forKey: @"businessUserInfo"];
+  }
 }
 
 - (void) dealloc
 {
-  [__username release];
-  [__email release];
-  [__name release];
-  [__timezone release];
-  [__shardId release];
-  [__attributes release];
-  [__accounting release];
-  [__premiumInfo release];
-  [super dealloc];
+  [__username release_stub];
+  [__email release_stub];
+  [__name release_stub];
+  [__timezone release_stub];
+  [__shardId release_stub];
+  [__attributes release_stub];
+  [__accounting release_stub];
+  [__premiumInfo release_stub];
+  [__businessUserInfo release_stub];
+  [super dealloc_stub];
 }
 
 - (int32_t) id {
@@ -3448,12 +3928,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -3463,18 +3943,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
 
 - (NSString *) email {
-  return [[__email retain] autorelease];
+  return [[__email retain_stub] autorelease_stub];
 }
 
 - (void) setEmail: (NSString *) email {
-  [email retain];
-  [__email release];
+  [email retain_stub];
+  [__email release_stub];
   __email = email;
   __email_isset = YES;
 }
@@ -3484,18 +3964,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetEmail {
-  [__email release];
+  [__email release_stub];
   __email = nil;
   __email_isset = NO;
 }
 
 - (NSString *) name {
-  return [[__name retain] autorelease];
+  return [[__name retain_stub] autorelease_stub];
 }
 
 - (void) setName: (NSString *) name {
-  [name retain];
-  [__name release];
+  [name retain_stub];
+  [__name release_stub];
   __name = name;
   __name_isset = YES;
 }
@@ -3505,18 +3985,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetName {
-  [__name release];
+  [__name release_stub];
   __name = nil;
   __name_isset = NO;
 }
 
 - (NSString *) timezone {
-  return [[__timezone retain] autorelease];
+  return [[__timezone retain_stub] autorelease_stub];
 }
 
 - (void) setTimezone: (NSString *) timezone {
-  [timezone retain];
-  [__timezone release];
+  [timezone retain_stub];
+  [__timezone release_stub];
   __timezone = timezone;
   __timezone_isset = YES;
 }
@@ -3526,7 +4006,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTimezone {
-  [__timezone release];
+  [__timezone release_stub];
   __timezone = nil;
   __timezone_isset = NO;
 }
@@ -3617,12 +4097,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) shardId {
-  return [[__shardId retain] autorelease];
+  return [[__shardId retain_stub] autorelease_stub];
 }
 
 - (void) setShardId: (NSString *) shardId {
-  [shardId retain];
-  [__shardId release];
+  [shardId retain_stub];
+  [__shardId release_stub];
   __shardId = shardId;
   __shardId_isset = YES;
 }
@@ -3632,18 +4112,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetShardId {
-  [__shardId release];
+  [__shardId release_stub];
   __shardId = nil;
   __shardId_isset = NO;
 }
 
 - (EDAMUserAttributes *) attributes {
-  return [[__attributes retain] autorelease];
+  return [[__attributes retain_stub] autorelease_stub];
 }
 
 - (void) setAttributes: (EDAMUserAttributes *) attributes {
-  [attributes retain];
-  [__attributes release];
+  [attributes retain_stub];
+  [__attributes release_stub];
   __attributes = attributes;
   __attributes_isset = YES;
 }
@@ -3653,18 +4133,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAttributes {
-  [__attributes release];
+  [__attributes release_stub];
   __attributes = nil;
   __attributes_isset = NO;
 }
 
 - (EDAMAccounting *) accounting {
-  return [[__accounting retain] autorelease];
+  return [[__accounting retain_stub] autorelease_stub];
 }
 
 - (void) setAccounting: (EDAMAccounting *) accounting {
-  [accounting retain];
-  [__accounting release];
+  [accounting retain_stub];
+  [__accounting release_stub];
   __accounting = accounting;
   __accounting_isset = YES;
 }
@@ -3674,18 +4154,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAccounting {
-  [__accounting release];
+  [__accounting release_stub];
   __accounting = nil;
   __accounting_isset = NO;
 }
 
 - (EDAMPremiumInfo *) premiumInfo {
-  return [[__premiumInfo retain] autorelease];
+  return [[__premiumInfo retain_stub] autorelease_stub];
 }
 
 - (void) setPremiumInfo: (EDAMPremiumInfo *) premiumInfo {
-  [premiumInfo retain];
-  [__premiumInfo release];
+  [premiumInfo retain_stub];
+  [__premiumInfo release_stub];
   __premiumInfo = premiumInfo;
   __premiumInfo_isset = YES;
 }
@@ -3695,9 +4175,30 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPremiumInfo {
-  [__premiumInfo release];
+  [__premiumInfo release_stub];
   __premiumInfo = nil;
   __premiumInfo_isset = NO;
+}
+
+- (EDAMBusinessUserInfo *) businessUserInfo {
+  return [[__businessUserInfo retain_stub] autorelease_stub];
+}
+
+- (void) setBusinessUserInfo: (EDAMBusinessUserInfo *) businessUserInfo {
+  [businessUserInfo retain_stub];
+  [__businessUserInfo release_stub];
+  __businessUserInfo = businessUserInfo;
+  __businessUserInfo_isset = YES;
+}
+
+- (BOOL) businessUserInfoIsSet {
+  return __businessUserInfo_isset;
+}
+
+- (void) unsetBusinessUserInfo {
+  [__businessUserInfo release_stub];
+  __businessUserInfo = nil;
+  __businessUserInfo_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -3808,7 +4309,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMUserAttributes *fieldValue = [[EDAMUserAttributes alloc] init];
           [fieldValue read: inProtocol];
           [self setAttributes: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3818,7 +4319,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMAccounting *fieldValue = [[EDAMAccounting alloc] init];
           [fieldValue read: inProtocol];
           [self setAccounting: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3828,7 +4329,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMPremiumInfo *fieldValue = [[EDAMPremiumInfo alloc] init];
           [fieldValue read: inProtocol];
           [self setPremiumInfo: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 18:
+        if (fieldType == TType_STRUCT) {
+          EDAMBusinessUserInfo *fieldValue = [[EDAMBusinessUserInfo alloc] init];
+          [fieldValue read: inProtocol];
+          [self setBusinessUserInfo: fieldValue];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3930,6 +4441,13 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
       [outProtocol writeFieldEnd];
     }
   }
+  if (__businessUserInfo_isset) {
+    if (__businessUserInfo != nil) {
+      [outProtocol writeFieldBeginWithName: @"businessUserInfo" type: TType_STRUCT fieldID: 18];
+      [__businessUserInfo write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -3964,6 +4482,8 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"%@", __accounting];
   [ms appendString: @",premiumInfo:"];
   [ms appendFormat: @"%@", __premiumInfo];
+  [ms appendString: @",businessUserInfo:"];
+  [ms appendFormat: @"%@", __businessUserInfo];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -3972,14 +4492,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMTag
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithGuid: (EDAMGuid) guid name: (NSString *) name parentGuid: (EDAMGuid) parentGuid updateSequenceNum: (int32_t) updateSequenceNum
 {
   self = [super init];
-  __guid = [guid retain];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __name = [name retain];
+  __name = [name retain_stub];
   __name_isset = YES;
-  __parentGuid = [parentGuid retain];
+  __parentGuid = [parentGuid retain_stub];
   __parentGuid_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
@@ -3991,17 +4519,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"name"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
     __name_isset = YES;
   }
   if ([decoder containsValueForKey: @"parentGuid"])
   {
-    __parentGuid = [[decoder decodeObjectForKey: @"parentGuid"] retain];
+    __parentGuid = [[decoder decodeObjectForKey: @"parentGuid"] retain_stub];
     __parentGuid_isset = YES;
   }
   if ([decoder containsValueForKey: @"updateSequenceNum"])
@@ -4034,19 +4562,19 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__guid release];
-  [__name release];
-  [__parentGuid release];
-  [super dealloc];
+  [__guid release_stub];
+  [__name release_stub];
+  [__parentGuid release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -4056,18 +4584,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) name {
-  return [[__name retain] autorelease];
+  return [[__name retain_stub] autorelease_stub];
 }
 
 - (void) setName: (NSString *) name {
-  [name retain];
-  [__name release];
+  [name retain_stub];
+  [__name release_stub];
   __name = name;
   __name_isset = YES;
 }
@@ -4077,18 +4605,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetName {
-  [__name release];
+  [__name release_stub];
   __name = nil;
   __name_isset = NO;
 }
 
 - (NSString *) parentGuid {
-  return [[__parentGuid retain] autorelease];
+  return [[__parentGuid retain_stub] autorelease_stub];
 }
 
 - (void) setParentGuid: (NSString *) parentGuid {
-  [parentGuid retain];
-  [__parentGuid release];
+  [parentGuid retain_stub];
+  [__parentGuid release_stub];
   __parentGuid = parentGuid;
   __parentGuid_isset = YES;
 }
@@ -4098,7 +4626,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetParentGuid {
-  [__parentGuid release];
+  [__parentGuid release_stub];
   __parentGuid = nil;
   __parentGuid_isset = NO;
 }
@@ -4226,12 +4754,20 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMLazyMap
 
-- (id) initWithKeysOnly: (NSSet *) keysOnly fullMap: (NSDictionary *) fullMap
+- (id) init
 {
   self = [super init];
-  __keysOnly = [keysOnly retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithKeysOnly: (NSMutableSet *) keysOnly fullMap: (NSMutableDictionary *) fullMap
+{
+  self = [super init];
+  __keysOnly = [keysOnly retain_stub];
   __keysOnly_isset = YES;
-  __fullMap = [fullMap retain];
+  __fullMap = [fullMap retain_stub];
   __fullMap_isset = YES;
   return self;
 }
@@ -4241,12 +4777,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"keysOnly"])
   {
-    __keysOnly = [[decoder decodeObjectForKey: @"keysOnly"] retain];
+    __keysOnly = [[decoder decodeObjectForKey: @"keysOnly"] retain_stub];
     __keysOnly_isset = YES;
   }
   if ([decoder containsValueForKey: @"fullMap"])
   {
-    __fullMap = [[decoder decodeObjectForKey: @"fullMap"] retain];
+    __fullMap = [[decoder decodeObjectForKey: @"fullMap"] retain_stub];
     __fullMap_isset = YES;
   }
   return self;
@@ -4266,18 +4802,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__keysOnly release];
-  [__fullMap release];
-  [super dealloc];
+  [__keysOnly release_stub];
+  [__fullMap release_stub];
+  [super dealloc_stub];
 }
 
-- (NSSet *) keysOnly {
-  return [[__keysOnly retain] autorelease];
+- (NSMutableSet *) keysOnly {
+  return [[__keysOnly retain_stub] autorelease_stub];
 }
 
-- (void) setKeysOnly: (NSSet *) keysOnly {
-  [keysOnly retain];
-  [__keysOnly release];
+- (void) setKeysOnly: (NSMutableSet *) keysOnly {
+  [keysOnly retain_stub];
+  [__keysOnly release_stub];
   __keysOnly = keysOnly;
   __keysOnly_isset = YES;
 }
@@ -4287,18 +4823,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetKeysOnly {
-  [__keysOnly release];
+  [__keysOnly release_stub];
   __keysOnly = nil;
   __keysOnly_isset = NO;
 }
 
-- (NSDictionary *) fullMap {
-  return [[__fullMap retain] autorelease];
+- (NSMutableDictionary *) fullMap {
+  return [[__fullMap retain_stub] autorelease_stub];
 }
 
-- (void) setFullMap: (NSDictionary *) fullMap {
-  [fullMap retain];
-  [__fullMap release];
+- (void) setFullMap: (NSMutableDictionary *) fullMap {
+  [fullMap retain_stub];
+  [__fullMap release_stub];
   __fullMap = fullMap;
   __fullMap_isset = YES;
 }
@@ -4308,7 +4844,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetFullMap {
-  [__fullMap release];
+  [__fullMap release_stub];
   __fullMap = nil;
   __fullMap_isset = NO;
 }
@@ -4341,7 +4877,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readSetEnd];
           [self setKeysOnly: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4360,7 +4896,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readMapEnd];
           [self setFullMap: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4427,10 +4963,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMResourceAttributes
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSourceURL: (NSString *) sourceURL timestamp: (EDAMTimestamp) timestamp latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude cameraMake: (NSString *) cameraMake cameraModel: (NSString *) cameraModel clientWillIndex: (BOOL) clientWillIndex recoType: (NSString *) recoType fileName: (NSString *) fileName attachment: (BOOL) attachment applicationData: (EDAMLazyMap *) applicationData
 {
   self = [super init];
-  __sourceURL = [sourceURL retain];
+  __sourceURL = [sourceURL retain_stub];
   __sourceURL_isset = YES;
   __timestamp = timestamp;
   __timestamp_isset = YES;
@@ -4440,19 +4984,19 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __longitude_isset = YES;
   __altitude = altitude;
   __altitude_isset = YES;
-  __cameraMake = [cameraMake retain];
+  __cameraMake = [cameraMake retain_stub];
   __cameraMake_isset = YES;
-  __cameraModel = [cameraModel retain];
+  __cameraModel = [cameraModel retain_stub];
   __cameraModel_isset = YES;
   __clientWillIndex = clientWillIndex;
   __clientWillIndex_isset = YES;
-  __recoType = [recoType retain];
+  __recoType = [recoType retain_stub];
   __recoType_isset = YES;
-  __fileName = [fileName retain];
+  __fileName = [fileName retain_stub];
   __fileName_isset = YES;
   __attachment = attachment;
   __attachment_isset = YES;
-  __applicationData = [applicationData retain];
+  __applicationData = [applicationData retain_stub];
   __applicationData_isset = YES;
   return self;
 }
@@ -4462,7 +5006,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"sourceURL"])
   {
-    __sourceURL = [[decoder decodeObjectForKey: @"sourceURL"] retain];
+    __sourceURL = [[decoder decodeObjectForKey: @"sourceURL"] retain_stub];
     __sourceURL_isset = YES;
   }
   if ([decoder containsValueForKey: @"timestamp"])
@@ -4487,12 +5031,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"cameraMake"])
   {
-    __cameraMake = [[decoder decodeObjectForKey: @"cameraMake"] retain];
+    __cameraMake = [[decoder decodeObjectForKey: @"cameraMake"] retain_stub];
     __cameraMake_isset = YES;
   }
   if ([decoder containsValueForKey: @"cameraModel"])
   {
-    __cameraModel = [[decoder decodeObjectForKey: @"cameraModel"] retain];
+    __cameraModel = [[decoder decodeObjectForKey: @"cameraModel"] retain_stub];
     __cameraModel_isset = YES;
   }
   if ([decoder containsValueForKey: @"clientWillIndex"])
@@ -4502,12 +5046,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"recoType"])
   {
-    __recoType = [[decoder decodeObjectForKey: @"recoType"] retain];
+    __recoType = [[decoder decodeObjectForKey: @"recoType"] retain_stub];
     __recoType_isset = YES;
   }
   if ([decoder containsValueForKey: @"fileName"])
   {
-    __fileName = [[decoder decodeObjectForKey: @"fileName"] retain];
+    __fileName = [[decoder decodeObjectForKey: @"fileName"] retain_stub];
     __fileName_isset = YES;
   }
   if ([decoder containsValueForKey: @"attachment"])
@@ -4517,7 +5061,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"applicationData"])
   {
-    __applicationData = [[decoder decodeObjectForKey: @"applicationData"] retain];
+    __applicationData = [[decoder decodeObjectForKey: @"applicationData"] retain_stub];
     __applicationData_isset = YES;
   }
   return self;
@@ -4577,22 +5121,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__sourceURL release];
-  [__cameraMake release];
-  [__cameraModel release];
-  [__recoType release];
-  [__fileName release];
-  [__applicationData release];
-  [super dealloc];
+  [__sourceURL release_stub];
+  [__cameraMake release_stub];
+  [__cameraModel release_stub];
+  [__recoType release_stub];
+  [__fileName release_stub];
+  [__applicationData release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) sourceURL {
-  return [[__sourceURL retain] autorelease];
+  return [[__sourceURL retain_stub] autorelease_stub];
 }
 
 - (void) setSourceURL: (NSString *) sourceURL {
-  [sourceURL retain];
-  [__sourceURL release];
+  [sourceURL retain_stub];
+  [__sourceURL release_stub];
   __sourceURL = sourceURL;
   __sourceURL_isset = YES;
 }
@@ -4602,7 +5146,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSourceURL {
-  [__sourceURL release];
+  [__sourceURL release_stub];
   __sourceURL = nil;
   __sourceURL_isset = NO;
 }
@@ -4676,12 +5220,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) cameraMake {
-  return [[__cameraMake retain] autorelease];
+  return [[__cameraMake retain_stub] autorelease_stub];
 }
 
 - (void) setCameraMake: (NSString *) cameraMake {
-  [cameraMake retain];
-  [__cameraMake release];
+  [cameraMake retain_stub];
+  [__cameraMake release_stub];
   __cameraMake = cameraMake;
   __cameraMake_isset = YES;
 }
@@ -4691,18 +5235,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetCameraMake {
-  [__cameraMake release];
+  [__cameraMake release_stub];
   __cameraMake = nil;
   __cameraMake_isset = NO;
 }
 
 - (NSString *) cameraModel {
-  return [[__cameraModel retain] autorelease];
+  return [[__cameraModel retain_stub] autorelease_stub];
 }
 
 - (void) setCameraModel: (NSString *) cameraModel {
-  [cameraModel retain];
-  [__cameraModel release];
+  [cameraModel retain_stub];
+  [__cameraModel release_stub];
   __cameraModel = cameraModel;
   __cameraModel_isset = YES;
 }
@@ -4712,7 +5256,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetCameraModel {
-  [__cameraModel release];
+  [__cameraModel release_stub];
   __cameraModel = nil;
   __cameraModel_isset = NO;
 }
@@ -4735,12 +5279,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) recoType {
-  return [[__recoType retain] autorelease];
+  return [[__recoType retain_stub] autorelease_stub];
 }
 
 - (void) setRecoType: (NSString *) recoType {
-  [recoType retain];
-  [__recoType release];
+  [recoType retain_stub];
+  [__recoType release_stub];
   __recoType = recoType;
   __recoType_isset = YES;
 }
@@ -4750,18 +5294,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRecoType {
-  [__recoType release];
+  [__recoType release_stub];
   __recoType = nil;
   __recoType_isset = NO;
 }
 
 - (NSString *) fileName {
-  return [[__fileName retain] autorelease];
+  return [[__fileName retain_stub] autorelease_stub];
 }
 
 - (void) setFileName: (NSString *) fileName {
-  [fileName retain];
-  [__fileName release];
+  [fileName retain_stub];
+  [__fileName release_stub];
   __fileName = fileName;
   __fileName_isset = YES;
 }
@@ -4771,7 +5315,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetFileName {
-  [__fileName release];
+  [__fileName release_stub];
   __fileName = nil;
   __fileName_isset = NO;
 }
@@ -4794,12 +5338,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (EDAMLazyMap *) applicationData {
-  return [[__applicationData retain] autorelease];
+  return [[__applicationData retain_stub] autorelease_stub];
 }
 
 - (void) setApplicationData: (EDAMLazyMap *) applicationData {
-  [applicationData retain];
-  [__applicationData release];
+  [applicationData retain_stub];
+  [__applicationData release_stub];
   __applicationData = applicationData;
   __applicationData_isset = YES;
 }
@@ -4809,7 +5353,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetApplicationData {
-  [__applicationData release];
+  [__applicationData release_stub];
   __applicationData = nil;
   __applicationData_isset = NO;
 }
@@ -4922,7 +5466,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMLazyMap *fieldValue = [[EDAMLazyMap alloc] init];
           [fieldValue read: inProtocol];
           [self setApplicationData: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5048,16 +5592,24 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMResource
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithGuid: (EDAMGuid) guid noteGuid: (EDAMGuid) noteGuid data: (EDAMData *) data mime: (NSString *) mime width: (int16_t) width height: (int16_t) height duration: (int16_t) duration active: (BOOL) active recognition: (EDAMData *) recognition attributes: (EDAMResourceAttributes *) attributes updateSequenceNum: (int32_t) updateSequenceNum alternateData: (EDAMData *) alternateData
 {
   self = [super init];
-  __guid = [guid retain];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __noteGuid = [noteGuid retain];
+  __noteGuid = [noteGuid retain_stub];
   __noteGuid_isset = YES;
-  __data = [data retain];
+  __data = [data retain_stub];
   __data_isset = YES;
-  __mime = [mime retain];
+  __mime = [mime retain_stub];
   __mime_isset = YES;
   __width = width;
   __width_isset = YES;
@@ -5067,13 +5619,13 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __duration_isset = YES;
   __active = active;
   __active_isset = YES;
-  __recognition = [recognition retain];
+  __recognition = [recognition retain_stub];
   __recognition_isset = YES;
-  __attributes = [attributes retain];
+  __attributes = [attributes retain_stub];
   __attributes_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
-  __alternateData = [alternateData retain];
+  __alternateData = [alternateData retain_stub];
   __alternateData_isset = YES;
   return self;
 }
@@ -5083,22 +5635,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"noteGuid"])
   {
-    __noteGuid = [[decoder decodeObjectForKey: @"noteGuid"] retain];
+    __noteGuid = [[decoder decodeObjectForKey: @"noteGuid"] retain_stub];
     __noteGuid_isset = YES;
   }
   if ([decoder containsValueForKey: @"data"])
   {
-    __data = [[decoder decodeObjectForKey: @"data"] retain];
+    __data = [[decoder decodeObjectForKey: @"data"] retain_stub];
     __data_isset = YES;
   }
   if ([decoder containsValueForKey: @"mime"])
   {
-    __mime = [[decoder decodeObjectForKey: @"mime"] retain];
+    __mime = [[decoder decodeObjectForKey: @"mime"] retain_stub];
     __mime_isset = YES;
   }
   if ([decoder containsValueForKey: @"width"])
@@ -5123,12 +5675,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"recognition"])
   {
-    __recognition = [[decoder decodeObjectForKey: @"recognition"] retain];
+    __recognition = [[decoder decodeObjectForKey: @"recognition"] retain_stub];
     __recognition_isset = YES;
   }
   if ([decoder containsValueForKey: @"attributes"])
   {
-    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain];
+    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain_stub];
     __attributes_isset = YES;
   }
   if ([decoder containsValueForKey: @"updateSequenceNum"])
@@ -5138,7 +5690,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"alternateData"])
   {
-    __alternateData = [[decoder decodeObjectForKey: @"alternateData"] retain];
+    __alternateData = [[decoder decodeObjectForKey: @"alternateData"] retain_stub];
     __alternateData_isset = YES;
   }
   return self;
@@ -5198,23 +5750,23 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__guid release];
-  [__noteGuid release];
-  [__data release];
-  [__mime release];
-  [__recognition release];
-  [__attributes release];
-  [__alternateData release];
-  [super dealloc];
+  [__guid release_stub];
+  [__noteGuid release_stub];
+  [__data release_stub];
+  [__mime release_stub];
+  [__recognition release_stub];
+  [__attributes release_stub];
+  [__alternateData release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -5224,18 +5776,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) noteGuid {
-  return [[__noteGuid retain] autorelease];
+  return [[__noteGuid retain_stub] autorelease_stub];
 }
 
 - (void) setNoteGuid: (NSString *) noteGuid {
-  [noteGuid retain];
-  [__noteGuid release];
+  [noteGuid retain_stub];
+  [__noteGuid release_stub];
   __noteGuid = noteGuid;
   __noteGuid_isset = YES;
 }
@@ -5245,18 +5797,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNoteGuid {
-  [__noteGuid release];
+  [__noteGuid release_stub];
   __noteGuid = nil;
   __noteGuid_isset = NO;
 }
 
 - (EDAMData *) data {
-  return [[__data retain] autorelease];
+  return [[__data retain_stub] autorelease_stub];
 }
 
 - (void) setData: (EDAMData *) data {
-  [data retain];
-  [__data release];
+  [data retain_stub];
+  [__data release_stub];
   __data = data;
   __data_isset = YES;
 }
@@ -5266,18 +5818,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetData {
-  [__data release];
+  [__data release_stub];
   __data = nil;
   __data_isset = NO;
 }
 
 - (NSString *) mime {
-  return [[__mime retain] autorelease];
+  return [[__mime retain_stub] autorelease_stub];
 }
 
 - (void) setMime: (NSString *) mime {
-  [mime retain];
-  [__mime release];
+  [mime retain_stub];
+  [__mime release_stub];
   __mime = mime;
   __mime_isset = YES;
 }
@@ -5287,7 +5839,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetMime {
-  [__mime release];
+  [__mime release_stub];
   __mime = nil;
   __mime_isset = NO;
 }
@@ -5361,12 +5913,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (EDAMData *) recognition {
-  return [[__recognition retain] autorelease];
+  return [[__recognition retain_stub] autorelease_stub];
 }
 
 - (void) setRecognition: (EDAMData *) recognition {
-  [recognition retain];
-  [__recognition release];
+  [recognition retain_stub];
+  [__recognition release_stub];
   __recognition = recognition;
   __recognition_isset = YES;
 }
@@ -5376,18 +5928,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRecognition {
-  [__recognition release];
+  [__recognition release_stub];
   __recognition = nil;
   __recognition_isset = NO;
 }
 
 - (EDAMResourceAttributes *) attributes {
-  return [[__attributes retain] autorelease];
+  return [[__attributes retain_stub] autorelease_stub];
 }
 
 - (void) setAttributes: (EDAMResourceAttributes *) attributes {
-  [attributes retain];
-  [__attributes release];
+  [attributes retain_stub];
+  [__attributes release_stub];
   __attributes = attributes;
   __attributes_isset = YES;
 }
@@ -5397,7 +5949,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAttributes {
-  [__attributes release];
+  [__attributes release_stub];
   __attributes = nil;
   __attributes_isset = NO;
 }
@@ -5420,12 +5972,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (EDAMData *) alternateData {
-  return [[__alternateData retain] autorelease];
+  return [[__alternateData retain_stub] autorelease_stub];
 }
 
 - (void) setAlternateData: (EDAMData *) alternateData {
-  [alternateData retain];
-  [__alternateData release];
+  [alternateData retain_stub];
+  [__alternateData release_stub];
   __alternateData = alternateData;
   __alternateData_isset = YES;
 }
@@ -5435,7 +5987,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAlternateData {
-  [__alternateData release];
+  [__alternateData release_stub];
   __alternateData = nil;
   __alternateData_isset = NO;
 }
@@ -5476,7 +6028,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMData *fieldValue = [[EDAMData alloc] init];
           [fieldValue read: inProtocol];
           [self setData: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5526,7 +6078,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMData *fieldValue = [[EDAMData alloc] init];
           [fieldValue read: inProtocol];
           [self setRecognition: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5536,7 +6088,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMResourceAttributes *fieldValue = [[EDAMResourceAttributes alloc] init];
           [fieldValue read: inProtocol];
           [self setAttributes: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5554,7 +6106,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMData *fieldValue = [[EDAMData alloc] init];
           [fieldValue read: inProtocol];
           [self setAlternateData: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5682,7 +6234,15 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNoteAttributes
 
-- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy classifications: (NSDictionary *) classifications
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithSubjectDate: (EDAMTimestamp) subjectDate latitude: (double) latitude longitude: (double) longitude altitude: (double) altitude author: (NSString *) author source: (NSString *) source sourceURL: (NSString *) sourceURL sourceApplication: (NSString *) sourceApplication shareDate: (EDAMTimestamp) shareDate reminderOrder: (int64_t) reminderOrder reminderDoneTime: (EDAMTimestamp) reminderDoneTime reminderTime: (EDAMTimestamp) reminderTime placeName: (NSString *) placeName contentClass: (NSString *) contentClass applicationData: (EDAMLazyMap *) applicationData lastEditedBy: (NSString *) lastEditedBy classifications: (NSMutableDictionary *) classifications
 {
   self = [super init];
   __subjectDate = subjectDate;
@@ -5693,25 +6253,31 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __longitude_isset = YES;
   __altitude = altitude;
   __altitude_isset = YES;
-  __author = [author retain];
+  __author = [author retain_stub];
   __author_isset = YES;
-  __source = [source retain];
+  __source = [source retain_stub];
   __source_isset = YES;
-  __sourceURL = [sourceURL retain];
+  __sourceURL = [sourceURL retain_stub];
   __sourceURL_isset = YES;
-  __sourceApplication = [sourceApplication retain];
+  __sourceApplication = [sourceApplication retain_stub];
   __sourceApplication_isset = YES;
   __shareDate = shareDate;
   __shareDate_isset = YES;
-  __placeName = [placeName retain];
+  __reminderOrder = reminderOrder;
+  __reminderOrder_isset = YES;
+  __reminderDoneTime = reminderDoneTime;
+  __reminderDoneTime_isset = YES;
+  __reminderTime = reminderTime;
+  __reminderTime_isset = YES;
+  __placeName = [placeName retain_stub];
   __placeName_isset = YES;
-  __contentClass = [contentClass retain];
+  __contentClass = [contentClass retain_stub];
   __contentClass_isset = YES;
-  __applicationData = [applicationData retain];
+  __applicationData = [applicationData retain_stub];
   __applicationData_isset = YES;
-  __lastEditedBy = [lastEditedBy retain];
+  __lastEditedBy = [lastEditedBy retain_stub];
   __lastEditedBy_isset = YES;
-  __classifications = [classifications retain];
+  __classifications = [classifications retain_stub];
   __classifications_isset = YES;
   return self;
 }
@@ -5741,22 +6307,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"author"])
   {
-    __author = [[decoder decodeObjectForKey: @"author"] retain];
+    __author = [[decoder decodeObjectForKey: @"author"] retain_stub];
     __author_isset = YES;
   }
   if ([decoder containsValueForKey: @"source"])
   {
-    __source = [[decoder decodeObjectForKey: @"source"] retain];
+    __source = [[decoder decodeObjectForKey: @"source"] retain_stub];
     __source_isset = YES;
   }
   if ([decoder containsValueForKey: @"sourceURL"])
   {
-    __sourceURL = [[decoder decodeObjectForKey: @"sourceURL"] retain];
+    __sourceURL = [[decoder decodeObjectForKey: @"sourceURL"] retain_stub];
     __sourceURL_isset = YES;
   }
   if ([decoder containsValueForKey: @"sourceApplication"])
   {
-    __sourceApplication = [[decoder decodeObjectForKey: @"sourceApplication"] retain];
+    __sourceApplication = [[decoder decodeObjectForKey: @"sourceApplication"] retain_stub];
     __sourceApplication_isset = YES;
   }
   if ([decoder containsValueForKey: @"shareDate"])
@@ -5764,29 +6330,44 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
     __shareDate = [decoder decodeInt64ForKey: @"shareDate"];
     __shareDate_isset = YES;
   }
+  if ([decoder containsValueForKey: @"reminderOrder"])
+  {
+    __reminderOrder = [decoder decodeInt64ForKey: @"reminderOrder"];
+    __reminderOrder_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"reminderDoneTime"])
+  {
+    __reminderDoneTime = [decoder decodeInt64ForKey: @"reminderDoneTime"];
+    __reminderDoneTime_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"reminderTime"])
+  {
+    __reminderTime = [decoder decodeInt64ForKey: @"reminderTime"];
+    __reminderTime_isset = YES;
+  }
   if ([decoder containsValueForKey: @"placeName"])
   {
-    __placeName = [[decoder decodeObjectForKey: @"placeName"] retain];
+    __placeName = [[decoder decodeObjectForKey: @"placeName"] retain_stub];
     __placeName_isset = YES;
   }
   if ([decoder containsValueForKey: @"contentClass"])
   {
-    __contentClass = [[decoder decodeObjectForKey: @"contentClass"] retain];
+    __contentClass = [[decoder decodeObjectForKey: @"contentClass"] retain_stub];
     __contentClass_isset = YES;
   }
   if ([decoder containsValueForKey: @"applicationData"])
   {
-    __applicationData = [[decoder decodeObjectForKey: @"applicationData"] retain];
+    __applicationData = [[decoder decodeObjectForKey: @"applicationData"] retain_stub];
     __applicationData_isset = YES;
   }
   if ([decoder containsValueForKey: @"lastEditedBy"])
   {
-    __lastEditedBy = [[decoder decodeObjectForKey: @"lastEditedBy"] retain];
+    __lastEditedBy = [[decoder decodeObjectForKey: @"lastEditedBy"] retain_stub];
     __lastEditedBy_isset = YES;
   }
   if ([decoder containsValueForKey: @"classifications"])
   {
-    __classifications = [[decoder decodeObjectForKey: @"classifications"] retain];
+    __classifications = [[decoder decodeObjectForKey: @"classifications"] retain_stub];
     __classifications_isset = YES;
   }
   return self;
@@ -5830,6 +6411,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeInt64: __shareDate forKey: @"shareDate"];
   }
+  if (__reminderOrder_isset)
+  {
+    [encoder encodeInt64: __reminderOrder forKey: @"reminderOrder"];
+  }
+  if (__reminderDoneTime_isset)
+  {
+    [encoder encodeInt64: __reminderDoneTime forKey: @"reminderDoneTime"];
+  }
+  if (__reminderTime_isset)
+  {
+    [encoder encodeInt64: __reminderTime forKey: @"reminderTime"];
+  }
   if (__placeName_isset)
   {
     [encoder encodeObject: __placeName forKey: @"placeName"];
@@ -5854,16 +6447,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__author release];
-  [__source release];
-  [__sourceURL release];
-  [__sourceApplication release];
-  [__placeName release];
-  [__contentClass release];
-  [__applicationData release];
-  [__lastEditedBy release];
-  [__classifications release];
-  [super dealloc];
+  [__author release_stub];
+  [__source release_stub];
+  [__sourceURL release_stub];
+  [__sourceApplication release_stub];
+  [__placeName release_stub];
+  [__contentClass release_stub];
+  [__applicationData release_stub];
+  [__lastEditedBy release_stub];
+  [__classifications release_stub];
+  [super dealloc_stub];
 }
 
 - (int64_t) subjectDate {
@@ -5935,12 +6528,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) author {
-  return [[__author retain] autorelease];
+  return [[__author retain_stub] autorelease_stub];
 }
 
 - (void) setAuthor: (NSString *) author {
-  [author retain];
-  [__author release];
+  [author retain_stub];
+  [__author release_stub];
   __author = author;
   __author_isset = YES;
 }
@@ -5950,18 +6543,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAuthor {
-  [__author release];
+  [__author release_stub];
   __author = nil;
   __author_isset = NO;
 }
 
 - (NSString *) source {
-  return [[__source retain] autorelease];
+  return [[__source retain_stub] autorelease_stub];
 }
 
 - (void) setSource: (NSString *) source {
-  [source retain];
-  [__source release];
+  [source retain_stub];
+  [__source release_stub];
   __source = source;
   __source_isset = YES;
 }
@@ -5971,18 +6564,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSource {
-  [__source release];
+  [__source release_stub];
   __source = nil;
   __source_isset = NO;
 }
 
 - (NSString *) sourceURL {
-  return [[__sourceURL retain] autorelease];
+  return [[__sourceURL retain_stub] autorelease_stub];
 }
 
 - (void) setSourceURL: (NSString *) sourceURL {
-  [sourceURL retain];
-  [__sourceURL release];
+  [sourceURL retain_stub];
+  [__sourceURL release_stub];
   __sourceURL = sourceURL;
   __sourceURL_isset = YES;
 }
@@ -5992,18 +6585,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSourceURL {
-  [__sourceURL release];
+  [__sourceURL release_stub];
   __sourceURL = nil;
   __sourceURL_isset = NO;
 }
 
 - (NSString *) sourceApplication {
-  return [[__sourceApplication retain] autorelease];
+  return [[__sourceApplication retain_stub] autorelease_stub];
 }
 
 - (void) setSourceApplication: (NSString *) sourceApplication {
-  [sourceApplication retain];
-  [__sourceApplication release];
+  [sourceApplication retain_stub];
+  [__sourceApplication release_stub];
   __sourceApplication = sourceApplication;
   __sourceApplication_isset = YES;
 }
@@ -6013,7 +6606,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSourceApplication {
-  [__sourceApplication release];
+  [__sourceApplication release_stub];
   __sourceApplication = nil;
   __sourceApplication_isset = NO;
 }
@@ -6035,13 +6628,64 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __shareDate_isset = NO;
 }
 
+- (int64_t) reminderOrder {
+  return __reminderOrder;
+}
+
+- (void) setReminderOrder: (int64_t) reminderOrder {
+  __reminderOrder = reminderOrder;
+  __reminderOrder_isset = YES;
+}
+
+- (BOOL) reminderOrderIsSet {
+  return __reminderOrder_isset;
+}
+
+- (void) unsetReminderOrder {
+  __reminderOrder_isset = NO;
+}
+
+- (int64_t) reminderDoneTime {
+  return __reminderDoneTime;
+}
+
+- (void) setReminderDoneTime: (int64_t) reminderDoneTime {
+  __reminderDoneTime = reminderDoneTime;
+  __reminderDoneTime_isset = YES;
+}
+
+- (BOOL) reminderDoneTimeIsSet {
+  return __reminderDoneTime_isset;
+}
+
+- (void) unsetReminderDoneTime {
+  __reminderDoneTime_isset = NO;
+}
+
+- (int64_t) reminderTime {
+  return __reminderTime;
+}
+
+- (void) setReminderTime: (int64_t) reminderTime {
+  __reminderTime = reminderTime;
+  __reminderTime_isset = YES;
+}
+
+- (BOOL) reminderTimeIsSet {
+  return __reminderTime_isset;
+}
+
+- (void) unsetReminderTime {
+  __reminderTime_isset = NO;
+}
+
 - (NSString *) placeName {
-  return [[__placeName retain] autorelease];
+  return [[__placeName retain_stub] autorelease_stub];
 }
 
 - (void) setPlaceName: (NSString *) placeName {
-  [placeName retain];
-  [__placeName release];
+  [placeName retain_stub];
+  [__placeName release_stub];
   __placeName = placeName;
   __placeName_isset = YES;
 }
@@ -6051,18 +6695,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPlaceName {
-  [__placeName release];
+  [__placeName release_stub];
   __placeName = nil;
   __placeName_isset = NO;
 }
 
 - (NSString *) contentClass {
-  return [[__contentClass retain] autorelease];
+  return [[__contentClass retain_stub] autorelease_stub];
 }
 
 - (void) setContentClass: (NSString *) contentClass {
-  [contentClass retain];
-  [__contentClass release];
+  [contentClass retain_stub];
+  [__contentClass release_stub];
   __contentClass = contentClass;
   __contentClass_isset = YES;
 }
@@ -6072,18 +6716,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetContentClass {
-  [__contentClass release];
+  [__contentClass release_stub];
   __contentClass = nil;
   __contentClass_isset = NO;
 }
 
 - (EDAMLazyMap *) applicationData {
-  return [[__applicationData retain] autorelease];
+  return [[__applicationData retain_stub] autorelease_stub];
 }
 
 - (void) setApplicationData: (EDAMLazyMap *) applicationData {
-  [applicationData retain];
-  [__applicationData release];
+  [applicationData retain_stub];
+  [__applicationData release_stub];
   __applicationData = applicationData;
   __applicationData_isset = YES;
 }
@@ -6093,18 +6737,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetApplicationData {
-  [__applicationData release];
+  [__applicationData release_stub];
   __applicationData = nil;
   __applicationData_isset = NO;
 }
 
 - (NSString *) lastEditedBy {
-  return [[__lastEditedBy retain] autorelease];
+  return [[__lastEditedBy retain_stub] autorelease_stub];
 }
 
 - (void) setLastEditedBy: (NSString *) lastEditedBy {
-  [lastEditedBy retain];
-  [__lastEditedBy release];
+  [lastEditedBy retain_stub];
+  [__lastEditedBy release_stub];
   __lastEditedBy = lastEditedBy;
   __lastEditedBy_isset = YES;
 }
@@ -6114,18 +6758,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetLastEditedBy {
-  [__lastEditedBy release];
+  [__lastEditedBy release_stub];
   __lastEditedBy = nil;
   __lastEditedBy_isset = NO;
 }
 
-- (NSDictionary *) classifications {
-  return [[__classifications retain] autorelease];
+- (NSMutableDictionary *) classifications {
+  return [[__classifications retain_stub] autorelease_stub];
 }
 
-- (void) setClassifications: (NSDictionary *) classifications {
-  [classifications retain];
-  [__classifications release];
+- (void) setClassifications: (NSMutableDictionary *) classifications {
+  [classifications retain_stub];
+  [__classifications release_stub];
   __classifications = classifications;
   __classifications_isset = YES;
 }
@@ -6135,7 +6779,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetClassifications {
-  [__classifications release];
+  [__classifications release_stub];
   __classifications = nil;
   __classifications_isset = NO;
 }
@@ -6227,6 +6871,30 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 18:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setReminderOrder: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 19:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setReminderDoneTime: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 20:
+        if (fieldType == TType_I64) {
+          int64_t fieldValue = [inProtocol readI64];
+          [self setReminderTime: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       case 21:
         if (fieldType == TType_STRING) {
           NSString * fieldValue = [inProtocol readString];
@@ -6248,7 +6916,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMLazyMap *fieldValue = [[EDAMLazyMap alloc] init];
           [fieldValue read: inProtocol];
           [self setApplicationData: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -6275,7 +6943,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readMapEnd];
           [self setClassifications: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -6342,6 +7010,21 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   if (__shareDate_isset) {
     [outProtocol writeFieldBeginWithName: @"shareDate" type: TType_I64 fieldID: 17];
     [outProtocol writeI64: __shareDate];
+    [outProtocol writeFieldEnd];
+  }
+  if (__reminderOrder_isset) {
+    [outProtocol writeFieldBeginWithName: @"reminderOrder" type: TType_I64 fieldID: 18];
+    [outProtocol writeI64: __reminderOrder];
+    [outProtocol writeFieldEnd];
+  }
+  if (__reminderDoneTime_isset) {
+    [outProtocol writeFieldBeginWithName: @"reminderDoneTime" type: TType_I64 fieldID: 19];
+    [outProtocol writeI64: __reminderDoneTime];
+    [outProtocol writeFieldEnd];
+  }
+  if (__reminderTime_isset) {
+    [outProtocol writeFieldBeginWithName: @"reminderTime" type: TType_I64 fieldID: 20];
+    [outProtocol writeI64: __reminderTime];
     [outProtocol writeFieldEnd];
   }
   if (__placeName_isset) {
@@ -6413,6 +7096,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"\"%@\"", __sourceApplication];
   [ms appendString: @",shareDate:"];
   [ms appendFormat: @"%qi", __shareDate];
+  [ms appendString: @",reminderOrder:"];
+  [ms appendFormat: @"%qi", __reminderOrder];
+  [ms appendString: @",reminderDoneTime:"];
+  [ms appendFormat: @"%qi", __reminderDoneTime];
+  [ms appendString: @",reminderTime:"];
+  [ms appendFormat: @"%qi", __reminderTime];
   [ms appendString: @",placeName:"];
   [ms appendFormat: @"\"%@\"", __placeName];
   [ms appendString: @",contentClass:"];
@@ -6431,16 +7120,24 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNote
 
-- (id) initWithGuid: (EDAMGuid) guid title: (NSString *) title content: (NSString *) content contentHash: (NSData *) contentHash contentLength: (int32_t) contentLength created: (EDAMTimestamp) created updated: (EDAMTimestamp) updated deleted: (EDAMTimestamp) deleted active: (BOOL) active updateSequenceNum: (int32_t) updateSequenceNum notebookGuid: (NSString *) notebookGuid tagGuids: (NSArray *) tagGuids resources: (NSArray *) resources attributes: (EDAMNoteAttributes *) attributes tagNames: (NSArray *) tagNames
+- (id) init
 {
   self = [super init];
-  __guid = [guid retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithGuid: (EDAMGuid) guid title: (NSString *) title content: (NSString *) content contentHash: (NSData *) contentHash contentLength: (int32_t) contentLength created: (EDAMTimestamp) created updated: (EDAMTimestamp) updated deleted: (EDAMTimestamp) deleted active: (BOOL) active updateSequenceNum: (int32_t) updateSequenceNum notebookGuid: (NSString *) notebookGuid tagGuids: (NSMutableArray *) tagGuids resources: (NSMutableArray *) resources attributes: (EDAMNoteAttributes *) attributes tagNames: (NSMutableArray *) tagNames
+{
+  self = [super init];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __title = [title retain];
+  __title = [title retain_stub];
   __title_isset = YES;
-  __content = [content retain];
+  __content = [content retain_stub];
   __content_isset = YES;
-  __contentHash = [contentHash retain];
+  __contentHash = [contentHash retain_stub];
   __contentHash_isset = YES;
   __contentLength = contentLength;
   __contentLength_isset = YES;
@@ -6454,15 +7151,15 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __active_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
-  __notebookGuid = [notebookGuid retain];
+  __notebookGuid = [notebookGuid retain_stub];
   __notebookGuid_isset = YES;
-  __tagGuids = [tagGuids retain];
+  __tagGuids = [tagGuids retain_stub];
   __tagGuids_isset = YES;
-  __resources = [resources retain];
+  __resources = [resources retain_stub];
   __resources_isset = YES;
-  __attributes = [attributes retain];
+  __attributes = [attributes retain_stub];
   __attributes_isset = YES;
-  __tagNames = [tagNames retain];
+  __tagNames = [tagNames retain_stub];
   __tagNames_isset = YES;
   return self;
 }
@@ -6472,22 +7169,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"title"])
   {
-    __title = [[decoder decodeObjectForKey: @"title"] retain];
+    __title = [[decoder decodeObjectForKey: @"title"] retain_stub];
     __title_isset = YES;
   }
   if ([decoder containsValueForKey: @"content"])
   {
-    __content = [[decoder decodeObjectForKey: @"content"] retain];
+    __content = [[decoder decodeObjectForKey: @"content"] retain_stub];
     __content_isset = YES;
   }
   if ([decoder containsValueForKey: @"contentHash"])
   {
-    __contentHash = [[decoder decodeObjectForKey: @"contentHash"] retain];
+    __contentHash = [[decoder decodeObjectForKey: @"contentHash"] retain_stub];
     __contentHash_isset = YES;
   }
   if ([decoder containsValueForKey: @"contentLength"])
@@ -6522,27 +7219,27 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"notebookGuid"])
   {
-    __notebookGuid = [[decoder decodeObjectForKey: @"notebookGuid"] retain];
+    __notebookGuid = [[decoder decodeObjectForKey: @"notebookGuid"] retain_stub];
     __notebookGuid_isset = YES;
   }
   if ([decoder containsValueForKey: @"tagGuids"])
   {
-    __tagGuids = [[decoder decodeObjectForKey: @"tagGuids"] retain];
+    __tagGuids = [[decoder decodeObjectForKey: @"tagGuids"] retain_stub];
     __tagGuids_isset = YES;
   }
   if ([decoder containsValueForKey: @"resources"])
   {
-    __resources = [[decoder decodeObjectForKey: @"resources"] retain];
+    __resources = [[decoder decodeObjectForKey: @"resources"] retain_stub];
     __resources_isset = YES;
   }
   if ([decoder containsValueForKey: @"attributes"])
   {
-    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain];
+    __attributes = [[decoder decodeObjectForKey: @"attributes"] retain_stub];
     __attributes_isset = YES;
   }
   if ([decoder containsValueForKey: @"tagNames"])
   {
-    __tagNames = [[decoder decodeObjectForKey: @"tagNames"] retain];
+    __tagNames = [[decoder decodeObjectForKey: @"tagNames"] retain_stub];
     __tagNames_isset = YES;
   }
   return self;
@@ -6614,25 +7311,25 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__guid release];
-  [__title release];
-  [__content release];
-  [__contentHash release];
-  [__notebookGuid release];
-  [__tagGuids release];
-  [__resources release];
-  [__attributes release];
-  [__tagNames release];
-  [super dealloc];
+  [__guid release_stub];
+  [__title release_stub];
+  [__content release_stub];
+  [__contentHash release_stub];
+  [__notebookGuid release_stub];
+  [__tagGuids release_stub];
+  [__resources release_stub];
+  [__attributes release_stub];
+  [__tagNames release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -6642,18 +7339,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) title {
-  return [[__title retain] autorelease];
+  return [[__title retain_stub] autorelease_stub];
 }
 
 - (void) setTitle: (NSString *) title {
-  [title retain];
-  [__title release];
+  [title retain_stub];
+  [__title release_stub];
   __title = title;
   __title_isset = YES;
 }
@@ -6663,18 +7360,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTitle {
-  [__title release];
+  [__title release_stub];
   __title = nil;
   __title_isset = NO;
 }
 
 - (NSString *) content {
-  return [[__content retain] autorelease];
+  return [[__content retain_stub] autorelease_stub];
 }
 
 - (void) setContent: (NSString *) content {
-  [content retain];
-  [__content release];
+  [content retain_stub];
+  [__content release_stub];
   __content = content;
   __content_isset = YES;
 }
@@ -6684,18 +7381,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetContent {
-  [__content release];
+  [__content release_stub];
   __content = nil;
   __content_isset = NO;
 }
 
 - (NSData *) contentHash {
-  return [[__contentHash retain] autorelease];
+  return [[__contentHash retain_stub] autorelease_stub];
 }
 
 - (void) setContentHash: (NSData *) contentHash {
-  [contentHash retain];
-  [__contentHash release];
+  [contentHash retain_stub];
+  [__contentHash release_stub];
   __contentHash = contentHash;
   __contentHash_isset = YES;
 }
@@ -6705,7 +7402,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetContentHash {
-  [__contentHash release];
+  [__contentHash release_stub];
   __contentHash = nil;
   __contentHash_isset = NO;
 }
@@ -6813,12 +7510,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) notebookGuid {
-  return [[__notebookGuid retain] autorelease];
+  return [[__notebookGuid retain_stub] autorelease_stub];
 }
 
 - (void) setNotebookGuid: (NSString *) notebookGuid {
-  [notebookGuid retain];
-  [__notebookGuid release];
+  [notebookGuid retain_stub];
+  [__notebookGuid release_stub];
   __notebookGuid = notebookGuid;
   __notebookGuid_isset = YES;
 }
@@ -6828,18 +7525,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNotebookGuid {
-  [__notebookGuid release];
+  [__notebookGuid release_stub];
   __notebookGuid = nil;
   __notebookGuid_isset = NO;
 }
 
-- (NSArray *) tagGuids {
-  return [[__tagGuids retain] autorelease];
+- (NSMutableArray *) tagGuids {
+  return [[__tagGuids retain_stub] autorelease_stub];
 }
 
-- (void) setTagGuids: (NSArray *) tagGuids {
-  [tagGuids retain];
-  [__tagGuids release];
+- (void) setTagGuids: (NSMutableArray *) tagGuids {
+  [tagGuids retain_stub];
+  [__tagGuids release_stub];
   __tagGuids = tagGuids;
   __tagGuids_isset = YES;
 }
@@ -6849,18 +7546,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTagGuids {
-  [__tagGuids release];
+  [__tagGuids release_stub];
   __tagGuids = nil;
   __tagGuids_isset = NO;
 }
 
-- (NSArray *) resources {
-  return [[__resources retain] autorelease];
+- (NSMutableArray *) resources {
+  return [[__resources retain_stub] autorelease_stub];
 }
 
-- (void) setResources: (NSArray *) resources {
-  [resources retain];
-  [__resources release];
+- (void) setResources: (NSMutableArray *) resources {
+  [resources retain_stub];
+  [__resources release_stub];
   __resources = resources;
   __resources_isset = YES;
 }
@@ -6870,18 +7567,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetResources {
-  [__resources release];
+  [__resources release_stub];
   __resources = nil;
   __resources_isset = NO;
 }
 
 - (EDAMNoteAttributes *) attributes {
-  return [[__attributes retain] autorelease];
+  return [[__attributes retain_stub] autorelease_stub];
 }
 
 - (void) setAttributes: (EDAMNoteAttributes *) attributes {
-  [attributes retain];
-  [__attributes release];
+  [attributes retain_stub];
+  [__attributes release_stub];
   __attributes = attributes;
   __attributes_isset = YES;
 }
@@ -6891,18 +7588,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetAttributes {
-  [__attributes release];
+  [__attributes release_stub];
   __attributes = nil;
   __attributes_isset = NO;
 }
 
-- (NSArray *) tagNames {
-  return [[__tagNames retain] autorelease];
+- (NSMutableArray *) tagNames {
+  return [[__tagNames retain_stub] autorelease_stub];
 }
 
-- (void) setTagNames: (NSArray *) tagNames {
-  [tagNames retain];
-  [__tagNames release];
+- (void) setTagNames: (NSMutableArray *) tagNames {
+  [tagNames retain_stub];
+  [__tagNames release_stub];
   __tagNames = tagNames;
   __tagNames_isset = YES;
 }
@@ -6912,7 +7609,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetTagNames {
-  [__tagNames release];
+  [__tagNames release_stub];
   __tagNames = nil;
   __tagNames_isset = NO;
 }
@@ -7033,7 +7730,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readListEnd];
           [self setTagGuids: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -7049,11 +7746,11 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
             EDAMResource *_elem32 = [[EDAMResource alloc] init];
             [_elem32 read: inProtocol];
             [fieldValue addObject: _elem32];
-            [_elem32 release];
+            [_elem32 release_stub];
           }
           [inProtocol readListEnd];
           [self setResources: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -7063,7 +7760,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMNoteAttributes *fieldValue = [[EDAMNoteAttributes alloc] init];
           [fieldValue read: inProtocol];
           [self setAttributes: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -7081,7 +7778,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readListEnd];
           [self setTagNames: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -7258,16 +7955,24 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMPublishing
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithUri: (NSString *) uri order: (int) order ascending: (BOOL) ascending publicDescription: (NSString *) publicDescription
 {
   self = [super init];
-  __uri = [uri retain];
+  __uri = [uri retain_stub];
   __uri_isset = YES;
   __order = order;
   __order_isset = YES;
   __ascending = ascending;
   __ascending_isset = YES;
-  __publicDescription = [publicDescription retain];
+  __publicDescription = [publicDescription retain_stub];
   __publicDescription_isset = YES;
   return self;
 }
@@ -7277,7 +7982,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"uri"])
   {
-    __uri = [[decoder decodeObjectForKey: @"uri"] retain];
+    __uri = [[decoder decodeObjectForKey: @"uri"] retain_stub];
     __uri_isset = YES;
   }
   if ([decoder containsValueForKey: @"order"])
@@ -7292,7 +7997,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"publicDescription"])
   {
-    __publicDescription = [[decoder decodeObjectForKey: @"publicDescription"] retain];
+    __publicDescription = [[decoder decodeObjectForKey: @"publicDescription"] retain_stub];
     __publicDescription_isset = YES;
   }
   return self;
@@ -7320,18 +8025,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__uri release];
-  [__publicDescription release];
-  [super dealloc];
+  [__uri release_stub];
+  [__publicDescription release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) uri {
-  return [[__uri retain] autorelease];
+  return [[__uri retain_stub] autorelease_stub];
 }
 
 - (void) setUri: (NSString *) uri {
-  [uri retain];
-  [__uri release];
+  [uri retain_stub];
+  [__uri release_stub];
   __uri = uri;
   __uri_isset = YES;
 }
@@ -7341,7 +8046,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetUri {
-  [__uri release];
+  [__uri release_stub];
   __uri = nil;
   __uri_isset = NO;
 }
@@ -7381,12 +8086,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) publicDescription {
-  return [[__publicDescription retain] autorelease];
+  return [[__publicDescription retain_stub] autorelease_stub];
 }
 
 - (void) setPublicDescription: (NSString *) publicDescription {
-  [publicDescription retain];
-  [__publicDescription release];
+  [publicDescription retain_stub];
+  [__publicDescription release_stub];
   __publicDescription = publicDescription;
   __publicDescription_isset = YES;
 }
@@ -7396,7 +8101,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPublicDescription {
-  [__publicDescription release];
+  [__publicDescription release_stub];
   __publicDescription = nil;
   __publicDescription_isset = NO;
 }
@@ -7505,10 +8210,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMBusinessNotebook
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithNotebookDescription: (NSString *) notebookDescription privilege: (int) privilege recommended: (BOOL) recommended
 {
   self = [super init];
-  __notebookDescription = [notebookDescription retain];
+  __notebookDescription = [notebookDescription retain_stub];
   __notebookDescription_isset = YES;
   __privilege = privilege;
   __privilege_isset = YES;
@@ -7522,7 +8235,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"notebookDescription"])
   {
-    __notebookDescription = [[decoder decodeObjectForKey: @"notebookDescription"] retain];
+    __notebookDescription = [[decoder decodeObjectForKey: @"notebookDescription"] retain_stub];
     __notebookDescription_isset = YES;
   }
   if ([decoder containsValueForKey: @"privilege"])
@@ -7556,17 +8269,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__notebookDescription release];
-  [super dealloc];
+  [__notebookDescription release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) notebookDescription {
-  return [[__notebookDescription retain] autorelease];
+  return [[__notebookDescription retain_stub] autorelease_stub];
 }
 
 - (void) setNotebookDescription: (NSString *) notebookDescription {
-  [notebookDescription retain];
-  [__notebookDescription release];
+  [notebookDescription retain_stub];
+  [__notebookDescription release_stub];
   __notebookDescription = notebookDescription;
   __notebookDescription_isset = YES;
 }
@@ -7576,7 +8289,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNotebookDescription {
-  [__notebookDescription release];
+  [__notebookDescription release_stub];
   __notebookDescription = nil;
   __notebookDescription_isset = NO;
 }
@@ -7700,21 +8413,229 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @end
 
-@implementation EDAMSavedSearch
+@implementation EDAMSavedSearchScope
 
-- (id) initWithGuid: (EDAMGuid) guid name: (NSString *) name query: (NSString *) query format: (int) format updateSequenceNum: (int32_t) updateSequenceNum
+- (id) init
 {
   self = [super init];
-  __guid = [guid retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithIncludeAccount: (BOOL) includeAccount includePersonalLinkedNotebooks: (BOOL) includePersonalLinkedNotebooks includeBusinessLinkedNotebooks: (BOOL) includeBusinessLinkedNotebooks
+{
+  self = [super init];
+  __includeAccount = includeAccount;
+  __includeAccount_isset = YES;
+  __includePersonalLinkedNotebooks = includePersonalLinkedNotebooks;
+  __includePersonalLinkedNotebooks_isset = YES;
+  __includeBusinessLinkedNotebooks = includeBusinessLinkedNotebooks;
+  __includeBusinessLinkedNotebooks_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"includeAccount"])
+  {
+    __includeAccount = [decoder decodeBoolForKey: @"includeAccount"];
+    __includeAccount_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"includePersonalLinkedNotebooks"])
+  {
+    __includePersonalLinkedNotebooks = [decoder decodeBoolForKey: @"includePersonalLinkedNotebooks"];
+    __includePersonalLinkedNotebooks_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"includeBusinessLinkedNotebooks"])
+  {
+    __includeBusinessLinkedNotebooks = [decoder decodeBoolForKey: @"includeBusinessLinkedNotebooks"];
+    __includeBusinessLinkedNotebooks_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__includeAccount_isset)
+  {
+    [encoder encodeBool: __includeAccount forKey: @"includeAccount"];
+  }
+  if (__includePersonalLinkedNotebooks_isset)
+  {
+    [encoder encodeBool: __includePersonalLinkedNotebooks forKey: @"includePersonalLinkedNotebooks"];
+  }
+  if (__includeBusinessLinkedNotebooks_isset)
+  {
+    [encoder encodeBool: __includeBusinessLinkedNotebooks forKey: @"includeBusinessLinkedNotebooks"];
+  }
+}
+
+- (void) dealloc
+{
+  [super dealloc_stub];
+}
+
+- (BOOL) includeAccount {
+  return __includeAccount;
+}
+
+- (void) setIncludeAccount: (BOOL) includeAccount {
+  __includeAccount = includeAccount;
+  __includeAccount_isset = YES;
+}
+
+- (BOOL) includeAccountIsSet {
+  return __includeAccount_isset;
+}
+
+- (void) unsetIncludeAccount {
+  __includeAccount_isset = NO;
+}
+
+- (BOOL) includePersonalLinkedNotebooks {
+  return __includePersonalLinkedNotebooks;
+}
+
+- (void) setIncludePersonalLinkedNotebooks: (BOOL) includePersonalLinkedNotebooks {
+  __includePersonalLinkedNotebooks = includePersonalLinkedNotebooks;
+  __includePersonalLinkedNotebooks_isset = YES;
+}
+
+- (BOOL) includePersonalLinkedNotebooksIsSet {
+  return __includePersonalLinkedNotebooks_isset;
+}
+
+- (void) unsetIncludePersonalLinkedNotebooks {
+  __includePersonalLinkedNotebooks_isset = NO;
+}
+
+- (BOOL) includeBusinessLinkedNotebooks {
+  return __includeBusinessLinkedNotebooks;
+}
+
+- (void) setIncludeBusinessLinkedNotebooks: (BOOL) includeBusinessLinkedNotebooks {
+  __includeBusinessLinkedNotebooks = includeBusinessLinkedNotebooks;
+  __includeBusinessLinkedNotebooks_isset = YES;
+}
+
+- (BOOL) includeBusinessLinkedNotebooksIsSet {
+  return __includeBusinessLinkedNotebooks_isset;
+}
+
+- (void) unsetIncludeBusinessLinkedNotebooks {
+  __includeBusinessLinkedNotebooks_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setIncludeAccount: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setIncludePersonalLinkedNotebooks: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 3:
+        if (fieldType == TType_BOOL) {
+          BOOL fieldValue = [inProtocol readBool];
+          [self setIncludeBusinessLinkedNotebooks: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"SavedSearchScope"];
+  if (__includeAccount_isset) {
+    [outProtocol writeFieldBeginWithName: @"includeAccount" type: TType_BOOL fieldID: 1];
+    [outProtocol writeBool: __includeAccount];
+    [outProtocol writeFieldEnd];
+  }
+  if (__includePersonalLinkedNotebooks_isset) {
+    [outProtocol writeFieldBeginWithName: @"includePersonalLinkedNotebooks" type: TType_BOOL fieldID: 2];
+    [outProtocol writeBool: __includePersonalLinkedNotebooks];
+    [outProtocol writeFieldEnd];
+  }
+  if (__includeBusinessLinkedNotebooks_isset) {
+    [outProtocol writeFieldBeginWithName: @"includeBusinessLinkedNotebooks" type: TType_BOOL fieldID: 3];
+    [outProtocol writeBool: __includeBusinessLinkedNotebooks];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"SavedSearchScope("];
+  [ms appendString: @"includeAccount:"];
+  [ms appendFormat: @"%i", __includeAccount];
+  [ms appendString: @",includePersonalLinkedNotebooks:"];
+  [ms appendFormat: @"%i", __includePersonalLinkedNotebooks];
+  [ms appendString: @",includeBusinessLinkedNotebooks:"];
+  [ms appendFormat: @"%i", __includeBusinessLinkedNotebooks];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@implementation EDAMSavedSearch
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithGuid: (EDAMGuid) guid name: (NSString *) name query: (NSString *) query format: (int) format updateSequenceNum: (int32_t) updateSequenceNum scope: (EDAMSavedSearchScope *) scope
+{
+  self = [super init];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __name = [name retain];
+  __name = [name retain_stub];
   __name_isset = YES;
-  __query = [query retain];
+  __query = [query retain_stub];
   __query_isset = YES;
   __format = format;
   __format_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
+  __scope = [scope retain_stub];
+  __scope_isset = YES;
   return self;
 }
 
@@ -7723,17 +8644,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"name"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
     __name_isset = YES;
   }
   if ([decoder containsValueForKey: @"query"])
   {
-    __query = [[decoder decodeObjectForKey: @"query"] retain];
+    __query = [[decoder decodeObjectForKey: @"query"] retain_stub];
     __query_isset = YES;
   }
   if ([decoder containsValueForKey: @"format"])
@@ -7745,6 +8666,11 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     __updateSequenceNum = [decoder decodeInt32ForKey: @"updateSequenceNum"];
     __updateSequenceNum_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"scope"])
+  {
+    __scope = [[decoder decodeObjectForKey: @"scope"] retain_stub];
+    __scope_isset = YES;
   }
   return self;
 }
@@ -7771,23 +8697,28 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   {
     [encoder encodeInt32: __updateSequenceNum forKey: @"updateSequenceNum"];
   }
+  if (__scope_isset)
+  {
+    [encoder encodeObject: __scope forKey: @"scope"];
+  }
 }
 
 - (void) dealloc
 {
-  [__guid release];
-  [__name release];
-  [__query release];
-  [super dealloc];
+  [__guid release_stub];
+  [__name release_stub];
+  [__query release_stub];
+  [__scope release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -7797,18 +8728,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) name {
-  return [[__name retain] autorelease];
+  return [[__name retain_stub] autorelease_stub];
 }
 
 - (void) setName: (NSString *) name {
-  [name retain];
-  [__name release];
+  [name retain_stub];
+  [__name release_stub];
   __name = name;
   __name_isset = YES;
 }
@@ -7818,18 +8749,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetName {
-  [__name release];
+  [__name release_stub];
   __name = nil;
   __name_isset = NO;
 }
 
 - (NSString *) query {
-  return [[__query retain] autorelease];
+  return [[__query retain_stub] autorelease_stub];
 }
 
 - (void) setQuery: (NSString *) query {
-  [query retain];
-  [__query release];
+  [query retain_stub];
+  [__query release_stub];
   __query = query;
   __query_isset = YES;
 }
@@ -7839,7 +8770,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetQuery {
-  [__query release];
+  [__query release_stub];
   __query = nil;
   __query_isset = NO;
 }
@@ -7876,6 +8807,27 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) unsetUpdateSequenceNum {
   __updateSequenceNum_isset = NO;
+}
+
+- (EDAMSavedSearchScope *) scope {
+  return [[__scope retain_stub] autorelease_stub];
+}
+
+- (void) setScope: (EDAMSavedSearchScope *) scope {
+  [scope retain_stub];
+  [__scope release_stub];
+  __scope = scope;
+  __scope_isset = YES;
+}
+
+- (BOOL) scopeIsSet {
+  return __scope_isset;
+}
+
+- (void) unsetScope {
+  [__scope release_stub];
+  __scope = nil;
+  __scope_isset = NO;
 }
 
 - (void) read: (id <TProtocol>) inProtocol
@@ -7933,6 +8885,16 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
         break;
+      case 6:
+        if (fieldType == TType_STRUCT) {
+          EDAMSavedSearchScope *fieldValue = [[EDAMSavedSearchScope alloc] init];
+          [fieldValue read: inProtocol];
+          [self setScope: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
       default:
         [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         break;
@@ -7975,6 +8937,13 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
     [outProtocol writeI32: __updateSequenceNum];
     [outProtocol writeFieldEnd];
   }
+  if (__scope_isset) {
+    if (__scope != nil) {
+      [outProtocol writeFieldBeginWithName: @"scope" type: TType_STRUCT fieldID: 6];
+      [__scope write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
   [outProtocol writeFieldStop];
   [outProtocol writeStructEnd];
 }
@@ -7991,6 +8960,8 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   [ms appendFormat: @"%i", __format];
   [ms appendString: @",updateSequenceNum:"];
   [ms appendFormat: @"%i", __updateSequenceNum];
+  [ms appendString: @",scope:"];
+  [ms appendFormat: @"%@", __scope];
   [ms appendString: @")"];
   return [NSString stringWithString: ms];
 }
@@ -7999,6 +8970,14 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMSharedNotebook
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithId: (int64_t) id userId: (int32_t) userId notebookGuid: (NSString *) notebookGuid email: (NSString *) email notebookModifiable: (BOOL) notebookModifiable requireLogin: (BOOL) requireLogin serviceCreated: (EDAMTimestamp) serviceCreated serviceUpdated: (EDAMTimestamp) serviceUpdated shareKey: (NSString *) shareKey username: (NSString *) username privilege: (int) privilege allowPreview: (BOOL) allowPreview
 {
   self = [super init];
@@ -8006,9 +8985,9 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __id_isset = YES;
   __userId = userId;
   __userId_isset = YES;
-  __notebookGuid = [notebookGuid retain];
+  __notebookGuid = [notebookGuid retain_stub];
   __notebookGuid_isset = YES;
-  __email = [email retain];
+  __email = [email retain_stub];
   __email_isset = YES;
   __notebookModifiable = notebookModifiable;
   __notebookModifiable_isset = YES;
@@ -8018,9 +8997,9 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __serviceCreated_isset = YES;
   __serviceUpdated = serviceUpdated;
   __serviceUpdated_isset = YES;
-  __shareKey = [shareKey retain];
+  __shareKey = [shareKey retain_stub];
   __shareKey_isset = YES;
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
   __privilege = privilege;
   __privilege_isset = YES;
@@ -8044,12 +9023,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"notebookGuid"])
   {
-    __notebookGuid = [[decoder decodeObjectForKey: @"notebookGuid"] retain];
+    __notebookGuid = [[decoder decodeObjectForKey: @"notebookGuid"] retain_stub];
     __notebookGuid_isset = YES;
   }
   if ([decoder containsValueForKey: @"email"])
   {
-    __email = [[decoder decodeObjectForKey: @"email"] retain];
+    __email = [[decoder decodeObjectForKey: @"email"] retain_stub];
     __email_isset = YES;
   }
   if ([decoder containsValueForKey: @"notebookModifiable"])
@@ -8074,12 +9053,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"shareKey"])
   {
-    __shareKey = [[decoder decodeObjectForKey: @"shareKey"] retain];
+    __shareKey = [[decoder decodeObjectForKey: @"shareKey"] retain_stub];
     __shareKey_isset = YES;
   }
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"privilege"])
@@ -8149,11 +9128,11 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__notebookGuid release];
-  [__email release];
-  [__shareKey release];
-  [__username release];
-  [super dealloc];
+  [__notebookGuid release_stub];
+  [__email release_stub];
+  [__shareKey release_stub];
+  [__username release_stub];
+  [super dealloc_stub];
 }
 
 - (int64_t) id {
@@ -8191,12 +9170,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) notebookGuid {
-  return [[__notebookGuid retain] autorelease];
+  return [[__notebookGuid retain_stub] autorelease_stub];
 }
 
 - (void) setNotebookGuid: (NSString *) notebookGuid {
-  [notebookGuid retain];
-  [__notebookGuid release];
+  [notebookGuid retain_stub];
+  [__notebookGuid release_stub];
   __notebookGuid = notebookGuid;
   __notebookGuid_isset = YES;
 }
@@ -8206,18 +9185,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNotebookGuid {
-  [__notebookGuid release];
+  [__notebookGuid release_stub];
   __notebookGuid = nil;
   __notebookGuid_isset = NO;
 }
 
 - (NSString *) email {
-  return [[__email retain] autorelease];
+  return [[__email retain_stub] autorelease_stub];
 }
 
 - (void) setEmail: (NSString *) email {
-  [email retain];
-  [__email release];
+  [email retain_stub];
+  [__email release_stub];
   __email = email;
   __email_isset = YES;
 }
@@ -8227,7 +9206,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetEmail {
-  [__email release];
+  [__email release_stub];
   __email = nil;
   __email_isset = NO;
 }
@@ -8301,12 +9280,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) shareKey {
-  return [[__shareKey retain] autorelease];
+  return [[__shareKey retain_stub] autorelease_stub];
 }
 
 - (void) setShareKey: (NSString *) shareKey {
-  [shareKey retain];
-  [__shareKey release];
+  [shareKey retain_stub];
+  [__shareKey release_stub];
   __shareKey = shareKey;
   __shareKey_isset = YES;
 }
@@ -8316,18 +9295,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetShareKey {
-  [__shareKey release];
+  [__shareKey release_stub];
   __shareKey = nil;
   __shareKey_isset = NO;
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -8337,7 +9316,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
@@ -8604,6 +9583,14 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNotebookRestrictions
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithNoReadNotes: (BOOL) noReadNotes noCreateNotes: (BOOL) noCreateNotes noUpdateNotes: (BOOL) noUpdateNotes noExpungeNotes: (BOOL) noExpungeNotes noShareNotes: (BOOL) noShareNotes noEmailNotes: (BOOL) noEmailNotes noSendMessageToRecipients: (BOOL) noSendMessageToRecipients noUpdateNotebook: (BOOL) noUpdateNotebook noExpungeNotebook: (BOOL) noExpungeNotebook noSetDefaultNotebook: (BOOL) noSetDefaultNotebook noSetNotebookStack: (BOOL) noSetNotebookStack noPublishToPublic: (BOOL) noPublishToPublic noPublishToBusinessLibrary: (BOOL) noPublishToBusinessLibrary noCreateTags: (BOOL) noCreateTags noUpdateTags: (BOOL) noUpdateTags noExpungeTags: (BOOL) noExpungeTags noSetParentTag: (BOOL) noSetParentTag noCreateSharedNotebooks: (BOOL) noCreateSharedNotebooks updateWhichSharedNotebookRestrictions: (int) updateWhichSharedNotebookRestrictions expungeWhichSharedNotebookRestrictions: (int) expungeWhichSharedNotebookRestrictions
 {
   self = [super init];
@@ -8842,7 +9829,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [super dealloc];
+  [super dealloc_stub];
 }
 
 - (BOOL) noReadNotes {
@@ -9525,12 +10512,20 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNotebook
 
-- (id) initWithGuid: (EDAMGuid) guid name: (NSString *) name updateSequenceNum: (int32_t) updateSequenceNum defaultNotebook: (BOOL) defaultNotebook serviceCreated: (EDAMTimestamp) serviceCreated serviceUpdated: (EDAMTimestamp) serviceUpdated publishing: (EDAMPublishing *) publishing published: (BOOL) published stack: (NSString *) stack sharedNotebookIds: (NSArray *) sharedNotebookIds sharedNotebooks: (NSArray *) sharedNotebooks businessNotebook: (EDAMBusinessNotebook *) businessNotebook contact: (EDAMUser *) contact restrictions: (EDAMNotebookRestrictions *) restrictions
+- (id) init
 {
   self = [super init];
-  __guid = [guid retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithGuid: (EDAMGuid) guid name: (NSString *) name updateSequenceNum: (int32_t) updateSequenceNum defaultNotebook: (BOOL) defaultNotebook serviceCreated: (EDAMTimestamp) serviceCreated serviceUpdated: (EDAMTimestamp) serviceUpdated publishing: (EDAMPublishing *) publishing published: (BOOL) published stack: (NSString *) stack sharedNotebookIds: (NSMutableArray *) sharedNotebookIds sharedNotebooks: (NSMutableArray *) sharedNotebooks businessNotebook: (EDAMBusinessNotebook *) businessNotebook contact: (EDAMUser *) contact restrictions: (EDAMNotebookRestrictions *) restrictions
+{
+  self = [super init];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __name = [name retain];
+  __name = [name retain_stub];
   __name_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
@@ -9540,21 +10535,21 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   __serviceCreated_isset = YES;
   __serviceUpdated = serviceUpdated;
   __serviceUpdated_isset = YES;
-  __publishing = [publishing retain];
+  __publishing = [publishing retain_stub];
   __publishing_isset = YES;
   __published = published;
   __published_isset = YES;
-  __stack = [stack retain];
+  __stack = [stack retain_stub];
   __stack_isset = YES;
-  __sharedNotebookIds = [sharedNotebookIds retain];
+  __sharedNotebookIds = [sharedNotebookIds retain_stub];
   __sharedNotebookIds_isset = YES;
-  __sharedNotebooks = [sharedNotebooks retain];
+  __sharedNotebooks = [sharedNotebooks retain_stub];
   __sharedNotebooks_isset = YES;
-  __businessNotebook = [businessNotebook retain];
+  __businessNotebook = [businessNotebook retain_stub];
   __businessNotebook_isset = YES;
-  __contact = [contact retain];
+  __contact = [contact retain_stub];
   __contact_isset = YES;
-  __restrictions = [restrictions retain];
+  __restrictions = [restrictions retain_stub];
   __restrictions_isset = YES;
   return self;
 }
@@ -9564,12 +10559,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"name"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
     __name_isset = YES;
   }
   if ([decoder containsValueForKey: @"updateSequenceNum"])
@@ -9594,7 +10589,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"publishing"])
   {
-    __publishing = [[decoder decodeObjectForKey: @"publishing"] retain];
+    __publishing = [[decoder decodeObjectForKey: @"publishing"] retain_stub];
     __publishing_isset = YES;
   }
   if ([decoder containsValueForKey: @"published"])
@@ -9604,32 +10599,32 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"stack"])
   {
-    __stack = [[decoder decodeObjectForKey: @"stack"] retain];
+    __stack = [[decoder decodeObjectForKey: @"stack"] retain_stub];
     __stack_isset = YES;
   }
   if ([decoder containsValueForKey: @"sharedNotebookIds"])
   {
-    __sharedNotebookIds = [[decoder decodeObjectForKey: @"sharedNotebookIds"] retain];
+    __sharedNotebookIds = [[decoder decodeObjectForKey: @"sharedNotebookIds"] retain_stub];
     __sharedNotebookIds_isset = YES;
   }
   if ([decoder containsValueForKey: @"sharedNotebooks"])
   {
-    __sharedNotebooks = [[decoder decodeObjectForKey: @"sharedNotebooks"] retain];
+    __sharedNotebooks = [[decoder decodeObjectForKey: @"sharedNotebooks"] retain_stub];
     __sharedNotebooks_isset = YES;
   }
   if ([decoder containsValueForKey: @"businessNotebook"])
   {
-    __businessNotebook = [[decoder decodeObjectForKey: @"businessNotebook"] retain];
+    __businessNotebook = [[decoder decodeObjectForKey: @"businessNotebook"] retain_stub];
     __businessNotebook_isset = YES;
   }
   if ([decoder containsValueForKey: @"contact"])
   {
-    __contact = [[decoder decodeObjectForKey: @"contact"] retain];
+    __contact = [[decoder decodeObjectForKey: @"contact"] retain_stub];
     __contact_isset = YES;
   }
   if ([decoder containsValueForKey: @"restrictions"])
   {
-    __restrictions = [[decoder decodeObjectForKey: @"restrictions"] retain];
+    __restrictions = [[decoder decodeObjectForKey: @"restrictions"] retain_stub];
     __restrictions_isset = YES;
   }
   return self;
@@ -9697,25 +10692,25 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__guid release];
-  [__name release];
-  [__publishing release];
-  [__stack release];
-  [__sharedNotebookIds release];
-  [__sharedNotebooks release];
-  [__businessNotebook release];
-  [__contact release];
-  [__restrictions release];
-  [super dealloc];
+  [__guid release_stub];
+  [__name release_stub];
+  [__publishing release_stub];
+  [__stack release_stub];
+  [__sharedNotebookIds release_stub];
+  [__sharedNotebooks release_stub];
+  [__businessNotebook release_stub];
+  [__contact release_stub];
+  [__restrictions release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -9725,18 +10720,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) name {
-  return [[__name retain] autorelease];
+  return [[__name retain_stub] autorelease_stub];
 }
 
 - (void) setName: (NSString *) name {
-  [name retain];
-  [__name release];
+  [name retain_stub];
+  [__name release_stub];
   __name = name;
   __name_isset = YES;
 }
@@ -9746,7 +10741,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetName {
-  [__name release];
+  [__name release_stub];
   __name = nil;
   __name_isset = NO;
 }
@@ -9820,12 +10815,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (EDAMPublishing *) publishing {
-  return [[__publishing retain] autorelease];
+  return [[__publishing retain_stub] autorelease_stub];
 }
 
 - (void) setPublishing: (EDAMPublishing *) publishing {
-  [publishing retain];
-  [__publishing release];
+  [publishing retain_stub];
+  [__publishing release_stub];
   __publishing = publishing;
   __publishing_isset = YES;
 }
@@ -9835,7 +10830,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetPublishing {
-  [__publishing release];
+  [__publishing release_stub];
   __publishing = nil;
   __publishing_isset = NO;
 }
@@ -9858,12 +10853,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) stack {
-  return [[__stack retain] autorelease];
+  return [[__stack retain_stub] autorelease_stub];
 }
 
 - (void) setStack: (NSString *) stack {
-  [stack retain];
-  [__stack release];
+  [stack retain_stub];
+  [__stack release_stub];
   __stack = stack;
   __stack_isset = YES;
 }
@@ -9873,18 +10868,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetStack {
-  [__stack release];
+  [__stack release_stub];
   __stack = nil;
   __stack_isset = NO;
 }
 
-- (NSArray *) sharedNotebookIds {
-  return [[__sharedNotebookIds retain] autorelease];
+- (NSMutableArray *) sharedNotebookIds {
+  return [[__sharedNotebookIds retain_stub] autorelease_stub];
 }
 
-- (void) setSharedNotebookIds: (NSArray *) sharedNotebookIds {
-  [sharedNotebookIds retain];
-  [__sharedNotebookIds release];
+- (void) setSharedNotebookIds: (NSMutableArray *) sharedNotebookIds {
+  [sharedNotebookIds retain_stub];
+  [__sharedNotebookIds release_stub];
   __sharedNotebookIds = sharedNotebookIds;
   __sharedNotebookIds_isset = YES;
 }
@@ -9894,18 +10889,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSharedNotebookIds {
-  [__sharedNotebookIds release];
+  [__sharedNotebookIds release_stub];
   __sharedNotebookIds = nil;
   __sharedNotebookIds_isset = NO;
 }
 
-- (NSArray *) sharedNotebooks {
-  return [[__sharedNotebooks retain] autorelease];
+- (NSMutableArray *) sharedNotebooks {
+  return [[__sharedNotebooks retain_stub] autorelease_stub];
 }
 
-- (void) setSharedNotebooks: (NSArray *) sharedNotebooks {
-  [sharedNotebooks retain];
-  [__sharedNotebooks release];
+- (void) setSharedNotebooks: (NSMutableArray *) sharedNotebooks {
+  [sharedNotebooks retain_stub];
+  [__sharedNotebooks release_stub];
   __sharedNotebooks = sharedNotebooks;
   __sharedNotebooks_isset = YES;
 }
@@ -9915,18 +10910,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetSharedNotebooks {
-  [__sharedNotebooks release];
+  [__sharedNotebooks release_stub];
   __sharedNotebooks = nil;
   __sharedNotebooks_isset = NO;
 }
 
 - (EDAMBusinessNotebook *) businessNotebook {
-  return [[__businessNotebook retain] autorelease];
+  return [[__businessNotebook retain_stub] autorelease_stub];
 }
 
 - (void) setBusinessNotebook: (EDAMBusinessNotebook *) businessNotebook {
-  [businessNotebook retain];
-  [__businessNotebook release];
+  [businessNotebook retain_stub];
+  [__businessNotebook release_stub];
   __businessNotebook = businessNotebook;
   __businessNotebook_isset = YES;
 }
@@ -9936,18 +10931,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetBusinessNotebook {
-  [__businessNotebook release];
+  [__businessNotebook release_stub];
   __businessNotebook = nil;
   __businessNotebook_isset = NO;
 }
 
 - (EDAMUser *) contact {
-  return [[__contact retain] autorelease];
+  return [[__contact retain_stub] autorelease_stub];
 }
 
 - (void) setContact: (EDAMUser *) contact {
-  [contact retain];
-  [__contact release];
+  [contact retain_stub];
+  [__contact release_stub];
   __contact = contact;
   __contact_isset = YES;
 }
@@ -9957,18 +10952,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetContact {
-  [__contact release];
+  [__contact release_stub];
   __contact = nil;
   __contact_isset = NO;
 }
 
 - (EDAMNotebookRestrictions *) restrictions {
-  return [[__restrictions retain] autorelease];
+  return [[__restrictions retain_stub] autorelease_stub];
 }
 
 - (void) setRestrictions: (EDAMNotebookRestrictions *) restrictions {
-  [restrictions retain];
-  [__restrictions release];
+  [restrictions retain_stub];
+  [__restrictions release_stub];
   __restrictions = restrictions;
   __restrictions_isset = YES;
 }
@@ -9978,7 +10973,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetRestrictions {
-  [__restrictions release];
+  [__restrictions release_stub];
   __restrictions = nil;
   __restrictions_isset = NO;
 }
@@ -10051,7 +11046,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMPublishing *fieldValue = [[EDAMPublishing alloc] init];
           [fieldValue read: inProtocol];
           [self setPublishing: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10085,7 +11080,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           }
           [inProtocol readListEnd];
           [self setSharedNotebookIds: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10101,11 +11096,11 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
             EDAMSharedNotebook *_elem47 = [[EDAMSharedNotebook alloc] init];
             [_elem47 read: inProtocol];
             [fieldValue addObject: _elem47];
-            [_elem47 release];
+            [_elem47 release_stub];
           }
           [inProtocol readListEnd];
           [self setSharedNotebooks: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10115,7 +11110,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMBusinessNotebook *fieldValue = [[EDAMBusinessNotebook alloc] init];
           [fieldValue read: inProtocol];
           [self setBusinessNotebook: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10125,7 +11120,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMUser *fieldValue = [[EDAMUser alloc] init];
           [fieldValue read: inProtocol];
           [self setContact: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10135,7 +11130,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
           EDAMNotebookRestrictions *fieldValue = [[EDAMNotebookRestrictions alloc] init];
           [fieldValue read: inProtocol];
           [self setRestrictions: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -10297,28 +11292,36 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMLinkedNotebook
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithShareName: (NSString *) shareName username: (NSString *) username shardId: (NSString *) shardId shareKey: (NSString *) shareKey uri: (NSString *) uri guid: (EDAMGuid) guid updateSequenceNum: (int32_t) updateSequenceNum noteStoreUrl: (NSString *) noteStoreUrl webApiUrlPrefix: (NSString *) webApiUrlPrefix stack: (NSString *) stack businessId: (int32_t) businessId
 {
   self = [super init];
-  __shareName = [shareName retain];
+  __shareName = [shareName retain_stub];
   __shareName_isset = YES;
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
-  __shardId = [shardId retain];
+  __shardId = [shardId retain_stub];
   __shardId_isset = YES;
-  __shareKey = [shareKey retain];
+  __shareKey = [shareKey retain_stub];
   __shareKey_isset = YES;
-  __uri = [uri retain];
+  __uri = [uri retain_stub];
   __uri_isset = YES;
-  __guid = [guid retain];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
   __updateSequenceNum = updateSequenceNum;
   __updateSequenceNum_isset = YES;
-  __noteStoreUrl = [noteStoreUrl retain];
+  __noteStoreUrl = [noteStoreUrl retain_stub];
   __noteStoreUrl_isset = YES;
-  __webApiUrlPrefix = [webApiUrlPrefix retain];
+  __webApiUrlPrefix = [webApiUrlPrefix retain_stub];
   __webApiUrlPrefix_isset = YES;
-  __stack = [stack retain];
+  __stack = [stack retain_stub];
   __stack_isset = YES;
   __businessId = businessId;
   __businessId_isset = YES;
@@ -10330,32 +11333,32 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"shareName"])
   {
-    __shareName = [[decoder decodeObjectForKey: @"shareName"] retain];
+    __shareName = [[decoder decodeObjectForKey: @"shareName"] retain_stub];
     __shareName_isset = YES;
   }
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"shardId"])
   {
-    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain];
+    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain_stub];
     __shardId_isset = YES;
   }
   if ([decoder containsValueForKey: @"shareKey"])
   {
-    __shareKey = [[decoder decodeObjectForKey: @"shareKey"] retain];
+    __shareKey = [[decoder decodeObjectForKey: @"shareKey"] retain_stub];
     __shareKey_isset = YES;
   }
   if ([decoder containsValueForKey: @"uri"])
   {
-    __uri = [[decoder decodeObjectForKey: @"uri"] retain];
+    __uri = [[decoder decodeObjectForKey: @"uri"] retain_stub];
     __uri_isset = YES;
   }
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"updateSequenceNum"])
@@ -10365,17 +11368,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   }
   if ([decoder containsValueForKey: @"noteStoreUrl"])
   {
-    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain];
+    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain_stub];
     __noteStoreUrl_isset = YES;
   }
   if ([decoder containsValueForKey: @"webApiUrlPrefix"])
   {
-    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain];
+    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain_stub];
     __webApiUrlPrefix_isset = YES;
   }
   if ([decoder containsValueForKey: @"stack"])
   {
-    __stack = [[decoder decodeObjectForKey: @"stack"] retain];
+    __stack = [[decoder decodeObjectForKey: @"stack"] retain_stub];
     __stack_isset = YES;
   }
   if ([decoder containsValueForKey: @"businessId"])
@@ -10436,25 +11439,25 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__shareName release];
-  [__username release];
-  [__shardId release];
-  [__shareKey release];
-  [__uri release];
-  [__guid release];
-  [__noteStoreUrl release];
-  [__webApiUrlPrefix release];
-  [__stack release];
-  [super dealloc];
+  [__shareName release_stub];
+  [__username release_stub];
+  [__shardId release_stub];
+  [__shareKey release_stub];
+  [__uri release_stub];
+  [__guid release_stub];
+  [__noteStoreUrl release_stub];
+  [__webApiUrlPrefix release_stub];
+  [__stack release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) shareName {
-  return [[__shareName retain] autorelease];
+  return [[__shareName retain_stub] autorelease_stub];
 }
 
 - (void) setShareName: (NSString *) shareName {
-  [shareName retain];
-  [__shareName release];
+  [shareName retain_stub];
+  [__shareName release_stub];
   __shareName = shareName;
   __shareName_isset = YES;
 }
@@ -10464,18 +11467,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetShareName {
-  [__shareName release];
+  [__shareName release_stub];
   __shareName = nil;
   __shareName_isset = NO;
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -10485,18 +11488,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
 
 - (NSString *) shardId {
-  return [[__shardId retain] autorelease];
+  return [[__shardId retain_stub] autorelease_stub];
 }
 
 - (void) setShardId: (NSString *) shardId {
-  [shardId retain];
-  [__shardId release];
+  [shardId retain_stub];
+  [__shardId release_stub];
   __shardId = shardId;
   __shardId_isset = YES;
 }
@@ -10506,18 +11509,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetShardId {
-  [__shardId release];
+  [__shardId release_stub];
   __shardId = nil;
   __shardId_isset = NO;
 }
 
 - (NSString *) shareKey {
-  return [[__shareKey retain] autorelease];
+  return [[__shareKey retain_stub] autorelease_stub];
 }
 
 - (void) setShareKey: (NSString *) shareKey {
-  [shareKey retain];
-  [__shareKey release];
+  [shareKey retain_stub];
+  [__shareKey release_stub];
   __shareKey = shareKey;
   __shareKey_isset = YES;
 }
@@ -10527,18 +11530,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetShareKey {
-  [__shareKey release];
+  [__shareKey release_stub];
   __shareKey = nil;
   __shareKey_isset = NO;
 }
 
 - (NSString *) uri {
-  return [[__uri retain] autorelease];
+  return [[__uri retain_stub] autorelease_stub];
 }
 
 - (void) setUri: (NSString *) uri {
-  [uri retain];
-  [__uri release];
+  [uri retain_stub];
+  [__uri release_stub];
   __uri = uri;
   __uri_isset = YES;
 }
@@ -10548,18 +11551,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetUri {
-  [__uri release];
+  [__uri release_stub];
   __uri = nil;
   __uri_isset = NO;
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -10569,7 +11572,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
@@ -10592,12 +11595,12 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (NSString *) noteStoreUrl {
-  return [[__noteStoreUrl retain] autorelease];
+  return [[__noteStoreUrl retain_stub] autorelease_stub];
 }
 
 - (void) setNoteStoreUrl: (NSString *) noteStoreUrl {
-  [noteStoreUrl retain];
-  [__noteStoreUrl release];
+  [noteStoreUrl retain_stub];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = noteStoreUrl;
   __noteStoreUrl_isset = YES;
 }
@@ -10607,18 +11610,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNoteStoreUrl {
-  [__noteStoreUrl release];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = nil;
   __noteStoreUrl_isset = NO;
 }
 
 - (NSString *) webApiUrlPrefix {
-  return [[__webApiUrlPrefix retain] autorelease];
+  return [[__webApiUrlPrefix retain_stub] autorelease_stub];
 }
 
 - (void) setWebApiUrlPrefix: (NSString *) webApiUrlPrefix {
-  [webApiUrlPrefix retain];
-  [__webApiUrlPrefix release];
+  [webApiUrlPrefix retain_stub];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = webApiUrlPrefix;
   __webApiUrlPrefix_isset = YES;
 }
@@ -10628,18 +11631,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetWebApiUrlPrefix {
-  [__webApiUrlPrefix release];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = nil;
   __webApiUrlPrefix_isset = NO;
 }
 
 - (NSString *) stack {
-  return [[__stack retain] autorelease];
+  return [[__stack retain_stub] autorelease_stub];
 }
 
 - (void) setStack: (NSString *) stack {
-  [stack retain];
-  [__stack release];
+  [stack retain_stub];
+  [__stack release_stub];
   __stack = stack;
   __stack_isset = YES;
 }
@@ -10649,7 +11652,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetStack {
-  [__stack release];
+  [__stack release_stub];
   __stack = nil;
   __stack_isset = NO;
 }
@@ -10894,14 +11897,22 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 @implementation EDAMNotebookDescriptor
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithGuid: (EDAMGuid) guid notebookDisplayName: (NSString *) notebookDisplayName contactName: (NSString *) contactName hasSharedNotebook: (BOOL) hasSharedNotebook joinedUserCount: (int32_t) joinedUserCount
 {
   self = [super init];
-  __guid = [guid retain];
+  __guid = [guid retain_stub];
   __guid_isset = YES;
-  __notebookDisplayName = [notebookDisplayName retain];
+  __notebookDisplayName = [notebookDisplayName retain_stub];
   __notebookDisplayName_isset = YES;
-  __contactName = [contactName retain];
+  __contactName = [contactName retain_stub];
   __contactName_isset = YES;
   __hasSharedNotebook = hasSharedNotebook;
   __hasSharedNotebook_isset = YES;
@@ -10915,17 +11926,17 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
   self = [super init];
   if ([decoder containsValueForKey: @"guid"])
   {
-    __guid = [[decoder decodeObjectForKey: @"guid"] retain];
+    __guid = [[decoder decodeObjectForKey: @"guid"] retain_stub];
     __guid_isset = YES;
   }
   if ([decoder containsValueForKey: @"notebookDisplayName"])
   {
-    __notebookDisplayName = [[decoder decodeObjectForKey: @"notebookDisplayName"] retain];
+    __notebookDisplayName = [[decoder decodeObjectForKey: @"notebookDisplayName"] retain_stub];
     __notebookDisplayName_isset = YES;
   }
   if ([decoder containsValueForKey: @"contactName"])
   {
-    __contactName = [[decoder decodeObjectForKey: @"contactName"] retain];
+    __contactName = [[decoder decodeObjectForKey: @"contactName"] retain_stub];
     __contactName_isset = YES;
   }
   if ([decoder containsValueForKey: @"hasSharedNotebook"])
@@ -10967,19 +11978,19 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 
 - (void) dealloc
 {
-  [__guid release];
-  [__notebookDisplayName release];
-  [__contactName release];
-  [super dealloc];
+  [__guid release_stub];
+  [__notebookDisplayName release_stub];
+  [__contactName release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) guid {
-  return [[__guid retain] autorelease];
+  return [[__guid retain_stub] autorelease_stub];
 }
 
 - (void) setGuid: (NSString *) guid {
-  [guid retain];
-  [__guid release];
+  [guid retain_stub];
+  [__guid release_stub];
   __guid = guid;
   __guid_isset = YES;
 }
@@ -10989,18 +12000,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetGuid {
-  [__guid release];
+  [__guid release_stub];
   __guid = nil;
   __guid_isset = NO;
 }
 
 - (NSString *) notebookDisplayName {
-  return [[__notebookDisplayName retain] autorelease];
+  return [[__notebookDisplayName retain_stub] autorelease_stub];
 }
 
 - (void) setNotebookDisplayName: (NSString *) notebookDisplayName {
-  [notebookDisplayName retain];
-  [__notebookDisplayName release];
+  [notebookDisplayName retain_stub];
+  [__notebookDisplayName release_stub];
   __notebookDisplayName = notebookDisplayName;
   __notebookDisplayName_isset = YES;
 }
@@ -11010,18 +12021,18 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetNotebookDisplayName {
-  [__notebookDisplayName release];
+  [__notebookDisplayName release_stub];
   __notebookDisplayName = nil;
   __notebookDisplayName_isset = NO;
 }
 
 - (NSString *) contactName {
-  return [[__contactName retain] autorelease];
+  return [[__contactName retain_stub] autorelease_stub];
 }
 
 - (void) setContactName: (NSString *) contactName {
-  [contactName retain];
-  [__contactName release];
+  [contactName retain_stub];
+  [__contactName release_stub];
   __contactName = contactName;
   __contactName_isset = YES;
 }
@@ -11031,7 +12042,7 @@ static NSString * EDAMEDAM_NOTE_SOURCE_MAIL_SMTP_GATEWAY = @"mail.smtp";
 }
 
 - (void) unsetContactName {
-  [__contactName release];
+  [__contactName release_stub];
   __contactName = nil;
   __contactName_isset = NO;
 }

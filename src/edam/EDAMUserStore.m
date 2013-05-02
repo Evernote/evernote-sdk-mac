@@ -10,6 +10,7 @@
 #import "TApplicationException.h"
 #import "TProtocolUtil.h"
 #import "TProcessor.h"
+#import "TObjective-C.h"
 
 #import "EDAMTypes.h"
 #import "EDAMErrors.h"
@@ -17,7 +18,7 @@
 #import "EDAMUserStore.h"
 
 static int16_t EDAMEDAM_VERSION_MAJOR = 1;
-static int16_t EDAMEDAM_VERSION_MINOR = 23;
+static int16_t EDAMEDAM_VERSION_MINOR = 24;
 
 @implementation EDAMUserStoreConstants
 + (void) initialize {
@@ -32,20 +33,28 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @implementation EDAMPublicUserInfo
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithUserId: (EDAMUserID) userId shardId: (NSString *) shardId privilege: (int) privilege username: (NSString *) username noteStoreUrl: (NSString *) noteStoreUrl webApiUrlPrefix: (NSString *) webApiUrlPrefix
 {
   self = [super init];
   __userId = userId;
   __userId_isset = YES;
-  __shardId = [shardId retain];
+  __shardId = [shardId retain_stub];
   __shardId_isset = YES;
   __privilege = privilege;
   __privilege_isset = YES;
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
-  __noteStoreUrl = [noteStoreUrl retain];
+  __noteStoreUrl = [noteStoreUrl retain_stub];
   __noteStoreUrl_isset = YES;
-  __webApiUrlPrefix = [webApiUrlPrefix retain];
+  __webApiUrlPrefix = [webApiUrlPrefix retain_stub];
   __webApiUrlPrefix_isset = YES;
   return self;
 }
@@ -60,7 +69,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   }
   if ([decoder containsValueForKey: @"shardId"])
   {
-    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain];
+    __shardId = [[decoder decodeObjectForKey: @"shardId"] retain_stub];
     __shardId_isset = YES;
   }
   if ([decoder containsValueForKey: @"privilege"])
@@ -70,17 +79,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   }
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"noteStoreUrl"])
   {
-    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain];
+    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain_stub];
     __noteStoreUrl_isset = YES;
   }
   if ([decoder containsValueForKey: @"webApiUrlPrefix"])
   {
-    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain];
+    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain_stub];
     __webApiUrlPrefix_isset = YES;
   }
   return self;
@@ -116,11 +125,11 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__shardId release];
-  [__username release];
-  [__noteStoreUrl release];
-  [__webApiUrlPrefix release];
-  [super dealloc];
+  [__shardId release_stub];
+  [__username release_stub];
+  [__noteStoreUrl release_stub];
+  [__webApiUrlPrefix release_stub];
+  [super dealloc_stub];
 }
 
 - (int32_t) userId {
@@ -141,12 +150,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (NSString *) shardId {
-  return [[__shardId retain] autorelease];
+  return [[__shardId retain_stub] autorelease_stub];
 }
 
 - (void) setShardId: (NSString *) shardId {
-  [shardId retain];
-  [__shardId release];
+  [shardId retain_stub];
+  [__shardId release_stub];
   __shardId = shardId;
   __shardId_isset = YES;
 }
@@ -156,7 +165,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetShardId {
-  [__shardId release];
+  [__shardId release_stub];
   __shardId = nil;
   __shardId_isset = NO;
 }
@@ -179,12 +188,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -194,18 +203,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
 
 - (NSString *) noteStoreUrl {
-  return [[__noteStoreUrl retain] autorelease];
+  return [[__noteStoreUrl retain_stub] autorelease_stub];
 }
 
 - (void) setNoteStoreUrl: (NSString *) noteStoreUrl {
-  [noteStoreUrl retain];
-  [__noteStoreUrl release];
+  [noteStoreUrl retain_stub];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = noteStoreUrl;
   __noteStoreUrl_isset = YES;
 }
@@ -215,18 +224,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetNoteStoreUrl {
-  [__noteStoreUrl release];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = nil;
   __noteStoreUrl_isset = NO;
 }
 
 - (NSString *) webApiUrlPrefix {
-  return [[__webApiUrlPrefix retain] autorelease];
+  return [[__webApiUrlPrefix retain_stub] autorelease_stub];
 }
 
 - (void) setWebApiUrlPrefix: (NSString *) webApiUrlPrefix {
-  [webApiUrlPrefix retain];
-  [__webApiUrlPrefix release];
+  [webApiUrlPrefix retain_stub];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = webApiUrlPrefix;
   __webApiUrlPrefix_isset = YES;
 }
@@ -236,7 +245,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetWebApiUrlPrefix {
-  [__webApiUrlPrefix release];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = nil;
   __webApiUrlPrefix_isset = NO;
 }
@@ -379,22 +388,30 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @implementation EDAMAuthenticationResult
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithCurrentTime: (EDAMTimestamp) currentTime authenticationToken: (NSString *) authenticationToken expiration: (EDAMTimestamp) expiration user: (EDAMUser *) user publicUserInfo: (EDAMPublicUserInfo *) publicUserInfo noteStoreUrl: (NSString *) noteStoreUrl webApiUrlPrefix: (NSString *) webApiUrlPrefix
 {
   self = [super init];
   __currentTime = currentTime;
   __currentTime_isset = YES;
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   __expiration = expiration;
   __expiration_isset = YES;
-  __user = [user retain];
+  __user = [user retain_stub];
   __user_isset = YES;
-  __publicUserInfo = [publicUserInfo retain];
+  __publicUserInfo = [publicUserInfo retain_stub];
   __publicUserInfo_isset = YES;
-  __noteStoreUrl = [noteStoreUrl retain];
+  __noteStoreUrl = [noteStoreUrl retain_stub];
   __noteStoreUrl_isset = YES;
-  __webApiUrlPrefix = [webApiUrlPrefix retain];
+  __webApiUrlPrefix = [webApiUrlPrefix retain_stub];
   __webApiUrlPrefix_isset = YES;
   return self;
 }
@@ -409,7 +426,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   }
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   if ([decoder containsValueForKey: @"expiration"])
@@ -419,22 +436,22 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   }
   if ([decoder containsValueForKey: @"user"])
   {
-    __user = [[decoder decodeObjectForKey: @"user"] retain];
+    __user = [[decoder decodeObjectForKey: @"user"] retain_stub];
     __user_isset = YES;
   }
   if ([decoder containsValueForKey: @"publicUserInfo"])
   {
-    __publicUserInfo = [[decoder decodeObjectForKey: @"publicUserInfo"] retain];
+    __publicUserInfo = [[decoder decodeObjectForKey: @"publicUserInfo"] retain_stub];
     __publicUserInfo_isset = YES;
   }
   if ([decoder containsValueForKey: @"noteStoreUrl"])
   {
-    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain];
+    __noteStoreUrl = [[decoder decodeObjectForKey: @"noteStoreUrl"] retain_stub];
     __noteStoreUrl_isset = YES;
   }
   if ([decoder containsValueForKey: @"webApiUrlPrefix"])
   {
-    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain];
+    __webApiUrlPrefix = [[decoder decodeObjectForKey: @"webApiUrlPrefix"] retain_stub];
     __webApiUrlPrefix_isset = YES;
   }
   return self;
@@ -474,12 +491,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [__user release];
-  [__publicUserInfo release];
-  [__noteStoreUrl release];
-  [__webApiUrlPrefix release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [__user release_stub];
+  [__publicUserInfo release_stub];
+  [__noteStoreUrl release_stub];
+  [__webApiUrlPrefix release_stub];
+  [super dealloc_stub];
 }
 
 - (int64_t) currentTime {
@@ -500,12 +517,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -515,7 +532,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -538,12 +555,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (EDAMUser *) user {
-  return [[__user retain] autorelease];
+  return [[__user retain_stub] autorelease_stub];
 }
 
 - (void) setUser: (EDAMUser *) user {
-  [user retain];
-  [__user release];
+  [user retain_stub];
+  [__user release_stub];
   __user = user;
   __user_isset = YES;
 }
@@ -553,18 +570,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUser {
-  [__user release];
+  [__user release_stub];
   __user = nil;
   __user_isset = NO;
 }
 
 - (EDAMPublicUserInfo *) publicUserInfo {
-  return [[__publicUserInfo retain] autorelease];
+  return [[__publicUserInfo retain_stub] autorelease_stub];
 }
 
 - (void) setPublicUserInfo: (EDAMPublicUserInfo *) publicUserInfo {
-  [publicUserInfo retain];
-  [__publicUserInfo release];
+  [publicUserInfo retain_stub];
+  [__publicUserInfo release_stub];
   __publicUserInfo = publicUserInfo;
   __publicUserInfo_isset = YES;
 }
@@ -574,18 +591,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetPublicUserInfo {
-  [__publicUserInfo release];
+  [__publicUserInfo release_stub];
   __publicUserInfo = nil;
   __publicUserInfo_isset = NO;
 }
 
 - (NSString *) noteStoreUrl {
-  return [[__noteStoreUrl retain] autorelease];
+  return [[__noteStoreUrl retain_stub] autorelease_stub];
 }
 
 - (void) setNoteStoreUrl: (NSString *) noteStoreUrl {
-  [noteStoreUrl retain];
-  [__noteStoreUrl release];
+  [noteStoreUrl retain_stub];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = noteStoreUrl;
   __noteStoreUrl_isset = YES;
 }
@@ -595,18 +612,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetNoteStoreUrl {
-  [__noteStoreUrl release];
+  [__noteStoreUrl release_stub];
   __noteStoreUrl = nil;
   __noteStoreUrl_isset = NO;
 }
 
 - (NSString *) webApiUrlPrefix {
-  return [[__webApiUrlPrefix retain] autorelease];
+  return [[__webApiUrlPrefix retain_stub] autorelease_stub];
 }
 
 - (void) setWebApiUrlPrefix: (NSString *) webApiUrlPrefix {
-  [webApiUrlPrefix retain];
-  [__webApiUrlPrefix release];
+  [webApiUrlPrefix retain_stub];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = webApiUrlPrefix;
   __webApiUrlPrefix_isset = YES;
 }
@@ -616,7 +633,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetWebApiUrlPrefix {
-  [__webApiUrlPrefix release];
+  [__webApiUrlPrefix release_stub];
   __webApiUrlPrefix = nil;
   __webApiUrlPrefix_isset = NO;
 }
@@ -665,7 +682,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUser *fieldValue = [[EDAMUser alloc] init];
           [fieldValue read: inProtocol];
           [self setUser: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -675,7 +692,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMPublicUserInfo *fieldValue = [[EDAMPublicUserInfo alloc] init];
           [fieldValue read: inProtocol];
           [self setPublicUserInfo: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -780,16 +797,24 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @implementation EDAMBootstrapSettings
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithServiceHost: (NSString *) serviceHost marketingUrl: (NSString *) marketingUrl supportUrl: (NSString *) supportUrl accountEmailDomain: (NSString *) accountEmailDomain enableFacebookSharing: (BOOL) enableFacebookSharing enableGiftSubscriptions: (BOOL) enableGiftSubscriptions enableSupportTickets: (BOOL) enableSupportTickets enableSharedNotebooks: (BOOL) enableSharedNotebooks enableSingleNoteSharing: (BOOL) enableSingleNoteSharing enableSponsoredAccounts: (BOOL) enableSponsoredAccounts enableTwitterSharing: (BOOL) enableTwitterSharing enableLinkedInSharing: (BOOL) enableLinkedInSharing enablePublicNotebooks: (BOOL) enablePublicNotebooks
 {
   self = [super init];
-  __serviceHost = [serviceHost retain];
+  __serviceHost = [serviceHost retain_stub];
   __serviceHost_isset = YES;
-  __marketingUrl = [marketingUrl retain];
+  __marketingUrl = [marketingUrl retain_stub];
   __marketingUrl_isset = YES;
-  __supportUrl = [supportUrl retain];
+  __supportUrl = [supportUrl retain_stub];
   __supportUrl_isset = YES;
-  __accountEmailDomain = [accountEmailDomain retain];
+  __accountEmailDomain = [accountEmailDomain retain_stub];
   __accountEmailDomain_isset = YES;
   __enableFacebookSharing = enableFacebookSharing;
   __enableFacebookSharing_isset = YES;
@@ -817,22 +842,22 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"serviceHost"])
   {
-    __serviceHost = [[decoder decodeObjectForKey: @"serviceHost"] retain];
+    __serviceHost = [[decoder decodeObjectForKey: @"serviceHost"] retain_stub];
     __serviceHost_isset = YES;
   }
   if ([decoder containsValueForKey: @"marketingUrl"])
   {
-    __marketingUrl = [[decoder decodeObjectForKey: @"marketingUrl"] retain];
+    __marketingUrl = [[decoder decodeObjectForKey: @"marketingUrl"] retain_stub];
     __marketingUrl_isset = YES;
   }
   if ([decoder containsValueForKey: @"supportUrl"])
   {
-    __supportUrl = [[decoder decodeObjectForKey: @"supportUrl"] retain];
+    __supportUrl = [[decoder decodeObjectForKey: @"supportUrl"] retain_stub];
     __supportUrl_isset = YES;
   }
   if ([decoder containsValueForKey: @"accountEmailDomain"])
   {
-    __accountEmailDomain = [[decoder decodeObjectForKey: @"accountEmailDomain"] retain];
+    __accountEmailDomain = [[decoder decodeObjectForKey: @"accountEmailDomain"] retain_stub];
     __accountEmailDomain_isset = YES;
   }
   if ([decoder containsValueForKey: @"enableFacebookSharing"])
@@ -941,20 +966,20 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__serviceHost release];
-  [__marketingUrl release];
-  [__supportUrl release];
-  [__accountEmailDomain release];
-  [super dealloc];
+  [__serviceHost release_stub];
+  [__marketingUrl release_stub];
+  [__supportUrl release_stub];
+  [__accountEmailDomain release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) serviceHost {
-  return [[__serviceHost retain] autorelease];
+  return [[__serviceHost retain_stub] autorelease_stub];
 }
 
 - (void) setServiceHost: (NSString *) serviceHost {
-  [serviceHost retain];
-  [__serviceHost release];
+  [serviceHost retain_stub];
+  [__serviceHost release_stub];
   __serviceHost = serviceHost;
   __serviceHost_isset = YES;
 }
@@ -964,18 +989,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetServiceHost {
-  [__serviceHost release];
+  [__serviceHost release_stub];
   __serviceHost = nil;
   __serviceHost_isset = NO;
 }
 
 - (NSString *) marketingUrl {
-  return [[__marketingUrl retain] autorelease];
+  return [[__marketingUrl retain_stub] autorelease_stub];
 }
 
 - (void) setMarketingUrl: (NSString *) marketingUrl {
-  [marketingUrl retain];
-  [__marketingUrl release];
+  [marketingUrl retain_stub];
+  [__marketingUrl release_stub];
   __marketingUrl = marketingUrl;
   __marketingUrl_isset = YES;
 }
@@ -985,18 +1010,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetMarketingUrl {
-  [__marketingUrl release];
+  [__marketingUrl release_stub];
   __marketingUrl = nil;
   __marketingUrl_isset = NO;
 }
 
 - (NSString *) supportUrl {
-  return [[__supportUrl retain] autorelease];
+  return [[__supportUrl retain_stub] autorelease_stub];
 }
 
 - (void) setSupportUrl: (NSString *) supportUrl {
-  [supportUrl retain];
-  [__supportUrl release];
+  [supportUrl retain_stub];
+  [__supportUrl release_stub];
   __supportUrl = supportUrl;
   __supportUrl_isset = YES;
 }
@@ -1006,18 +1031,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSupportUrl {
-  [__supportUrl release];
+  [__supportUrl release_stub];
   __supportUrl = nil;
   __supportUrl_isset = NO;
 }
 
 - (NSString *) accountEmailDomain {
-  return [[__accountEmailDomain retain] autorelease];
+  return [[__accountEmailDomain retain_stub] autorelease_stub];
 }
 
 - (void) setAccountEmailDomain: (NSString *) accountEmailDomain {
-  [accountEmailDomain retain];
-  [__accountEmailDomain release];
+  [accountEmailDomain retain_stub];
+  [__accountEmailDomain release_stub];
   __accountEmailDomain = accountEmailDomain;
   __accountEmailDomain_isset = YES;
 }
@@ -1027,7 +1052,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAccountEmailDomain {
-  [__accountEmailDomain release];
+  [__accountEmailDomain release_stub];
   __accountEmailDomain = nil;
   __accountEmailDomain_isset = NO;
 }
@@ -1428,12 +1453,20 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @implementation EDAMBootstrapProfile
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithName: (NSString *) name settings: (EDAMBootstrapSettings *) settings
 {
   self = [super init];
-  __name = [name retain];
+  __name = [name retain_stub];
   __name_isset = YES;
-  __settings = [settings retain];
+  __settings = [settings retain_stub];
   __settings_isset = YES;
   return self;
 }
@@ -1443,12 +1476,12 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"name"])
   {
-    __name = [[decoder decodeObjectForKey: @"name"] retain];
+    __name = [[decoder decodeObjectForKey: @"name"] retain_stub];
     __name_isset = YES;
   }
   if ([decoder containsValueForKey: @"settings"])
   {
-    __settings = [[decoder decodeObjectForKey: @"settings"] retain];
+    __settings = [[decoder decodeObjectForKey: @"settings"] retain_stub];
     __settings_isset = YES;
   }
   return self;
@@ -1468,18 +1501,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__name release];
-  [__settings release];
-  [super dealloc];
+  [__name release_stub];
+  [__settings release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) name {
-  return [[__name retain] autorelease];
+  return [[__name retain_stub] autorelease_stub];
 }
 
 - (void) setName: (NSString *) name {
-  [name retain];
-  [__name release];
+  [name retain_stub];
+  [__name release_stub];
   __name = name;
   __name_isset = YES;
 }
@@ -1489,18 +1522,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetName {
-  [__name release];
+  [__name release_stub];
   __name = nil;
   __name_isset = NO;
 }
 
 - (EDAMBootstrapSettings *) settings {
-  return [[__settings retain] autorelease];
+  return [[__settings retain_stub] autorelease_stub];
 }
 
 - (void) setSettings: (EDAMBootstrapSettings *) settings {
-  [settings retain];
-  [__settings release];
+  [settings retain_stub];
+  [__settings release_stub];
   __settings = settings;
   __settings_isset = YES;
 }
@@ -1510,7 +1543,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSettings {
-  [__settings release];
+  [__settings release_stub];
   __settings = nil;
   __settings_isset = NO;
 }
@@ -1543,7 +1576,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMBootstrapSettings *fieldValue = [[EDAMBootstrapSettings alloc] init];
           [fieldValue read: inProtocol];
           [self setSettings: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1591,10 +1624,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @implementation EDAMBootstrapInfo
 
-- (id) initWithProfiles: (NSArray *) profiles
+- (id) init
 {
   self = [super init];
-  __profiles = [profiles retain];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithProfiles: (NSMutableArray *) profiles
+{
+  self = [super init];
+  __profiles = [profiles retain_stub];
   __profiles_isset = YES;
   return self;
 }
@@ -1604,7 +1645,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"profiles"])
   {
-    __profiles = [[decoder decodeObjectForKey: @"profiles"] retain];
+    __profiles = [[decoder decodeObjectForKey: @"profiles"] retain_stub];
     __profiles_isset = YES;
   }
   return self;
@@ -1620,17 +1661,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__profiles release];
-  [super dealloc];
+  [__profiles release_stub];
+  [super dealloc_stub];
 }
 
-- (NSArray *) profiles {
-  return [[__profiles retain] autorelease];
+- (NSMutableArray *) profiles {
+  return [[__profiles retain_stub] autorelease_stub];
 }
 
-- (void) setProfiles: (NSArray *) profiles {
-  [profiles retain];
-  [__profiles release];
+- (void) setProfiles: (NSMutableArray *) profiles {
+  [profiles retain_stub];
+  [__profiles release_stub];
   __profiles = profiles;
   __profiles_isset = YES;
 }
@@ -1640,7 +1681,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetProfiles {
-  [__profiles release];
+  [__profiles release_stub];
   __profiles = nil;
   __profiles_isset = NO;
 }
@@ -1671,11 +1712,11 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
             EDAMBootstrapProfile *_elem2 = [[EDAMBootstrapProfile alloc] init];
             [_elem2 read: inProtocol];
             [fieldValue addObject: _elem2];
-            [_elem2 release];
+            [_elem2 release_stub];
           }
           [inProtocol readListEnd];
           [self setProfiles: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -1730,39 +1771,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __edamVersionMinor_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=clientName, setter=setClientName:) NSString * clientName;
+@property (nonatomic, getter=edamVersionMajor, setter=setEdamVersionMajor:) int16_t edamVersionMajor;
+@property (nonatomic, getter=edamVersionMinor, setter=setEdamVersionMinor:) int16_t edamVersionMinor;
+#endif
+
+- (id) init;
 - (id) initWithClientName: (NSString *) clientName edamVersionMajor: (int16_t) edamVersionMajor edamVersionMinor: (int16_t) edamVersionMinor;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=clientName, setter=setClientName:) NSString * clientName;
-@property (nonatomic, getter=edamVersionMajor, setter=setEdamVersionMajor:) int16_t edamVersionMajor;
-@property (nonatomic, getter=edamVersionMinor, setter=setEdamVersionMinor:) int16_t edamVersionMinor;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) clientName;
 - (void) setClientName: (NSString *) clientName;
+#endif
+- (BOOL) clientNameIsSet;
 
+#if !__has_feature(objc_arc)
 - (int16_t) edamVersionMajor;
 - (void) setEdamVersionMajor: (int16_t) edamVersionMajor;
+#endif
+- (BOOL) edamVersionMajorIsSet;
 
+#if !__has_feature(objc_arc)
 - (int16_t) edamVersionMinor;
 - (void) setEdamVersionMinor: (int16_t) edamVersionMinor;
-
 #endif
-
-- (BOOL) clientNameIsSet;
-- (BOOL) edamVersionMajorIsSet;
 - (BOOL) edamVersionMinorIsSet;
+
 @end
 
 @implementation EDAMcheckVersion_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+  self.edamVersionMajor = 1;
+
+  self.edamVersionMinor = 24;
+
+#endif
+  return self;
+}
+
 - (id) initWithClientName: (NSString *) clientName edamVersionMajor: (int16_t) edamVersionMajor edamVersionMinor: (int16_t) edamVersionMinor
 {
   self = [super init];
-  __clientName = [clientName retain];
+  __clientName = [clientName retain_stub];
   __clientName_isset = YES;
   __edamVersionMajor = edamVersionMajor;
   __edamVersionMajor_isset = YES;
@@ -1776,7 +1834,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"clientName"])
   {
-    __clientName = [[decoder decodeObjectForKey: @"clientName"] retain];
+    __clientName = [[decoder decodeObjectForKey: @"clientName"] retain_stub];
     __clientName_isset = YES;
   }
   if ([decoder containsValueForKey: @"edamVersionMajor"])
@@ -1810,17 +1868,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__clientName release];
-  [super dealloc];
+  [__clientName release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) clientName {
-  return [[__clientName retain] autorelease];
+  return [[__clientName retain_stub] autorelease_stub];
 }
 
 - (void) setClientName: (NSString *) clientName {
-  [clientName retain];
-  [__clientName release];
+  [clientName retain_stub];
+  [__clientName release_stub];
   __clientName = clientName;
   __clientName_isset = YES;
 }
@@ -1830,7 +1888,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetClientName {
-  [__clientName release];
+  [__clientName release_stub];
   __clientName = nil;
   __clientName_isset = NO;
 }
@@ -1960,24 +2018,33 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __success_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, getter=success, setter=setSuccess:) BOOL success;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (BOOL) success;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, getter=success, setter=setSuccess:) BOOL success;
-#else
-
+#if !__has_feature(objc_arc)
 - (BOOL) success;
 - (void) setSuccess: (BOOL) success;
-
 #endif
-
 - (BOOL) successIsSet;
+
 @end
 
 @implementation EDAMCheckVersion_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
 
 - (id) initWithSuccess: (BOOL) success
 {
@@ -2008,7 +2075,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [super dealloc];
+  [super dealloc_stub];
 }
 
 - (BOOL) success {
@@ -2088,29 +2155,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __locale_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=locale, setter=setLocale:) NSString * locale;
+#endif
+
+- (id) init;
 - (id) initWithLocale: (NSString *) locale;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=locale, setter=setLocale:) NSString * locale;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) locale;
 - (void) setLocale: (NSString *) locale;
-
 #endif
-
 - (BOOL) localeIsSet;
+
 @end
 
 @implementation EDAMgetBootstrapInfo_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithLocale: (NSString *) locale
 {
   self = [super init];
-  __locale = [locale retain];
+  __locale = [locale retain_stub];
   __locale_isset = YES;
   return self;
 }
@@ -2120,7 +2196,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"locale"])
   {
-    __locale = [[decoder decodeObjectForKey: @"locale"] retain];
+    __locale = [[decoder decodeObjectForKey: @"locale"] retain_stub];
     __locale_isset = YES;
   }
   return self;
@@ -2136,17 +2212,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__locale release];
-  [super dealloc];
+  [__locale release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) locale {
-  return [[__locale retain] autorelease];
+  return [[__locale retain_stub] autorelease_stub];
 }
 
 - (void) setLocale: (NSString *) locale {
-  [locale retain];
-  [__locale release];
+  [locale retain_stub];
+  [__locale release_stub];
   __locale = locale;
   __locale_isset = YES;
 }
@@ -2156,7 +2232,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetLocale {
-  [__locale release];
+  [__locale release_stub];
   __locale = nil;
   __locale_isset = NO;
 }
@@ -2222,29 +2298,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __success_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMBootstrapInfo * success;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMBootstrapInfo *) success;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMBootstrapInfo * success;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMBootstrapInfo *) success;
 - (void) setSuccess: (EDAMBootstrapInfo *) success;
-
 #endif
-
 - (BOOL) successIsSet;
+
 @end
 
 @implementation EDAMGetBootstrapInfo_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMBootstrapInfo *) success
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
   return self;
 }
@@ -2254,7 +2339,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   return self;
@@ -2270,17 +2355,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [super dealloc];
+  [__success release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMBootstrapInfo *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMBootstrapInfo *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -2290,7 +2375,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
@@ -2315,7 +2400,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMBootstrapInfo *fieldValue = [[EDAMBootstrapInfo alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2365,50 +2450,65 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __consumerSecret_isset;
 }
 
-- (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=username, setter=setUsername:) NSString * username;
 @property (nonatomic, retain, getter=password, setter=setPassword:) NSString * password;
 @property (nonatomic, retain, getter=consumerKey, setter=setConsumerKey:) NSString * consumerKey;
 @property (nonatomic, retain, getter=consumerSecret, setter=setConsumerSecret:) NSString * consumerSecret;
-#else
-
-- (NSString *) username;
-- (void) setUsername: (NSString *) username;
-
-- (NSString *) password;
-- (void) setPassword: (NSString *) password;
-
-- (NSString *) consumerKey;
-- (void) setConsumerKey: (NSString *) consumerKey;
-
-- (NSString *) consumerSecret;
-- (void) setConsumerSecret: (NSString *) consumerSecret;
-
 #endif
 
+- (id) init;
+- (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (NSString *) username;
+- (void) setUsername: (NSString *) username;
+#endif
 - (BOOL) usernameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) password;
+- (void) setPassword: (NSString *) password;
+#endif
 - (BOOL) passwordIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) consumerKey;
+- (void) setConsumerKey: (NSString *) consumerKey;
+#endif
 - (BOOL) consumerKeyIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) consumerSecret;
+- (void) setConsumerSecret: (NSString *) consumerSecret;
+#endif
 - (BOOL) consumerSecretIsSet;
+
 @end
 
 @implementation EDAMauthenticate_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret
 {
   self = [super init];
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
-  __password = [password retain];
+  __password = [password retain_stub];
   __password_isset = YES;
-  __consumerKey = [consumerKey retain];
+  __consumerKey = [consumerKey retain_stub];
   __consumerKey_isset = YES;
-  __consumerSecret = [consumerSecret retain];
+  __consumerSecret = [consumerSecret retain_stub];
   __consumerSecret_isset = YES;
   return self;
 }
@@ -2418,22 +2518,22 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"password"])
   {
-    __password = [[decoder decodeObjectForKey: @"password"] retain];
+    __password = [[decoder decodeObjectForKey: @"password"] retain_stub];
     __password_isset = YES;
   }
   if ([decoder containsValueForKey: @"consumerKey"])
   {
-    __consumerKey = [[decoder decodeObjectForKey: @"consumerKey"] retain];
+    __consumerKey = [[decoder decodeObjectForKey: @"consumerKey"] retain_stub];
     __consumerKey_isset = YES;
   }
   if ([decoder containsValueForKey: @"consumerSecret"])
   {
-    __consumerSecret = [[decoder decodeObjectForKey: @"consumerSecret"] retain];
+    __consumerSecret = [[decoder decodeObjectForKey: @"consumerSecret"] retain_stub];
     __consumerSecret_isset = YES;
   }
   return self;
@@ -2461,20 +2561,20 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__username release];
-  [__password release];
-  [__consumerKey release];
-  [__consumerSecret release];
-  [super dealloc];
+  [__username release_stub];
+  [__password release_stub];
+  [__consumerKey release_stub];
+  [__consumerSecret release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -2484,18 +2584,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
 
 - (NSString *) password {
-  return [[__password retain] autorelease];
+  return [[__password retain_stub] autorelease_stub];
 }
 
 - (void) setPassword: (NSString *) password {
-  [password retain];
-  [__password release];
+  [password retain_stub];
+  [__password release_stub];
   __password = password;
   __password_isset = YES;
 }
@@ -2505,18 +2605,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetPassword {
-  [__password release];
+  [__password release_stub];
   __password = nil;
   __password_isset = NO;
 }
 
 - (NSString *) consumerKey {
-  return [[__consumerKey retain] autorelease];
+  return [[__consumerKey retain_stub] autorelease_stub];
 }
 
 - (void) setConsumerKey: (NSString *) consumerKey {
-  [consumerKey retain];
-  [__consumerKey release];
+  [consumerKey retain_stub];
+  [__consumerKey release_stub];
   __consumerKey = consumerKey;
   __consumerKey_isset = YES;
 }
@@ -2526,18 +2626,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetConsumerKey {
-  [__consumerKey release];
+  [__consumerKey release_stub];
   __consumerKey = nil;
   __consumerKey_isset = NO;
 }
 
 - (NSString *) consumerSecret {
-  return [[__consumerSecret retain] autorelease];
+  return [[__consumerSecret retain_stub] autorelease_stub];
 }
 
 - (void) setConsumerSecret: (NSString *) consumerSecret {
-  [consumerSecret retain];
-  [__consumerSecret release];
+  [consumerSecret retain_stub];
+  [__consumerSecret release_stub];
   __consumerSecret = consumerSecret;
   __consumerSecret_isset = YES;
 }
@@ -2547,7 +2647,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetConsumerSecret {
-  [__consumerSecret release];
+  [__consumerSecret release_stub];
   __consumerSecret = nil;
   __consumerSecret_isset = NO;
 }
@@ -2668,43 +2768,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMAuthenticationResult *) success;
 - (void) setSuccess: (EDAMAuthenticationResult *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMAuthenticate_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -2714,17 +2827,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -2748,19 +2861,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMAuthenticationResult *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMAuthenticationResult *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -2770,18 +2883,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -2791,18 +2904,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -2812,7 +2925,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -2837,7 +2950,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMAuthenticationResult *fieldValue = [[EDAMAuthenticationResult alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2847,7 +2960,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2857,7 +2970,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -2927,11 +3040,6 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __deviceDescription_isset;
 }
 
-- (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret deviceIdentifier: (NSString *) deviceIdentifier deviceDescription: (NSString *) deviceDescription;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=username, setter=setUsername:) NSString * username;
 @property (nonatomic, retain, getter=password, setter=setPassword:) NSString * password;
@@ -2939,52 +3047,76 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 @property (nonatomic, retain, getter=consumerSecret, setter=setConsumerSecret:) NSString * consumerSecret;
 @property (nonatomic, retain, getter=deviceIdentifier, setter=setDeviceIdentifier:) NSString * deviceIdentifier;
 @property (nonatomic, retain, getter=deviceDescription, setter=setDeviceDescription:) NSString * deviceDescription;
-#else
-
-- (NSString *) username;
-- (void) setUsername: (NSString *) username;
-
-- (NSString *) password;
-- (void) setPassword: (NSString *) password;
-
-- (NSString *) consumerKey;
-- (void) setConsumerKey: (NSString *) consumerKey;
-
-- (NSString *) consumerSecret;
-- (void) setConsumerSecret: (NSString *) consumerSecret;
-
-- (NSString *) deviceIdentifier;
-- (void) setDeviceIdentifier: (NSString *) deviceIdentifier;
-
-- (NSString *) deviceDescription;
-- (void) setDeviceDescription: (NSString *) deviceDescription;
-
 #endif
 
+- (id) init;
+- (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret deviceIdentifier: (NSString *) deviceIdentifier deviceDescription: (NSString *) deviceDescription;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (NSString *) username;
+- (void) setUsername: (NSString *) username;
+#endif
 - (BOOL) usernameIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) password;
+- (void) setPassword: (NSString *) password;
+#endif
 - (BOOL) passwordIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) consumerKey;
+- (void) setConsumerKey: (NSString *) consumerKey;
+#endif
 - (BOOL) consumerKeyIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) consumerSecret;
+- (void) setConsumerSecret: (NSString *) consumerSecret;
+#endif
 - (BOOL) consumerSecretIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) deviceIdentifier;
+- (void) setDeviceIdentifier: (NSString *) deviceIdentifier;
+#endif
 - (BOOL) deviceIdentifierIsSet;
+
+#if !__has_feature(objc_arc)
+- (NSString *) deviceDescription;
+- (void) setDeviceDescription: (NSString *) deviceDescription;
+#endif
 - (BOOL) deviceDescriptionIsSet;
+
 @end
 
 @implementation EDAMauthenticateLongSession_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithUsername: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret deviceIdentifier: (NSString *) deviceIdentifier deviceDescription: (NSString *) deviceDescription
 {
   self = [super init];
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
-  __password = [password retain];
+  __password = [password retain_stub];
   __password_isset = YES;
-  __consumerKey = [consumerKey retain];
+  __consumerKey = [consumerKey retain_stub];
   __consumerKey_isset = YES;
-  __consumerSecret = [consumerSecret retain];
+  __consumerSecret = [consumerSecret retain_stub];
   __consumerSecret_isset = YES;
-  __deviceIdentifier = [deviceIdentifier retain];
+  __deviceIdentifier = [deviceIdentifier retain_stub];
   __deviceIdentifier_isset = YES;
-  __deviceDescription = [deviceDescription retain];
+  __deviceDescription = [deviceDescription retain_stub];
   __deviceDescription_isset = YES;
   return self;
 }
@@ -2994,32 +3126,32 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   if ([decoder containsValueForKey: @"password"])
   {
-    __password = [[decoder decodeObjectForKey: @"password"] retain];
+    __password = [[decoder decodeObjectForKey: @"password"] retain_stub];
     __password_isset = YES;
   }
   if ([decoder containsValueForKey: @"consumerKey"])
   {
-    __consumerKey = [[decoder decodeObjectForKey: @"consumerKey"] retain];
+    __consumerKey = [[decoder decodeObjectForKey: @"consumerKey"] retain_stub];
     __consumerKey_isset = YES;
   }
   if ([decoder containsValueForKey: @"consumerSecret"])
   {
-    __consumerSecret = [[decoder decodeObjectForKey: @"consumerSecret"] retain];
+    __consumerSecret = [[decoder decodeObjectForKey: @"consumerSecret"] retain_stub];
     __consumerSecret_isset = YES;
   }
   if ([decoder containsValueForKey: @"deviceIdentifier"])
   {
-    __deviceIdentifier = [[decoder decodeObjectForKey: @"deviceIdentifier"] retain];
+    __deviceIdentifier = [[decoder decodeObjectForKey: @"deviceIdentifier"] retain_stub];
     __deviceIdentifier_isset = YES;
   }
   if ([decoder containsValueForKey: @"deviceDescription"])
   {
-    __deviceDescription = [[decoder decodeObjectForKey: @"deviceDescription"] retain];
+    __deviceDescription = [[decoder decodeObjectForKey: @"deviceDescription"] retain_stub];
     __deviceDescription_isset = YES;
   }
   return self;
@@ -3055,22 +3187,22 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__username release];
-  [__password release];
-  [__consumerKey release];
-  [__consumerSecret release];
-  [__deviceIdentifier release];
-  [__deviceDescription release];
-  [super dealloc];
+  [__username release_stub];
+  [__password release_stub];
+  [__consumerKey release_stub];
+  [__consumerSecret release_stub];
+  [__deviceIdentifier release_stub];
+  [__deviceDescription release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -3080,18 +3212,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
 
 - (NSString *) password {
-  return [[__password retain] autorelease];
+  return [[__password retain_stub] autorelease_stub];
 }
 
 - (void) setPassword: (NSString *) password {
-  [password retain];
-  [__password release];
+  [password retain_stub];
+  [__password release_stub];
   __password = password;
   __password_isset = YES;
 }
@@ -3101,18 +3233,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetPassword {
-  [__password release];
+  [__password release_stub];
   __password = nil;
   __password_isset = NO;
 }
 
 - (NSString *) consumerKey {
-  return [[__consumerKey retain] autorelease];
+  return [[__consumerKey retain_stub] autorelease_stub];
 }
 
 - (void) setConsumerKey: (NSString *) consumerKey {
-  [consumerKey retain];
-  [__consumerKey release];
+  [consumerKey retain_stub];
+  [__consumerKey release_stub];
   __consumerKey = consumerKey;
   __consumerKey_isset = YES;
 }
@@ -3122,18 +3254,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetConsumerKey {
-  [__consumerKey release];
+  [__consumerKey release_stub];
   __consumerKey = nil;
   __consumerKey_isset = NO;
 }
 
 - (NSString *) consumerSecret {
-  return [[__consumerSecret retain] autorelease];
+  return [[__consumerSecret retain_stub] autorelease_stub];
 }
 
 - (void) setConsumerSecret: (NSString *) consumerSecret {
-  [consumerSecret retain];
-  [__consumerSecret release];
+  [consumerSecret retain_stub];
+  [__consumerSecret release_stub];
   __consumerSecret = consumerSecret;
   __consumerSecret_isset = YES;
 }
@@ -3143,18 +3275,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetConsumerSecret {
-  [__consumerSecret release];
+  [__consumerSecret release_stub];
   __consumerSecret = nil;
   __consumerSecret_isset = NO;
 }
 
 - (NSString *) deviceIdentifier {
-  return [[__deviceIdentifier retain] autorelease];
+  return [[__deviceIdentifier retain_stub] autorelease_stub];
 }
 
 - (void) setDeviceIdentifier: (NSString *) deviceIdentifier {
-  [deviceIdentifier retain];
-  [__deviceIdentifier release];
+  [deviceIdentifier retain_stub];
+  [__deviceIdentifier release_stub];
   __deviceIdentifier = deviceIdentifier;
   __deviceIdentifier_isset = YES;
 }
@@ -3164,18 +3296,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetDeviceIdentifier {
-  [__deviceIdentifier release];
+  [__deviceIdentifier release_stub];
   __deviceIdentifier = nil;
   __deviceIdentifier_isset = NO;
 }
 
 - (NSString *) deviceDescription {
-  return [[__deviceDescription retain] autorelease];
+  return [[__deviceDescription retain_stub] autorelease_stub];
 }
 
 - (void) setDeviceDescription: (NSString *) deviceDescription {
-  [deviceDescription retain];
-  [__deviceDescription release];
+  [deviceDescription retain_stub];
+  [__deviceDescription release_stub];
   __deviceDescription = deviceDescription;
   __deviceDescription_isset = YES;
 }
@@ -3185,7 +3317,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetDeviceDescription {
-  [__deviceDescription release];
+  [__deviceDescription release_stub];
   __deviceDescription = nil;
   __deviceDescription_isset = NO;
 }
@@ -3340,43 +3472,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMAuthenticationResult *) success;
 - (void) setSuccess: (EDAMAuthenticationResult *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMAuthenticateLongSession_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -3386,17 +3531,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -3420,19 +3565,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMAuthenticationResult *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMAuthenticationResult *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -3442,18 +3587,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -3463,18 +3608,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -3484,7 +3629,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -3509,7 +3654,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMAuthenticationResult *fieldValue = [[EDAMAuthenticationResult alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3519,7 +3664,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3529,7 +3674,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3583,35 +3728,44 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 @end
 
-@interface EDAMauthenticateToBusiness_args : NSObject <NSCoding> {
+@interface EDAMrevokeLongSession_args : NSObject <NSCoding> {
   NSString * __authenticationToken;
 
   BOOL __authenticationToken_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) authenticationToken;
 - (void) setAuthenticationToken: (NSString *) authenticationToken;
-
 #endif
-
 - (BOOL) authenticationTokenIsSet;
+
 @end
 
-@implementation EDAMauthenticateToBusiness_args
+@implementation EDAMrevokeLongSession_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
 
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken
 {
   self = [super init];
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   return self;
 }
@@ -3621,7 +3775,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   return self;
@@ -3637,17 +3791,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -3657,7 +3811,356 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
+  __authenticationToken = nil;
+  __authenticationToken_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRING) {
+          NSString * fieldValue = [inProtocol readString];
+          [self setAuthenticationToken: fieldValue];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"revokeLongSession_args"];
+  if (__authenticationToken_isset) {
+    if (__authenticationToken != nil) {
+      [outProtocol writeFieldBeginWithName: @"authenticationToken" type: TType_STRING fieldID: 1];
+      [outProtocol writeString: __authenticationToken];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"revokeLongSession_args("];
+  [ms appendString: @"authenticationToken:"];
+  [ms appendFormat: @"\"%@\"", __authenticationToken];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface EDAMRevokeLongSession_result : NSObject <NSCoding> {
+  EDAMUserException * __userException;
+  EDAMSystemException * __systemException;
+
+  BOOL __userException_isset;
+  BOOL __systemException_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
+- (id) initWithUserException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (EDAMUserException *) userException;
+- (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
+
+#if !__has_feature(objc_arc)
+- (EDAMSystemException *) systemException;
+- (void) setSystemException: (EDAMSystemException *) systemException;
+#endif
+- (BOOL) systemExceptionIsSet;
+
+@end
+
+@implementation EDAMRevokeLongSession_result
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithUserException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
+{
+  self = [super init];
+  __userException = [userException retain_stub];
+  __userException_isset = YES;
+  __systemException = [systemException retain_stub];
+  __systemException_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"userException"])
+  {
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
+    __userException_isset = YES;
+  }
+  if ([decoder containsValueForKey: @"systemException"])
+  {
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
+    __systemException_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__userException_isset)
+  {
+    [encoder encodeObject: __userException forKey: @"userException"];
+  }
+  if (__systemException_isset)
+  {
+    [encoder encodeObject: __systemException forKey: @"systemException"];
+  }
+}
+
+- (void) dealloc
+{
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
+}
+
+- (EDAMUserException *) userException {
+  return [[__userException retain_stub] autorelease_stub];
+}
+
+- (void) setUserException: (EDAMUserException *) userException {
+  [userException retain_stub];
+  [__userException release_stub];
+  __userException = userException;
+  __userException_isset = YES;
+}
+
+- (BOOL) userExceptionIsSet {
+  return __userException_isset;
+}
+
+- (void) unsetUserException {
+  [__userException release_stub];
+  __userException = nil;
+  __userException_isset = NO;
+}
+
+- (EDAMSystemException *) systemException {
+  return [[__systemException retain_stub] autorelease_stub];
+}
+
+- (void) setSystemException: (EDAMSystemException *) systemException {
+  [systemException retain_stub];
+  [__systemException release_stub];
+  __systemException = systemException;
+  __systemException_isset = YES;
+}
+
+- (BOOL) systemExceptionIsSet {
+  return __systemException_isset;
+}
+
+- (void) unsetSystemException {
+  [__systemException release_stub];
+  __systemException = nil;
+  __systemException_isset = NO;
+}
+
+- (void) read: (id <TProtocol>) inProtocol
+{
+  NSString * fieldName;
+  int fieldType;
+  int fieldID;
+
+  [inProtocol readStructBeginReturningName: NULL];
+  while (true)
+  {
+    [inProtocol readFieldBeginReturningName: &fieldName type: &fieldType fieldID: &fieldID];
+    if (fieldType == TType_STOP) { 
+      break;
+    }
+    switch (fieldID)
+    {
+      case 1:
+        if (fieldType == TType_STRUCT) {
+          EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
+          [fieldValue read: inProtocol];
+          [self setUserException: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      case 2:
+        if (fieldType == TType_STRUCT) {
+          EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
+          [fieldValue read: inProtocol];
+          [self setSystemException: fieldValue];
+          [fieldValue release_stub];
+        } else { 
+          [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        }
+        break;
+      default:
+        [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
+        break;
+    }
+    [inProtocol readFieldEnd];
+  }
+  [inProtocol readStructEnd];
+}
+
+- (void) write: (id <TProtocol>) outProtocol {
+  [outProtocol writeStructBeginWithName: @"RevokeLongSession_result"];
+
+  if (__userException_isset) {
+    if (__userException != nil) {
+      [outProtocol writeFieldBeginWithName: @"userException" type: TType_STRUCT fieldID: 1];
+      [__userException write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  } else if (__systemException_isset) {
+    if (__systemException != nil) {
+      [outProtocol writeFieldBeginWithName: @"systemException" type: TType_STRUCT fieldID: 2];
+      [__systemException write: outProtocol];
+      [outProtocol writeFieldEnd];
+    }
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+}
+
+- (NSString *) description {
+  NSMutableString * ms = [NSMutableString stringWithString: @"RevokeLongSession_result("];
+  [ms appendString: @"userException:"];
+  [ms appendFormat: @"%@", __userException];
+  [ms appendString: @",systemException:"];
+  [ms appendFormat: @"%@", __systemException];
+  [ms appendString: @")"];
+  return [NSString stringWithString: ms];
+}
+
+@end
+
+@interface EDAMauthenticateToBusiness_args : NSObject <NSCoding> {
+  NSString * __authenticationToken;
+
+  BOOL __authenticationToken_isset;
+}
+
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
+- (id) initWithAuthenticationToken: (NSString *) authenticationToken;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (NSString *) authenticationToken;
+- (void) setAuthenticationToken: (NSString *) authenticationToken;
+#endif
+- (BOOL) authenticationTokenIsSet;
+
+@end
+
+@implementation EDAMauthenticateToBusiness_args
+
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
+- (id) initWithAuthenticationToken: (NSString *) authenticationToken
+{
+  self = [super init];
+  __authenticationToken = [authenticationToken retain_stub];
+  __authenticationToken_isset = YES;
+  return self;
+}
+
+- (id) initWithCoder: (NSCoder *) decoder
+{
+  self = [super init];
+  if ([decoder containsValueForKey: @"authenticationToken"])
+  {
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
+    __authenticationToken_isset = YES;
+  }
+  return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *) encoder
+{
+  if (__authenticationToken_isset)
+  {
+    [encoder encodeObject: __authenticationToken forKey: @"authenticationToken"];
+  }
+}
+
+- (void) dealloc
+{
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
+}
+
+- (NSString *) authenticationToken {
+  return [[__authenticationToken retain_stub] autorelease_stub];
+}
+
+- (void) setAuthenticationToken: (NSString *) authenticationToken {
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
+  __authenticationToken = authenticationToken;
+  __authenticationToken_isset = YES;
+}
+
+- (BOOL) authenticationTokenIsSet {
+  return __authenticationToken_isset;
+}
+
+- (void) unsetAuthenticationToken {
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -3727,43 +4230,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMAuthenticationResult *) success;
 - (void) setSuccess: (EDAMAuthenticationResult *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMAuthenticateToBusiness_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -3773,17 +4289,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -3807,19 +4323,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMAuthenticationResult *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMAuthenticationResult *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -3829,18 +4345,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -3850,18 +4366,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -3871,7 +4387,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -3896,7 +4412,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMAuthenticationResult *fieldValue = [[EDAMAuthenticationResult alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3906,7 +4422,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3916,7 +4432,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -3976,29 +4492,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __authenticationToken_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) authenticationToken;
 - (void) setAuthenticationToken: (NSString *) authenticationToken;
-
 #endif
-
 - (BOOL) authenticationTokenIsSet;
+
 @end
 
 @implementation EDAMrefreshAuthentication_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken
 {
   self = [super init];
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   return self;
 }
@@ -4008,7 +4533,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   return self;
@@ -4024,17 +4549,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -4044,7 +4569,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -4114,43 +4639,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMAuthenticationResult * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMAuthenticationResult *) success;
 - (void) setSuccess: (EDAMAuthenticationResult *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMRefreshAuthentication_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMAuthenticationResult *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -4160,17 +4698,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -4194,19 +4732,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMAuthenticationResult *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMAuthenticationResult *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -4216,18 +4754,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -4237,18 +4775,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -4258,7 +4796,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -4283,7 +4821,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMAuthenticationResult *fieldValue = [[EDAMAuthenticationResult alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4293,7 +4831,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4303,7 +4841,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4363,29 +4901,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __authenticationToken_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) authenticationToken;
 - (void) setAuthenticationToken: (NSString *) authenticationToken;
-
 #endif
-
 - (BOOL) authenticationTokenIsSet;
+
 @end
 
 @implementation EDAMgetUser_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken
 {
   self = [super init];
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   return self;
 }
@@ -4395,7 +4942,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   return self;
@@ -4411,17 +4958,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -4431,7 +4978,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -4501,43 +5048,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMUser * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMUser *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMUser * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMUser *) success;
 - (void) setSuccess: (EDAMUser *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMGetUser_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMUser *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -4547,17 +5107,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -4581,19 +5141,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMUser *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMUser *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -4603,18 +5163,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -4624,18 +5184,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -4645,7 +5205,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -4670,7 +5230,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUser *fieldValue = [[EDAMUser alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4680,7 +5240,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4690,7 +5250,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -4750,29 +5310,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __username_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=username, setter=setUsername:) NSString * username;
+#endif
+
+- (id) init;
 - (id) initWithUsername: (NSString *) username;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=username, setter=setUsername:) NSString * username;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) username;
 - (void) setUsername: (NSString *) username;
-
 #endif
-
 - (BOOL) usernameIsSet;
+
 @end
 
 @implementation EDAMgetPublicUserInfo_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithUsername: (NSString *) username
 {
   self = [super init];
-  __username = [username retain];
+  __username = [username retain_stub];
   __username_isset = YES;
   return self;
 }
@@ -4782,7 +5351,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"username"])
   {
-    __username = [[decoder decodeObjectForKey: @"username"] retain];
+    __username = [[decoder decodeObjectForKey: @"username"] retain_stub];
     __username_isset = YES;
   }
   return self;
@@ -4798,17 +5367,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__username release];
-  [super dealloc];
+  [__username release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) username {
-  return [[__username retain] autorelease];
+  return [[__username retain_stub] autorelease_stub];
 }
 
 - (void) setUsername: (NSString *) username {
-  [username retain];
-  [__username release];
+  [username retain_stub];
+  [__username release_stub];
   __username = username;
   __username_isset = YES;
 }
@@ -4818,7 +5387,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUsername {
-  [__username release];
+  [__username release_stub];
   __username = nil;
   __username_isset = NO;
 }
@@ -4890,50 +5459,65 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __userException_isset;
 }
 
-- (id) initWithSuccess: (EDAMPublicUserInfo *) success notFoundException: (EDAMNotFoundException *) notFoundException systemException: (EDAMSystemException *) systemException userException: (EDAMUserException *) userException;
-
-- (void) read: (id <TProtocol>) inProtocol;
-- (void) write: (id <TProtocol>) outProtocol;
-
 #if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
 @property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMPublicUserInfo * success;
 @property (nonatomic, retain, getter=notFoundException, setter=setNotFoundException:) EDAMNotFoundException * notFoundException;
 @property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
 @property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-#else
-
-- (EDAMPublicUserInfo *) success;
-- (void) setSuccess: (EDAMPublicUserInfo *) success;
-
-- (EDAMNotFoundException *) notFoundException;
-- (void) setNotFoundException: (EDAMNotFoundException *) notFoundException;
-
-- (EDAMSystemException *) systemException;
-- (void) setSystemException: (EDAMSystemException *) systemException;
-
-- (EDAMUserException *) userException;
-- (void) setUserException: (EDAMUserException *) userException;
-
 #endif
 
+- (id) init;
+- (id) initWithSuccess: (EDAMPublicUserInfo *) success notFoundException: (EDAMNotFoundException *) notFoundException systemException: (EDAMSystemException *) systemException userException: (EDAMUserException *) userException;
+
+- (void) read: (id <TProtocol>) inProtocol;
+- (void) write: (id <TProtocol>) outProtocol;
+
+#if !__has_feature(objc_arc)
+- (EDAMPublicUserInfo *) success;
+- (void) setSuccess: (EDAMPublicUserInfo *) success;
+#endif
 - (BOOL) successIsSet;
+
+#if !__has_feature(objc_arc)
+- (EDAMNotFoundException *) notFoundException;
+- (void) setNotFoundException: (EDAMNotFoundException *) notFoundException;
+#endif
 - (BOOL) notFoundExceptionIsSet;
+
+#if !__has_feature(objc_arc)
+- (EDAMSystemException *) systemException;
+- (void) setSystemException: (EDAMSystemException *) systemException;
+#endif
 - (BOOL) systemExceptionIsSet;
+
+#if !__has_feature(objc_arc)
+- (EDAMUserException *) userException;
+- (void) setUserException: (EDAMUserException *) userException;
+#endif
 - (BOOL) userExceptionIsSet;
+
 @end
 
 @implementation EDAMGetPublicUserInfo_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMPublicUserInfo *) success notFoundException: (EDAMNotFoundException *) notFoundException systemException: (EDAMSystemException *) systemException userException: (EDAMUserException *) userException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __notFoundException = [notFoundException retain];
+  __notFoundException = [notFoundException retain_stub];
   __notFoundException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
   return self;
 }
@@ -4943,22 +5527,22 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"notFoundException"])
   {
-    __notFoundException = [[decoder decodeObjectForKey: @"notFoundException"] retain];
+    __notFoundException = [[decoder decodeObjectForKey: @"notFoundException"] retain_stub];
     __notFoundException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   return self;
@@ -4986,20 +5570,20 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__notFoundException release];
-  [__systemException release];
-  [__userException release];
-  [super dealloc];
+  [__success release_stub];
+  [__notFoundException release_stub];
+  [__systemException release_stub];
+  [__userException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMPublicUserInfo *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMPublicUserInfo *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -5009,18 +5593,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMNotFoundException *) notFoundException {
-  return [[__notFoundException retain] autorelease];
+  return [[__notFoundException retain_stub] autorelease_stub];
 }
 
 - (void) setNotFoundException: (EDAMNotFoundException *) notFoundException {
-  [notFoundException retain];
-  [__notFoundException release];
+  [notFoundException retain_stub];
+  [__notFoundException release_stub];
   __notFoundException = notFoundException;
   __notFoundException_isset = YES;
 }
@@ -5030,18 +5614,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetNotFoundException {
-  [__notFoundException release];
+  [__notFoundException release_stub];
   __notFoundException = nil;
   __notFoundException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -5051,18 +5635,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -5072,7 +5656,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
@@ -5097,7 +5681,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMPublicUserInfo *fieldValue = [[EDAMPublicUserInfo alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5107,7 +5691,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMNotFoundException *fieldValue = [[EDAMNotFoundException alloc] init];
           [fieldValue read: inProtocol];
           [self setNotFoundException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5117,7 +5701,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5127,7 +5711,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5195,29 +5779,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __authenticationToken_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) authenticationToken;
 - (void) setAuthenticationToken: (NSString *) authenticationToken;
-
 #endif
-
 - (BOOL) authenticationTokenIsSet;
+
 @end
 
 @implementation EDAMgetPremiumInfo_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken
 {
   self = [super init];
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   return self;
 }
@@ -5227,7 +5820,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   return self;
@@ -5243,17 +5836,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -5263,7 +5856,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -5333,43 +5926,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMPremiumInfo * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (EDAMPremiumInfo *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) EDAMPremiumInfo * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (EDAMPremiumInfo *) success;
 - (void) setSuccess: (EDAMPremiumInfo *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMGetPremiumInfo_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (EDAMPremiumInfo *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -5379,17 +5985,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -5413,19 +6019,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (EDAMPremiumInfo *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (EDAMPremiumInfo *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -5435,18 +6041,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -5456,18 +6062,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -5477,7 +6083,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -5502,7 +6108,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMPremiumInfo *fieldValue = [[EDAMPremiumInfo alloc] init];
           [fieldValue read: inProtocol];
           [self setSuccess: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5512,7 +6118,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5522,7 +6128,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5582,29 +6188,38 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __authenticationToken_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
+#endif
+
+- (id) init;
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=authenticationToken, setter=setAuthenticationToken:) NSString * authenticationToken;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) authenticationToken;
 - (void) setAuthenticationToken: (NSString *) authenticationToken;
-
 #endif
-
 - (BOOL) authenticationTokenIsSet;
+
 @end
 
 @implementation EDAMgetNoteStoreUrl_args
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithAuthenticationToken: (NSString *) authenticationToken
 {
   self = [super init];
-  __authenticationToken = [authenticationToken retain];
+  __authenticationToken = [authenticationToken retain_stub];
   __authenticationToken_isset = YES;
   return self;
 }
@@ -5614,7 +6229,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"authenticationToken"])
   {
-    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain];
+    __authenticationToken = [[decoder decodeObjectForKey: @"authenticationToken"] retain_stub];
     __authenticationToken_isset = YES;
   }
   return self;
@@ -5630,17 +6245,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__authenticationToken release];
-  [super dealloc];
+  [__authenticationToken release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) authenticationToken {
-  return [[__authenticationToken retain] autorelease];
+  return [[__authenticationToken retain_stub] autorelease_stub];
 }
 
 - (void) setAuthenticationToken: (NSString *) authenticationToken {
-  [authenticationToken retain];
-  [__authenticationToken release];
+  [authenticationToken retain_stub];
+  [__authenticationToken release_stub];
   __authenticationToken = authenticationToken;
   __authenticationToken_isset = YES;
 }
@@ -5650,7 +6265,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetAuthenticationToken {
-  [__authenticationToken release];
+  [__authenticationToken release_stub];
   __authenticationToken = nil;
   __authenticationToken_isset = NO;
 }
@@ -5720,43 +6335,56 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   BOOL __systemException_isset;
 }
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+@property (nonatomic, retain, getter=success, setter=setSuccess:) NSString * success;
+@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
+@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
+#endif
+
+- (id) init;
 - (id) initWithSuccess: (NSString *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException;
 
 - (void) read: (id <TProtocol>) inProtocol;
 - (void) write: (id <TProtocol>) outProtocol;
 
-#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
-@property (nonatomic, retain, getter=success, setter=setSuccess:) NSString * success;
-@property (nonatomic, retain, getter=userException, setter=setUserException:) EDAMUserException * userException;
-@property (nonatomic, retain, getter=systemException, setter=setSystemException:) EDAMSystemException * systemException;
-#else
-
+#if !__has_feature(objc_arc)
 - (NSString *) success;
 - (void) setSuccess: (NSString *) success;
+#endif
+- (BOOL) successIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMUserException *) userException;
 - (void) setUserException: (EDAMUserException *) userException;
+#endif
+- (BOOL) userExceptionIsSet;
 
+#if !__has_feature(objc_arc)
 - (EDAMSystemException *) systemException;
 - (void) setSystemException: (EDAMSystemException *) systemException;
-
 #endif
-
-- (BOOL) successIsSet;
-- (BOOL) userExceptionIsSet;
 - (BOOL) systemExceptionIsSet;
+
 @end
 
 @implementation EDAMGetNoteStoreUrl_result
 
+- (id) init
+{
+  self = [super init];
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5)
+#endif
+  return self;
+}
+
 - (id) initWithSuccess: (NSString *) success userException: (EDAMUserException *) userException systemException: (EDAMSystemException *) systemException
 {
   self = [super init];
-  __success = [success retain];
+  __success = [success retain_stub];
   __success_isset = YES;
-  __userException = [userException retain];
+  __userException = [userException retain_stub];
   __userException_isset = YES;
-  __systemException = [systemException retain];
+  __systemException = [systemException retain_stub];
   __systemException_isset = YES;
   return self;
 }
@@ -5766,17 +6394,17 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   self = [super init];
   if ([decoder containsValueForKey: @"success"])
   {
-    __success = [[decoder decodeObjectForKey: @"success"] retain];
+    __success = [[decoder decodeObjectForKey: @"success"] retain_stub];
     __success_isset = YES;
   }
   if ([decoder containsValueForKey: @"userException"])
   {
-    __userException = [[decoder decodeObjectForKey: @"userException"] retain];
+    __userException = [[decoder decodeObjectForKey: @"userException"] retain_stub];
     __userException_isset = YES;
   }
   if ([decoder containsValueForKey: @"systemException"])
   {
-    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain];
+    __systemException = [[decoder decodeObjectForKey: @"systemException"] retain_stub];
     __systemException_isset = YES;
   }
   return self;
@@ -5800,19 +6428,19 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (void) dealloc
 {
-  [__success release];
-  [__userException release];
-  [__systemException release];
-  [super dealloc];
+  [__success release_stub];
+  [__userException release_stub];
+  [__systemException release_stub];
+  [super dealloc_stub];
 }
 
 - (NSString *) success {
-  return [[__success retain] autorelease];
+  return [[__success retain_stub] autorelease_stub];
 }
 
 - (void) setSuccess: (NSString *) success {
-  [success retain];
-  [__success release];
+  [success retain_stub];
+  [__success release_stub];
   __success = success;
   __success_isset = YES;
 }
@@ -5822,18 +6450,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSuccess {
-  [__success release];
+  [__success release_stub];
   __success = nil;
   __success_isset = NO;
 }
 
 - (EDAMUserException *) userException {
-  return [[__userException retain] autorelease];
+  return [[__userException retain_stub] autorelease_stub];
 }
 
 - (void) setUserException: (EDAMUserException *) userException {
-  [userException retain];
-  [__userException release];
+  [userException retain_stub];
+  [__userException release_stub];
   __userException = userException;
   __userException_isset = YES;
 }
@@ -5843,18 +6471,18 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetUserException {
-  [__userException release];
+  [__userException release_stub];
   __userException = nil;
   __userException_isset = NO;
 }
 
 - (EDAMSystemException *) systemException {
-  return [[__systemException retain] autorelease];
+  return [[__systemException retain_stub] autorelease_stub];
 }
 
 - (void) setSystemException: (EDAMSystemException *) systemException {
-  [systemException retain];
-  [__systemException release];
+  [systemException retain_stub];
+  [__systemException release_stub];
   __systemException = systemException;
   __systemException_isset = YES;
 }
@@ -5864,7 +6492,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 }
 
 - (void) unsetSystemException {
-  [__systemException release];
+  [__systemException release_stub];
   __systemException = nil;
   __systemException_isset = NO;
 }
@@ -5897,7 +6525,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMUserException *fieldValue = [[EDAMUserException alloc] init];
           [fieldValue read: inProtocol];
           [self setUserException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5907,7 +6535,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
           EDAMSystemException *fieldValue = [[EDAMSystemException alloc] init];
           [fieldValue read: inProtocol];
           [self setSystemException: fieldValue];
-          [fieldValue release];
+          [fieldValue release_stub];
         } else { 
           [TProtocolUtil skipType: fieldType onProtocol: inProtocol];
         }
@@ -5969,20 +6597,20 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (id) initWithInProtocol: (id <TProtocol>) anInProtocol outProtocol: (id <TProtocol>) anOutProtocol
 {
-  [super init];
-  inProtocol = [anInProtocol retain];
-  outProtocol = [anOutProtocol retain];
+  self = [super init];
+  inProtocol = [anInProtocol retain_stub];
+  outProtocol = [anOutProtocol retain_stub];
   return self;
 }
 
 - (void) dealloc
 {
-  [inProtocol release];
-  [outProtocol release];
-  [super dealloc];
+  [inProtocol release_stub];
+  [outProtocol release_stub];
+  [super dealloc_stub];
 }
 
-- (void) send_checkVersion: (NSString *) clientName : (int16_t) edamVersionMajor : (int16_t) edamVersionMinor
+- (void) send_checkVersion: (NSString *) clientName edamVersionMajor: (int16_t) edamVersionMajor edamVersionMinor: (int16_t) edamVersionMinor
 {
   [outProtocol writeMessageBeginWithName: @"checkVersion" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"checkVersion_args"];
@@ -6012,7 +6640,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMCheckVersion_result * result = [[[EDAMCheckVersion_result alloc] init] autorelease];
+  EDAMCheckVersion_result * result = [[[EDAMCheckVersion_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6022,9 +6650,9 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
                                            reason: @"checkVersion failed: unknown result"];
 }
 
-- (BOOL) checkVersion: (NSString *) clientName : (int16_t) edamVersionMajor : (int16_t) edamVersionMinor
+- (BOOL) checkVersion: (NSString *) clientName edamVersionMajor: (int16_t) edamVersionMajor edamVersionMinor: (int16_t) edamVersionMinor
 {
-  [self send_checkVersion: clientName : edamVersionMajor : edamVersionMinor];
+  [self send_checkVersion : clientName edamVersionMajor: edamVersionMajor edamVersionMinor: edamVersionMinor];
   return [self recv_checkVersion];
 }
 
@@ -6052,7 +6680,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMGetBootstrapInfo_result * result = [[[EDAMGetBootstrapInfo_result alloc] init] autorelease];
+  EDAMGetBootstrapInfo_result * result = [[[EDAMGetBootstrapInfo_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6064,11 +6692,11 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMBootstrapInfo *) getBootstrapInfo: (NSString *) locale
 {
-  [self send_getBootstrapInfo: locale];
+  [self send_getBootstrapInfo : locale];
   return [self recv_getBootstrapInfo];
 }
 
-- (void) send_authenticate: (NSString *) username : (NSString *) password : (NSString *) consumerKey : (NSString *) consumerSecret
+- (void) send_authenticate: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret
 {
   [outProtocol writeMessageBeginWithName: @"authenticate" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"authenticate_args"];
@@ -6107,7 +6735,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMAuthenticate_result * result = [[[EDAMAuthenticate_result alloc] init] autorelease];
+  EDAMAuthenticate_result * result = [[[EDAMAuthenticate_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6123,13 +6751,13 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
                                            reason: @"authenticate failed: unknown result"];
 }
 
-- (EDAMAuthenticationResult *) authenticate: (NSString *) username : (NSString *) password : (NSString *) consumerKey : (NSString *) consumerSecret
+- (EDAMAuthenticationResult *) authenticate: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret
 {
-  [self send_authenticate: username : password : consumerKey : consumerSecret];
+  [self send_authenticate : username password: password consumerKey: consumerKey consumerSecret: consumerSecret];
   return [self recv_authenticate];
 }
 
-- (void) send_authenticateLongSession: (NSString *) username : (NSString *) password : (NSString *) consumerKey : (NSString *) consumerSecret : (NSString *) deviceIdentifier : (NSString *) deviceDescription
+- (void) send_authenticateLongSession: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret deviceIdentifier: (NSString *) deviceIdentifier deviceDescription: (NSString *) deviceDescription
 {
   [outProtocol writeMessageBeginWithName: @"authenticateLongSession" type: TMessageType_CALL sequenceID: 0];
   [outProtocol writeStructBeginWithName: @"authenticateLongSession_args"];
@@ -6178,7 +6806,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMAuthenticateLongSession_result * result = [[[EDAMAuthenticateLongSession_result alloc] init] autorelease];
+  EDAMAuthenticateLongSession_result * result = [[[EDAMAuthenticateLongSession_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6194,10 +6822,52 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
                                            reason: @"authenticateLongSession failed: unknown result"];
 }
 
-- (EDAMAuthenticationResult *) authenticateLongSession: (NSString *) username : (NSString *) password : (NSString *) consumerKey : (NSString *) consumerSecret : (NSString *) deviceIdentifier : (NSString *) deviceDescription
+- (EDAMAuthenticationResult *) authenticateLongSession: (NSString *) username password: (NSString *) password consumerKey: (NSString *) consumerKey consumerSecret: (NSString *) consumerSecret deviceIdentifier: (NSString *) deviceIdentifier deviceDescription: (NSString *) deviceDescription
 {
-  [self send_authenticateLongSession: username : password : consumerKey : consumerSecret : deviceIdentifier : deviceDescription];
+  [self send_authenticateLongSession : username password: password consumerKey: consumerKey consumerSecret: consumerSecret deviceIdentifier: deviceIdentifier deviceDescription: deviceDescription];
   return [self recv_authenticateLongSession];
+}
+
+- (void) send_revokeLongSession: (NSString *) authenticationToken
+{
+  [outProtocol writeMessageBeginWithName: @"revokeLongSession" type: TMessageType_CALL sequenceID: 0];
+  [outProtocol writeStructBeginWithName: @"revokeLongSession_args"];
+  if (authenticationToken != nil)  {
+    [outProtocol writeFieldBeginWithName: @"authenticationToken" type: TType_STRING fieldID: 1];
+    [outProtocol writeString: authenticationToken];
+    [outProtocol writeFieldEnd];
+  }
+  [outProtocol writeFieldStop];
+  [outProtocol writeStructEnd];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+}
+
+- (void) recv_revokeLongSession
+{
+  int msgType = 0;
+  [inProtocol readMessageBeginReturningName: nil type: &msgType sequenceID: NULL];
+  if (msgType == TMessageType_EXCEPTION) {
+    TApplicationException * x = [TApplicationException read: inProtocol];
+    [inProtocol readMessageEnd];
+    @throw x;
+  }
+  EDAMRevokeLongSession_result * result = [[[EDAMRevokeLongSession_result alloc] init] autorelease_stub];
+  [result read: inProtocol];
+  [inProtocol readMessageEnd];
+  if ([result userExceptionIsSet]) {
+    @throw [result userException];
+  }
+  if ([result systemExceptionIsSet]) {
+    @throw [result systemException];
+  }
+  return;
+}
+
+- (void) revokeLongSession: (NSString *) authenticationToken
+{
+  [self send_revokeLongSession : authenticationToken];
+  [self recv_revokeLongSession];
 }
 
 - (void) send_authenticateToBusiness: (NSString *) authenticationToken
@@ -6224,7 +6894,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMAuthenticateToBusiness_result * result = [[[EDAMAuthenticateToBusiness_result alloc] init] autorelease];
+  EDAMAuthenticateToBusiness_result * result = [[[EDAMAuthenticateToBusiness_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6242,7 +6912,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMAuthenticationResult *) authenticateToBusiness: (NSString *) authenticationToken
 {
-  [self send_authenticateToBusiness: authenticationToken];
+  [self send_authenticateToBusiness : authenticationToken];
   return [self recv_authenticateToBusiness];
 }
 
@@ -6270,7 +6940,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMRefreshAuthentication_result * result = [[[EDAMRefreshAuthentication_result alloc] init] autorelease];
+  EDAMRefreshAuthentication_result * result = [[[EDAMRefreshAuthentication_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6288,7 +6958,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMAuthenticationResult *) refreshAuthentication: (NSString *) authenticationToken
 {
-  [self send_refreshAuthentication: authenticationToken];
+  [self send_refreshAuthentication : authenticationToken];
   return [self recv_refreshAuthentication];
 }
 
@@ -6316,7 +6986,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMGetUser_result * result = [[[EDAMGetUser_result alloc] init] autorelease];
+  EDAMGetUser_result * result = [[[EDAMGetUser_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6334,7 +7004,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMUser *) getUser: (NSString *) authenticationToken
 {
-  [self send_getUser: authenticationToken];
+  [self send_getUser : authenticationToken];
   return [self recv_getUser];
 }
 
@@ -6362,7 +7032,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMGetPublicUserInfo_result * result = [[[EDAMGetPublicUserInfo_result alloc] init] autorelease];
+  EDAMGetPublicUserInfo_result * result = [[[EDAMGetPublicUserInfo_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6383,7 +7053,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMPublicUserInfo *) getPublicUserInfo: (NSString *) username
 {
-  [self send_getPublicUserInfo: username];
+  [self send_getPublicUserInfo : username];
   return [self recv_getPublicUserInfo];
 }
 
@@ -6411,7 +7081,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMGetPremiumInfo_result * result = [[[EDAMGetPremiumInfo_result alloc] init] autorelease];
+  EDAMGetPremiumInfo_result * result = [[[EDAMGetPremiumInfo_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6429,7 +7099,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (EDAMPremiumInfo *) getPremiumInfo: (NSString *) authenticationToken
 {
-  [self send_getPremiumInfo: authenticationToken];
+  [self send_getPremiumInfo : authenticationToken];
   return [self recv_getPremiumInfo];
 }
 
@@ -6457,7 +7127,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [inProtocol readMessageEnd];
     @throw x;
   }
-  EDAMGetNoteStoreUrl_result * result = [[[EDAMGetNoteStoreUrl_result alloc] init] autorelease];
+  EDAMGetNoteStoreUrl_result * result = [[[EDAMGetNoteStoreUrl_result alloc] init] autorelease_stub];
   [result read: inProtocol];
   [inProtocol readMessageEnd];
   if ([result successIsSet]) {
@@ -6475,7 +7145,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (NSString *) getNoteStoreUrl: (NSString *) authenticationToken
 {
-  [self send_getNoteStoreUrl: authenticationToken];
+  [self send_getNoteStoreUrl : authenticationToken];
   return [self recv_getNoteStoreUrl];
 }
 
@@ -6489,8 +7159,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   if (!self) {
     return nil;
   }
-  mService = [service retain];
-  mMethodMap = [[NSMutableDictionary dictionary] retain];
+  mService = [service retain_stub];
+  mMethodMap = [[NSMutableDictionary dictionary] retain_stub];
   {
     SEL s = @selector(process_checkVersion_withSequenceID:inProtocol:outProtocol:);
     NSMethodSignature * sig = [self methodSignatureForSelector: s];
@@ -6522,6 +7192,14 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
     [invocation setSelector: s];
     [invocation retainArguments];
     [mMethodMap setValue: invocation forKey: @"authenticateLongSession"];
+  }
+  {
+    SEL s = @selector(process_revokeLongSession_withSequenceID:inProtocol:outProtocol:);
+    NSMethodSignature * sig = [self methodSignatureForSelector: s];
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
+    [invocation setSelector: s];
+    [invocation retainArguments];
+    [mMethodMap setValue: invocation forKey: @"revokeLongSession"];
   }
   {
     SEL s = @selector(process_authenticateToBusiness_withSequenceID:inProtocol:outProtocol:);
@@ -6576,7 +7254,7 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
 
 - (id<EDAMUserStore>) service
 {
-  return [[mService retain] autorelease];
+  return [[mService retain_stub] autorelease_stub];
 }
 
 - (BOOL) processOnInputProtocol: (id <TProtocol>) inProtocol
@@ -6618,15 +7296,15 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   EDAMCheckVersion_result * result = [[EDAMCheckVersion_result alloc] init];
-  [result setSuccess: [mService checkVersion: [args clientName]: [args edamVersionMajor]: [args edamVersionMinor]]];
+  [result setSuccess: [mService checkVersion: [args clientName] edamVersionMajor: [args edamVersionMajor] edamVersionMinor: [args edamVersionMinor]]];
   [outProtocol writeMessageBeginWithName: @"checkVersion"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_getBootstrapInfo_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6642,8 +7320,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_authenticate_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6652,15 +7330,15 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   EDAMAuthenticate_result * result = [[EDAMAuthenticate_result alloc] init];
-  [result setSuccess: [mService authenticate: [args username]: [args password]: [args consumerKey]: [args consumerSecret]]];
+  [result setSuccess: [mService authenticate: [args username] password: [args password] consumerKey: [args consumerKey] consumerSecret: [args consumerSecret]]];
   [outProtocol writeMessageBeginWithName: @"authenticate"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_authenticateLongSession_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6669,15 +7347,32 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [args read: inProtocol];
   [inProtocol readMessageEnd];
   EDAMAuthenticateLongSession_result * result = [[EDAMAuthenticateLongSession_result alloc] init];
-  [result setSuccess: [mService authenticateLongSession: [args username]: [args password]: [args consumerKey]: [args consumerSecret]: [args deviceIdentifier]: [args deviceDescription]]];
+  [result setSuccess: [mService authenticateLongSession: [args username] password: [args password] consumerKey: [args consumerKey] consumerSecret: [args consumerSecret] deviceIdentifier: [args deviceIdentifier] deviceDescription: [args deviceDescription]]];
   [outProtocol writeMessageBeginWithName: @"authenticateLongSession"
                                     type: TMessageType_REPLY
                               sequenceID: seqID];
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
+}
+
+- (void) process_revokeLongSession_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
+{
+  EDAMrevokeLongSession_args * args = [[EDAMrevokeLongSession_args alloc] init];
+  [args read: inProtocol];
+  [inProtocol readMessageEnd];
+  EDAMRevokeLongSession_result * result = [[EDAMRevokeLongSession_result alloc] init];
+  [mService revokeLongSession: [args authenticationToken]];
+  [outProtocol writeMessageBeginWithName: @"revokeLongSession"
+                                    type: TMessageType_REPLY
+                              sequenceID: seqID];
+  [result write: outProtocol];
+  [outProtocol writeMessageEnd];
+  [[outProtocol transport] flush];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_authenticateToBusiness_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6693,8 +7388,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_refreshAuthentication_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6710,8 +7405,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_getUser_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6727,8 +7422,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_getPublicUserInfo_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6744,8 +7439,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_getPremiumInfo_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6761,8 +7456,8 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) process_getNoteStoreUrl_withSequenceID: (int32_t) seqID inProtocol: (id<TProtocol>) inProtocol outProtocol: (id<TProtocol>) outProtocol
@@ -6778,15 +7473,15 @@ static int16_t EDAMEDAM_VERSION_MINOR = 23;
   [result write: outProtocol];
   [outProtocol writeMessageEnd];
   [[outProtocol transport] flush];
-  [result release];
-  [args release];
+  [result release_stub];
+  [args release_stub];
 }
 
 - (void) dealloc
 {
-  [mService release];
-  [mMethodMap release];
-  [super dealloc];
+  [mService release_stub];
+  [mMethodMap release_stub];
+  [super dealloc_stub];
 }
 
 @end
