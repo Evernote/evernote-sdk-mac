@@ -1,4 +1,9 @@
-= 1.2.1 / 2013-06-12
+<<<<<<< HEAD
+= 1.2.0
+
+* Reminders API
+=======
+= 1.2.1
 
 * Added RelatedQuery.referenceUri
 * New system exceptions thrown by getPublicNotebook and authenticateToSharedNote when the target content has been taken down.
@@ -6,10 +11,7 @@
 * Added optional authenticationToken parameter to NoteStore.authenticateToSharedNote, only needed for YXBJ
 * Added creatorId and lastEditorId fields to NoteAttributes
 * Added two factor authentication functionality to UserStore.authenticate and authenticateLongSession, added UserStore.completeTwoFactorAuthentication.
-
-= 1.2.0
-
-* Reminders API
+>>>>>>> updating to API 1.25
 * Add more testing for correct developer setup
 * Cleanup the repository
 * License clarifications
