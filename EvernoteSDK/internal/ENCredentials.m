@@ -28,7 +28,9 @@
  */
 
 #import "ENCredentials.h"
-#import "SSKeychain.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <Security/Security.h>
+#include <CoreServices/CoreServices.h>
 
 @interface ENCredentials()
 
@@ -62,30 +64,89 @@ authenticationToken:(NSString *)authenticationToken
 - (BOOL)saveToKeychain
 {
     // auth token gets saved to the keychain
-    NSError *error;
-    BOOL success = [SSKeychain setPassword:_authenticationToken 
-                                forService:self.host
-                                   account:self.edamUserId 
-                                     error:&error];
-    if (!success) {
-        NSLog(@"Error saving to keychain: %@ %ld", error, (long)error.code);
+    OSStatus status;
+    
+    //needed items to save token to keychain
+    const char * service=[self.host UTF8String];
+    const char * account=[self.edamUserId UTF8String];
+    void * password=(void *)[_authenticationToken UTF8String];
+    UInt32 serviceLen=(UInt32)strlen(service);
+    UInt32 accountLen=(UInt32)strlen(account);
+    UInt32 passwordLen=(UInt32)strlen(password);
+    
+    //save the token
+    status=SecKeychainAddGenericPassword(NULL, serviceLen, service, accountLen,
+                                         account, passwordLen, password, NULL);
+    
+    if (status!=noErr) {
+        CFStringRef error=SecCopyErrorMessageString(status, NULL);
+        NSLog(@"Error saving to keychain: %@ %i",error, status);
+        CFRelease(error);
         return NO;
     } 
     return YES;
+    
 }
 
 - (void)deleteFromKeychain
 {
-    [SSKeychain deletePasswordForService:self.host account:self.edamUserId];
+    OSStatus status;
+    
+    //needed for find function to find the item to delete
+    const char * service=[self.host UTF8String];
+    const char * account=[self.edamUserId UTF8String];
+    UInt32 serviceLen=(UInt32)strlen(service);
+    UInt32 accountLen=(UInt32)strlen(account);
+
+    //will be populated by SecKeychainFindGenericPassword function call
+    UInt32 passwordLen;
+    void * password=nil;
+    SecKeychainItemRef itemRef=nil;
+    
+    //find the item ref so we can delete it.
+    status=SecKeychainFindGenericPassword(NULL, serviceLen, service, accountLen,
+                                          account, &passwordLen, &password, &itemRef);
+    
+    if (status!=noErr) {
+        return; //We can't find the item, so we can't delete the item. Nothing more to do here
+    }
+    else{
+        SecKeychainItemFreeContent(NULL, password); //we don't need the password here, so we are deleting it.
+    }
+    
+    //delete the item
+    SecKeychainItemDelete(itemRef);
+    CFRelease(itemRef); //delete the item ref now that we are done with it.
 }
 
 - (NSString *)authenticationToken
 {
-    NSError *error;
-    NSString *token = [SSKeychain passwordForService:self.host account:self.edamUserId error:&error];
-    if (!token) {
-        NSLog(@"Error getting password from keychain: %@", error);
+    OSStatus status;
+    const char * service=[self.host UTF8String];
+    const char * account=[self.edamUserId UTF8String];
+    UInt32 serviceLen=(UInt32)strlen(service);
+    UInt32 accountLen=(UInt32)strlen(account);
+    
+    //Will be populated by SecKeychainFindGenericPassword function call
+    void * password=nil;
+    UInt32 passwordLen;
+    SecKeychainItemRef itemRef=nil;
+    
+    status=SecKeychainFindGenericPassword(NULL, serviceLen, service, accountLen,
+                                          account, &passwordLen, &password, &itemRef);
+    
+    if (status!=noErr || password==nil) {
+        CFStringRef error=SecCopyErrorMessageString(status, NULL);
+        NSLog(@"Error getting password from keychain: %@ %i",error, status);
+        CFRelease(error);
+        return nil;
     }
+    
+    NSString *token=[NSString stringWithUTF8String:password];
+    
+    if(password!=nil)
+        SecKeychainItemFreeContent(NULL, password);
+    CFRelease(itemRef);
     return token;
 }
 

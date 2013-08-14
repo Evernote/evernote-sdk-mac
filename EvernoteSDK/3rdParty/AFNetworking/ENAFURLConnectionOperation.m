@@ -214,7 +214,7 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
     if (!block) {
         [super setCompletionBlock:nil];
     } else {
-        __weak __typeof(&*self)weakSelf = self;
+        __unsafe_unretained __typeof(&*self)weakSelf = self;
         [super setCompletionBlock:^ {
             block();
             [weakSelf setCompletionBlock:nil];

@@ -13,10 +13,10 @@
 
 @interface ENOAuthWindowController : NSWindowController
 
-@property (weak) IBOutlet NSProgressIndicator *activityIndicator;
-@property (weak) IBOutlet WebView *webView;
+@property (unsafe_unretained) IBOutlet NSProgressIndicator *activityIndicator;
+@property (unsafe_unretained) IBOutlet WebView *webView;
 
-@property (nonatomic, weak) id<ENOAuthDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<ENOAuthDelegate> delegate;
 
 - (id)initWithAuthorizationURL:(NSURL *)authorizationURL
            oauthCallbackPrefix:(NSString *)oauthCallbackPrefix

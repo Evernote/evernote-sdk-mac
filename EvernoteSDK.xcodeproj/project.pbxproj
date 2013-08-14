@@ -104,10 +104,7 @@
 		0BDBBC5A1550A1E7003E6681 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF0CF84152E2601003D6115 /* Security.framework */; };
 		0BDBBC671550A3A4003E6681 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDBBC5E1550A3A4003E6681 /* libOCMock.a */; };
 		0BDBBC681550A3A4003E6681 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0BDBBC5F1550A3A4003E6681 /* LICENSE */; };
-		0BF0CF81152E25E1003D6115 /* SSKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF0CF7F152E25E1003D6115 /* SSKeychain.h */; };
-		0BF0CF82152E25E1003D6115 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF0CF80152E25E1003D6115 /* SSKeychain.m */; };
 		0BF0CF85152E2601003D6115 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF0CF84152E2601003D6115 /* Security.framework */; };
-		0BF0CF8A152E31BA003D6115 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF0CF80152E25E1003D6115 /* SSKeychain.m */; };
 		0BF0CF8C152E31CC003D6115 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF0CF84152E2601003D6115 /* Security.framework */; };
 		433000C5170C48F100CFB953 /* EDAMNoteStoreClient+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = A96FE4D616A0958600F1AD8C /* EDAMNoteStoreClient+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		433000C6170C48F100CFB953 /* ENConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = A9FDF716165C5C7100DC7E4B /* ENConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -197,7 +194,6 @@
 		4374189C170ADB9300D2BE51 /* ENGCOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F271525015500DB20A3 /* ENGCOAuth.m */; };
 		4374189D170ADB9300D2BE51 /* NSData+ENBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F291525015500DB20A3 /* NSData+ENBase64.m */; };
 		4374189E170ADB9300D2BE51 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F2D1525015500DB20A3 /* NSString+URLEncoding.m */; };
-		4374189F170ADB9300D2BE51 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF0CF80152E25E1003D6115 /* SSKeychain.m */; };
 		437418A0170ADB9300D2BE51 /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F3C1525015500DB20A3 /* TApplicationException.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		437418A1170ADB9300D2BE51 /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F3E1525015500DB20A3 /* TException.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		437418A2170ADB9300D2BE51 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B943F311525015500DB20A3 /* TBinaryProtocol.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -423,9 +419,6 @@
 		0BDBBC641550A3A4003E6681 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		0BDBBC651550A3A4003E6681 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		0BDBBC661550A3A4003E6681 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		0BF0CF7E152E25E1003D6115 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		0BF0CF7F152E25E1003D6115 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
-		0BF0CF80152E25E1003D6115 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		0BF0CF84152E2601003D6115 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0BF0CF93152E53E0003D6115 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		43691558170B0DBB00893324 /* ENOAuthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ENOAuthWindowController.h; path = EvernoteSDK/internal/ENOAuthWindowController.h; sourceTree = SOURCE_ROOT; };
@@ -579,7 +572,6 @@
 				A96FE4EB16A0A3DB00F1AD8C /* AFNetworking */,
 				0B943F251525015500DB20A3 /* cocoa-oauth */,
 				0B943F2B1525015500DB20A3 /* NSString+URLEncoding */,
-				0BF0CF7D152E25E1003D6115 /* SSKeychain */,
 				0B943F2E1525015500DB20A3 /* Thrift */,
 			);
 			path = 3rdParty;
@@ -856,16 +848,6 @@
 			path = OCMock;
 			sourceTree = "<group>";
 		};
-		0BF0CF7D152E25E1003D6115 /* SSKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				0BF0CF7E152E25E1003D6115 /* LICENSE */,
-				0BF0CF7F152E25E1003D6115 /* SSKeychain.h */,
-				0BF0CF80152E25E1003D6115 /* SSKeychain.m */,
-			);
-			path = SSKeychain;
-			sourceTree = "<group>";
-		};
 		43691585170C28DE00893324 /* EvernoteSDK-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1074,7 +1056,6 @@
 				0B943F521525015500DB20A3 /* ENGCOAuth.h in Headers */,
 				0B943F551525015500DB20A3 /* NSData+ENBase64.h in Headers */,
 				0B943F591525015500DB20A3 /* NSString+URLEncoding.h in Headers */,
-				0BF0CF81152E25E1003D6115 /* SSKeychain.h in Headers */,
 				0B98592815432592007D7D37 /* ENAPI.h in Headers */,
 				0B98592B15432592007D7D37 /* ENCredentials.h in Headers */,
 				0B98592E15432592007D7D37 /* ENCredentialStore.h in Headers */,
@@ -1388,7 +1369,6 @@
 				0B943F741525015500DB20A3 /* THTTPClient.m in Sources */,
 				0B943F771525015500DB20A3 /* TMemoryBuffer.m in Sources */,
 				0B943F841525015500DB20A3 /* TTransportException.m in Sources */,
-				0BF0CF82152E25E1003D6115 /* SSKeychain.m in Sources */,
 				0B98592915432592007D7D37 /* ENAPI.m in Sources */,
 				0B98592C15432592007D7D37 /* ENCredentials.m in Sources */,
 				0B98592F15432592007D7D37 /* ENCredentialStore.m in Sources */,
@@ -1446,7 +1426,6 @@
 				0B943F751525015500DB20A3 /* THTTPClient.m in Sources */,
 				0B943F781525015500DB20A3 /* TMemoryBuffer.m in Sources */,
 				0B943F851525015500DB20A3 /* TTransportException.m in Sources */,
-				0BF0CF8A152E31BA003D6115 /* SSKeychain.m in Sources */,
 				0B98592A15432592007D7D37 /* ENAPI.m in Sources */,
 				0B98592D15432592007D7D37 /* ENCredentials.m in Sources */,
 				0B98593015432592007D7D37 /* ENCredentialStore.m in Sources */,
@@ -1534,7 +1513,6 @@
 				4374189C170ADB9300D2BE51 /* ENGCOAuth.m in Sources */,
 				4374189D170ADB9300D2BE51 /* NSData+ENBase64.m in Sources */,
 				4374189E170ADB9300D2BE51 /* NSString+URLEncoding.m in Sources */,
-				4374189F170ADB9300D2BE51 /* SSKeychain.m in Sources */,
 				437418A0170ADB9300D2BE51 /* TApplicationException.m in Sources */,
 				437418A1170ADB9300D2BE51 /* TException.m in Sources */,
 				437418A2170ADB9300D2BE51 /* TBinaryProtocol.m in Sources */,
@@ -1843,7 +1821,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EvernoteSDK/EvernoteSDK-Mac-Prefix.pch";
 				INFOPLIST_FILE = "EvernoteSDK/EvernoteSDK-Mac-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1872,7 +1850,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EvernoteSDK/EvernoteSDK-Mac-Prefix.pch";
 				INFOPLIST_FILE = "EvernoteSDK/EvernoteSDK-Mac-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
