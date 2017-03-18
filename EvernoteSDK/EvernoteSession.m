@@ -60,6 +60,8 @@
 @property (nonatomic, copy) EvernoteAuthCompletionHandler completionHandler;
 @property (nonatomic, copy) NSString *tokenSecret;
 
+@property (nonatomic, copy) NSString *anotherAauthenticationToken;
+
 @property (nonatomic, copy) NSString* currentProfile;
 
 @property (nonatomic, assign) BOOL isSwitchingInProgress;
@@ -105,6 +107,8 @@
 @synthesize consumerKey = _consumerKey;
 @synthesize consumerSecret = _consumerSecret;
 @synthesize tokenSecret = _tokenSecret;
+
+@synthesize anotherAauthenticationToken = _anotherAauthenticationToken;
 
 @synthesize completionHandler = _completionHandler;
 @synthesize queue = _queue;
@@ -152,6 +156,10 @@
         [self.credentialStore save];
     }
     _queue = dispatch_queue_create("com.evernote.sdk.EvernoteSession", NULL);
+}
+
+- (void)setAuthenticationToken:(NSString *)token {
+    self.anotherAauthenticationToken = token;
 }
 
 + (void)setSharedSessionHost:(NSString *)host
@@ -213,7 +221,11 @@
 
 - (NSString *)authenticationToken
 {
-    return [[self credentials] authenticationToken];
+    if (self.anotherAauthenticationToken != nil) {
+        return self.anotherAauthenticationToken;
+    } else {
+        return [[self credentials] authenticationToken];
+    }
 }
 
 - (NSString *)businessAuthenticationToken
@@ -345,6 +357,9 @@
     self.currentProfile = nil;
     self.isSwitchingInProgress = NO;
     self.businessUser = nil;
+    
+    // Clear another authentication token
+    self.anotherAauthenticationToken = nil;
 
     // Clear all clients
     [self clearAllClients];
