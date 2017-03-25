@@ -1,7 +1,7 @@
 
 Tips: official *evernote-sdk-mac* hasn't been updated **over around 4 years**. You can image how many possible issues inside.
 
-When add feature of export highlights and notes of Kindle from [Klib](https://itunes.apple.com/cn/app/id1196268448?mt=12&at=1000lv4R&ct=klib_me) Evernote, I fixed the issues in the SDK and improve it. Check what problems I ever met, and how you can safely walk around them.
+When add feature of export highlights and notes of Kindle from [Klib](https://itunes.apple.com/cn/app/id1196268448?mt=12&at=1000lv4R&ct=klib_me) to Evernote, I fixed the issues in the SDK and improve it. Check what problems I ever met, and how you can safely walk around them.
 
 # What's changed in this fork?
 
