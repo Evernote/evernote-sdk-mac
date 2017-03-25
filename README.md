@@ -16,7 +16,6 @@ Tips: official *evernote-sdk-mac* hasn't been updated **over around 4 years**. Y
   - And sometimes, user want to manually choose host.
   - For the reasons above, I modify the API to use Evernote host based on parameter of host.
 
-
 # About Evernote API
 Beside the SDK itself above, you also need to pay attention on Evernote API.
 
@@ -25,6 +24,10 @@ Beside the SDK itself above, you also need to pay attention on Evernote API.
   - If you thought Evernote ignore your request, you can try to reach them in Twitter @evernotehelps
 - By default, Evernote only activate API for Evernote international rage. If you want to provide service in 'Evernote-China' (i.e., Yinxiang Biji), you need to manually request Evernote team to do so. Just reply the confirm email about activation.
 
+# About `NoteStore.findNotesMetadata`
+
+- @param  maxNotes The maximum notes to return in this query. The service will return a set of notes that is no larger than this number, but may return fewer notes if needed. The NoteList.totalNotes field in the return value will indicate whether there are more values available after the returned set. Currently, the service will not return more than **250** notes in a single request, but this number may change in the future.
+- The **250** means, if you have more than 250 notes in the query, you need to query for times.
 
 
 =========================================
