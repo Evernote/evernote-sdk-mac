@@ -1,6 +1,8 @@
 
 Tips: official *evernote-sdk-mac* hasn't been updated **over around 4 years**. You can image how many possible issues inside.
 
+When add feature of export highlights and notes of Kindle from [Klib](https://itunes.apple.com/cn/app/id1196268448?mt=12&at=1000lv4R&ct=klib_me) Evernote, I fixed the issues in the SDK and improve it. Check what problems I ever met, and how you can safely walk around them.
+
 # What's changed in this fork?
 
 - Change `Dynamic Library Install Name Base` (i.e., `DYLIB_INSTALL_NAME_BASE`) from `/Library/Frameworks` to `@rpath`. 
@@ -21,7 +23,7 @@ Beside the SDK itself above, you also need to pay attention on Evernote API.
 
 - Try to activate Evernote API as early as possible. No one guarantee how much time you need to wait before Evernote really activate it.
   - Tips: you will not get any confirm email after request to activate API.
-  - If you thought Evernote ignore your request, you can try to reach them in Twitter @evernotehelps
+  - If you thought Evernote ignore your request, you can try to reach them in Twitter [@evernotehelpst](https://twitter.com/evernotehelps)
 - By default, Evernote only activate API for Evernote international rage. If you want to provide service in 'Evernote-China' (i.e., Yinxiang Biji), you need to manually request Evernote team to do so. Just reply the confirm email about activation.
 
 # About `NoteStore.findNotesMetadata`
