@@ -60,6 +60,8 @@
 @property (nonatomic, copy) EvernoteAuthCompletionHandler completionHandler;
 @property (nonatomic, copy) NSString *tokenSecret;
 
+@property (nonatomic, copy) NSString *anotherAauthenticationToken;
+
 @property (nonatomic, copy) NSString* currentProfile;
 
 @property (nonatomic, assign) BOOL isSwitchingInProgress;
@@ -105,6 +107,8 @@
 @synthesize consumerKey = _consumerKey;
 @synthesize consumerSecret = _consumerSecret;
 @synthesize tokenSecret = _tokenSecret;
+
+@synthesize anotherAauthenticationToken = _anotherAauthenticationToken;
 
 @synthesize completionHandler = _completionHandler;
 @synthesize queue = _queue;
@@ -154,30 +158,38 @@
     _queue = dispatch_queue_create("com.evernote.sdk.EvernoteSession", NULL);
 }
 
+- (void)setAuthenticationToken:(NSString *)token {
+    self.anotherAauthenticationToken = token;
+}
+
 + (void)setSharedSessionHost:(NSString *)host
                  consumerKey:(NSString *)consumerKey
               consumerSecret:(NSString *)consumerSecret {
     EvernoteSession *session = [self sharedSession];
-    // First see if we already have a profile
-    if([ENCredentialStore getCurrentProfile] == EVERNOTE_SERVICE_YINXIANG) {
-        session.host = BootstrapServerBaseURLStringCN;
-    }
-    else if([ENCredentialStore getCurrentProfile] == EVERNOTE_SERVICE_INTERNATIONAL) {
-        session.host = BootstrapServerBaseURLStringUS;
-    }
-    // If not, check what boostrap server you want to use based on the locale
-    else if([host isEqualToString:BootstrapServerBaseURLStringUS] || [host isEqualToString:BootstrapServerBaseURLStringCN]) {
-        NSString* locale = [[NSLocale currentLocale] localeIdentifier];
-        if ([[locale lowercaseString] hasPrefix:kBootstrapServerBaseURLStringCN]) {
-            session.host = BootstrapServerBaseURLStringCN;
-        }
-        else {
-            session.host = BootstrapServerBaseURLStringUS;
-        }
-    }
-    else {
-        session.host = host;
-    }
+    
+    // Jason: Comment out, as already let user manually choose host in app.
+//    // First see if we already have a profile
+//    if([ENCredentialStore getCurrentProfile] == EVERNOTE_SERVICE_YINXIANG) {
+//        session.host = BootstrapServerBaseURLStringCN;
+//    }
+//    else if([ENCredentialStore getCurrentProfile] == EVERNOTE_SERVICE_INTERNATIONAL) {
+//        session.host = BootstrapServerBaseURLStringUS;
+//    }
+//    // If not, check what boostrap server you want to use based on the locale
+//    else if([host isEqualToString:BootstrapServerBaseURLStringUS] || [host isEqualToString:BootstrapServerBaseURLStringCN]) {
+//        NSString* locale = [[NSLocale currentLocale] localeIdentifier];
+//        if ([[locale lowercaseString] hasPrefix:kBootstrapServerBaseURLStringCN]) {
+//            session.host = BootstrapServerBaseURLStringCN;
+//        }
+//        else {
+//            session.host = BootstrapServerBaseURLStringUS;
+//        }
+//    }
+//    else {
+//        session.host = host;
+//    }
+    
+    session.host = host;
     session.consumerKey = consumerKey;
     session.consumerSecret = consumerSecret;
 
@@ -213,7 +225,11 @@
 
 - (NSString *)authenticationToken
 {
-    return [[self credentials] authenticationToken];
+    if (self.anotherAauthenticationToken != nil) {
+        return self.anotherAauthenticationToken;
+    } else {
+        return [[self credentials] authenticationToken];
+    }
 }
 
 - (NSString *)businessAuthenticationToken
@@ -345,6 +361,9 @@
     self.currentProfile = nil;
     self.isSwitchingInProgress = NO;
     self.businessUser = nil;
+    
+    // Clear another authentication token
+    self.anotherAauthenticationToken = nil;
 
     // Clear all clients
     [self clearAllClients];
@@ -393,14 +412,30 @@
     [self emptyCookieJar];
 
     // Start bootstrapping
-    NSString* locale = [[NSLocale currentLocale] localeIdentifier];
+    NSString* locale = nil;
+    NSString* profileName = nil;
+    
+    // Jason: Use locale based on host selected by user.
+    if (self.host == BootstrapServerBaseURLStringCN) {
+        locale = @"zh-CN";
+        profileName = ENBootstrapProfileNameChina;
+    } else {
+        locale = @"en-US";
+        profileName = ENBootstrapProfileNameInternational;
+    }
+    
     EvernoteUserStore *userStore = [EvernoteUserStore userStore];
     [userStore getBootstrapInfoWithLocale:locale success:^(EDAMBootstrapInfo *info) {
-        // Using first profile as the preferred profile.
-        EDAMBootstrapProfile *profile = [info.profiles objectAtIndex:0];
         self.profiles = info.profiles;
-        self.currentProfile = profile.name;
-        [[EvernoteSession sharedSession] setHost:profile.settings.serviceHost];
+        self.currentProfile = profileName;
+        [[EvernoteSession sharedSession] setHost:self.host];
+        
+        // Jason: Comment out.
+        // Using first profile as the preferred profile.
+//        EDAMBootstrapProfile *profile = [info.profiles objectAtIndex:0];
+//        self.currentProfile = profile.name;
+//        [[EvernoteSession sharedSession] setHost:profile.settings.serviceHost];
+        
         // reset the user and note store objects
         [self clearAllClients];
         // start the OAuth dance to get credentials (auth token, noteStoreUrl, etc).

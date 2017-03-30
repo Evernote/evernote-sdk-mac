@@ -1,3 +1,39 @@
+
+Tips: official *evernote-sdk-mac* hasn't been updated **over around 4 years**. You can image how many possible issues inside.
+
+When add feature of export highlights and notes of Kindle from [Klib](https://itunes.apple.com/cn/app/id1196268448?mt=12&at=1000lv4R&ct=klib_me) to Evernote, I fixed the issues in the SDK and improve it. Check what problems I ever met, and how you can safely walk around them.
+
+# What's changed in this fork?
+
+- Change `Dynamic Library Install Name Base` (i.e., `DYLIB_INSTALL_NAME_BASE`) from `/Library/Frameworks` to `@rpath`. 
+  - If not, even you include `EvernoteSDK-Mac.framework` in your App, your App will still crash with error *dyld: Library not loaded: … Reason: image not found*. As `EvernoteSDK-Mac.framework` will definitely not be copied to `/Library/Frameworks`.
+
+- Could manually set Evernote token.
+  - This change isn't necessary, as the SDK itself will save the token in system Keychain.
+  - But it will be flexiable if so, i.e., save token after authorization, and set it after app restarts.
+
+- Choose Evernote host based on parameter of host.
+  - The SDK will still choose host (i.e., 'Evernote', or 'Evernote-China') based on `getBootstrapInfoWithLocale`, even you set the host as `BootstrapServerBaseURLStringCN` (i.e., "app.yinxiang.com") in `setSharedSessionHost` and `authenticate`.
+  - But this logic seems has issue (always chhose the first host from the list returned from Evernote sever).
+  - And sometimes, user want to manually choose host.
+  - For the reasons above, I modify the API to use Evernote host based on parameter of host.
+
+# About Evernote API
+Beside the SDK itself above, you also need to pay attention on Evernote API.
+
+- Try to activate Evernote API as early as possible. No one guarantee how much time you need to wait before Evernote really activate it.
+  - Tips: you will not get any confirm email after request to activate API.
+  - If you thought Evernote ignore your request, you can try to reach them in Twitter [@evernotehelpst](https://twitter.com/evernotehelps)
+- By default, Evernote only activate API for Evernote international rage. If you want to provide service in 'Evernote-China' (i.e., Yinxiang Biji), you need to manually request Evernote team to do so. Just reply the confirm email about activation.
+
+# About `NoteStore.findNotesMetadata`
+
+- @param  maxNotes The maximum notes to return in this query. The service will return a set of notes that is no larger than this number, but may return fewer notes if needed. The NoteList.totalNotes field in the return value will indicate whether there are more values available after the returned set. Currently, the service will not return more than **250** notes in a single request, but this number may change in the future.
+- The **250** means, if you have more than 250 notes in the query, you need to query for times.
+
+
+=========================================
+
 Evernote SDK for iOS/Mac version 1.2.1
 =========================================
 

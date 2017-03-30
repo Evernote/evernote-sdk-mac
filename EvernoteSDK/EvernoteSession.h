@@ -151,6 +151,14 @@ typedef NS_ENUM(NSInteger, ENSessionState) {
                  consumerKey:(NSString *)consumerKey
               consumerSecret:(NSString *)consumerSecret;
 
+/** Set up the shared session.
+ 
+ This should be called after 'setSharedSessionHost'.
+ 
+ @param token The token string.
+ */
+
+- (void)setAuthenticationToken:(NSString *)token;
 
 /**
  * Get the singleton shared session.
