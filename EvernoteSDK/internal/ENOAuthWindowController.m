@@ -123,15 +123,14 @@
 
 - (void)loadWebView {
     [self.activityIndicator startAnimation:nil];
-    self.webView.frameLoadDelegate = self;
-    self.webView.policyDelegate = self;
+    self.webView.navigationDelegate= self;
     // NSLog(@"Open URL %@", self.authorizationURL);
-    [self.webView.mainFrame loadRequest:[NSURLRequest requestWithURL:self.authorizationURL]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:self.authorizationURL]];
 }
 
 # pragma mark - WebView Delegate
 
-- (void)webView:(WebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.activityIndicator stopAnimation:nil];
     if ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102) {
         // ignore "Frame load interrupted" errors, which we get as part of the final oauth callback :P
@@ -151,12 +150,9 @@
     }
 }
 
-- (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame {
-    [self webView:sender shouldStartLoadWithRequest:frame.dataSource.request];
-}
 
 // handles redirects, which is used by OAuth
-- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener {
     if ([[request.URL absoluteString] hasPrefix:self.oauthCallbackPrefix]) {
         // this is our OAuth callback prefix, so let the delegate handle it
         if (self.delegate)
@@ -173,24 +169,8 @@
     }
 }
 
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
-    [self webViewDidFinishLoad:sender];
-} 
-
-- (BOOL)webView:(WebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request {
-    if ([[request.URL absoluteString] hasPrefix:self.oauthCallbackPrefix]) {
-        // this is our OAuth callback prefix, so let the delegate handle it
-        if (self.delegate) {
-            [self.delegate oauthViewController:self receivedOAuthCallbackURL:request.URL];
-            [self dismissSheet];
-        }
-        return NO;
-    }
-    return YES;
-}
-
-- (void)webViewDidFinishLoad:(WebView *)webView {
-    [self.activityIndicator stopAnimation:nil];
+- (void)webView: (WKWebView *)webView DidFinishNavigation:(WKNavigation *)navigation {
+  [self.activityIndicator stopAnimation:nil];
 }
 
 //# pragma mark - UIWebViewDelegate
