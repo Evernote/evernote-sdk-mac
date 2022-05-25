@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @interface NoteBrowserViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnPrev;
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 - (IBAction)nextNote:(id)sender;
 - (IBAction)previousNote:(id)sender;
 

@@ -91,9 +91,9 @@
     }];
 }
 
-- (void)viewDidUnload
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidUnload];
+    [super didReceiveMemoryWarning];
 }
 
 - (CGSize)contentSizeForViewInPopover
