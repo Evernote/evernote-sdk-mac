@@ -25,7 +25,7 @@
     [self updateButtonsForAuthentication];
 }
 
-- (void)viewDidUnload
+- (void)didReceiveMemoryWarning
 {
     [self setListNotebooksButton:nil];
     [self setUserLabel:nil];
@@ -37,11 +37,11 @@
     [self setCreateBusinessNotebookButton:nil];
     [self setCreatePhotoButton:nil];
     [self setMoreButton:nil];
-    [super viewDidUnload];
+    [super didReceiveMemoryWarning];
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -51,12 +51,9 @@
     EvernoteSession *session = [EvernoteSession sharedSession];
     [session authenticateWithViewController:self completionHandler:^(NSError *error) {
         if (error || !session.isAuthenticated) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                             message:@"Could not authenticate" 
-                                                            delegate:nil 
-                                                   cancelButtonTitle:@"OK" 
-                                                   otherButtonTitles:nil];
-            [alert show];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Could not authenticate" preferredStyle:(UIAlertControllerStyleAlert)];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alertController animated:YES completion:nil];
         } else {
             NSLog(@"authenticated! noteStoreUrl:%@ webApiUrlPrefix:%@", session.noteStoreUrl, session.webApiUrlPrefix);
             [self updateButtonsForAuthentication];
@@ -129,6 +126,9 @@
                                                                     emphasized:nil];
             [defaultNoteStore listNotesForLinkedNotebook:linkedNotebooks[0]  withFilter:noteFilter success:^(EDAMNoteList *list) {
                 NSLog(@"Shared notes : %@",list);
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Photo Note Created" message:list preferredStyle:(UIAlertControllerStyleAlert)];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertController animated:YES completion:nil];
             } failure:^(NSError *error) {
                 NSLog(@"Error : %@",error);
             }];
@@ -164,6 +164,9 @@
     }];
     [[EvernoteNoteStore noteStore] createNote:newNote success:^(EDAMNote *note) {
         NSLog(@"Note created successfully.");
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Photo Note Created" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
     } failure:^(NSError *error) {
         NSLog(@"Error creating note : %@",error);
     }];

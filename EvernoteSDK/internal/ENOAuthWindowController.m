@@ -128,7 +128,7 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.authorizationURL]];
 }
 
-# pragma mark - WebView Delegate
+# pragma mark - WKWebView Delegate
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self.activityIndicator stopAnimation:nil];

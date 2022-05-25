@@ -226,7 +226,6 @@
         }
         NSString* pasteboardName = [NSString stringWithFormat:@"com.evernote.bridge.%@",[[EvernoteSession sharedSession] consumerKey]];
         UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:pasteboardName create:YES];
-        [pasteboard setPersistent:YES];
         [pasteboard setData:[NSKeyedArchiver archivedDataWithRootObject:appBridgeData] forPasteboardType:@"$EvernoteApplicationBridgeData$"];
         NSString* openURL = [NSString stringWithFormat:@"en://app-bridge/consumerKey/%@/pasteBoardName/%@",[[EvernoteSession sharedSession] consumerKey],pasteboardName];
         BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:openURL]];
@@ -269,7 +268,6 @@
             [appBridgeData setObject:[[EvernoteSession sharedSession] consumerKey] forKey:kEN_ApplicationBridge_ConsumerKey];
             NSString* pasteboardName = [NSString stringWithFormat:@"com.evernote.bridge.%@",[[EvernoteSession sharedSession] consumerKey]];
             UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:pasteboardName create:YES];
-            [pasteboard setPersistent:YES];
             [pasteboard setData:[NSKeyedArchiver archivedDataWithRootObject:appBridgeData] forPasteboardType:@"$EvernoteApplicationBridgeData$"];
             NSString* openURL = [NSString stringWithFormat:@"en://app-bridge/consumerKey/%@/pasteBoardName/%@",[[EvernoteSession sharedSession] consumerKey],pasteboardName];
             BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:openURL]];

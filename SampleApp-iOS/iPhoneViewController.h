@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 @interface iPhoneViewController : UIViewController
 - (IBAction)authenticate:(id)sender;
 - (IBAction)listNotes:(id)sender;
