@@ -1,4 +1,4 @@
-= 1.2.2 / 2022-05-16
+= 2.0.0 / 2022-05-16
 
 * Removed the frames in .xib file as it was deprecated.
 * Replaced methods of webView with WKWebview.  
