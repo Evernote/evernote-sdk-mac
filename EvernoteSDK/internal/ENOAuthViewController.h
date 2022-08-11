@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ENOAuthProtocol.h"
+#import <WebKit/WebKit.h>
 
 @class ENOAuthViewController;
 

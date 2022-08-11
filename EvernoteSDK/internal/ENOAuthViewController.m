@@ -9,11 +9,11 @@
 #import "ENOAuthViewController.h"
 #import "ENConstants.h"
 
-@interface ENOAuthViewController() <UIWebViewDelegate>
+@interface ENOAuthViewController() <WKNavigationDelegate>
 
 @property (nonatomic, strong) NSURL *authorizationURL;
 @property (nonatomic, strong) NSString *oauthCallbackPrefix;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, copy) NSString* currentProfileName;
 @property (nonatomic, strong) UIActivityIndicatorView* activityIndicator;
 @property (nonatomic, assign) BOOL isSwitchingAllowed;
@@ -31,7 +31,7 @@
 - (void)dealloc
 {
     self.delegate = nil;
-    self.webView.delegate = nil;
+    self.webView.navigationDelegate = nil;
     [self.webView stopLoading];
 }
 
@@ -63,11 +63,9 @@
     // adding an activity indicator
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.activityIndicator setHidesWhenStopped:YES];
-    
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.webView.scalesPageToFit = YES;
-    self.webView.delegate = self;
+    self.webView.navigationDelegate = self;
     [self.view addSubview:self.webView];
     self.activityIndicator.frame = CGRectMake((self.navigationController.view.frame.size.width - (self.activityIndicator.frame.size.width/2))/2,
                                               (self.navigationController.view.frame.size.height - (self.activityIndicator.frame.size.height/2) - 44)/2,
@@ -98,9 +96,9 @@
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                            forView:[[self navigationController] view]
                              cache:YES];
-    [self.webView setDelegate:nil];
+    [self.webView setNavigationDelegate:nil];
     // Blank out the web view
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close()"];
+    [self.webView evaluateJavaScript:@"document.open();document.close()" completionHandler:^(NSString *doc, NSError * _Nullable error) { }];
     self.navigationItem.leftBarButtonItem = nil;
     [UIView commitAnimations];
 }
@@ -129,19 +127,19 @@
 
 - (void)loadWebView {
     [self.activityIndicator startAnimating];
-    [self.webView setDelegate:self];
+    [self.webView setNavigationDelegate:self];
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.authorizationURL]];
     self.startDate = [NSDate date];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
 }
 
 # pragma mark - UIWebViewDelegate
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [self.activityIndicator stopAnimating];
     if ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102) {
@@ -160,23 +158,23 @@
         [self.delegate oauthViewController:self didFailWithError:error];
     }
 }
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    if ([[request.URL absoluteString] hasPrefix:self.oauthCallbackPrefix]) {
-        // this is our OAuth callback prefix, so let the delegate handle it
-        if (self.delegate) {
-            [self.delegate oauthViewController:self receivedOAuthCallbackURL:request.URL];
-        }
-        return NO;
+    
+    - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+     if ([[webView.URL absoluteString] hasPrefix:self.oauthCallbackPrefix]) {
+      // this is our OAuth callback prefix, so let the delegate handle it
+      if (self.delegate) {
+       [self.delegate oauthViewController:self receivedOAuthCallbackURL:webView.URL];
+      }
+      decisionHandler(WKNavigationActionPolicyCancel);
+     } else {
+      decisionHandler(WKNavigationActionPolicyAllow);
+     }
     }
-    return YES;
-}
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self.activityIndicator stopAnimating];
-    self.startDate = [NSDate date];
-    NSLog(@"OAuth Step 2 - Time Running is: %f",[self.startDate timeIntervalSinceNow] * -1);
-}
-
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+        [self.activityIndicator stopAnimating];
+        self.startDate = [NSDate date];
+        NSLog(@"OAuth Step 2 - Time Running is: %f",[self.startDate timeIntervalSinceNow] * -1);
+    }
+    
 @end

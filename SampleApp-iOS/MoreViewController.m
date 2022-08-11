@@ -140,17 +140,15 @@
     NSLog(@"App was installed");
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
 
 #pragma mark -
 #pragma Notebook chooser delegate
 
 - (void)notebookChooserController:(NotebookChooserViewController *)controller didSelectNotebook:(EDAMNotebook *)notebook {
     self.selectedNotebookGUID = notebook.guid;
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notebook chosen" message:notebook.name delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Notebook chosen" message:notebook.name preferredStyle:(UIAlertControllerStyleAlert)];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

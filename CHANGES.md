@@ -1,3 +1,8 @@
+= 2.0.0 / 2022-05-16
+
+* Removed the frames in .xib file as it was deprecated.
+* Replaced methods of webView with WKWebview.  
+
 = 1.2.1 / 2013-06-12
 
 * Added RelatedQuery.referenceUri

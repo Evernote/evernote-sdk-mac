@@ -14,7 +14,7 @@
 @interface ENOAuthWindowController : NSWindowController
 
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
-@property (weak) IBOutlet WebView *webView;
+@property (weak) IBOutlet WKWebView *webView;
 
 @property (nonatomic, weak) id<ENOAuthDelegate> delegate;
 
